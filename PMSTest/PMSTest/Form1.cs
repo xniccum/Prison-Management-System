@@ -60,6 +60,19 @@ namespace PMSTest
             }
         }
 
+        private void run_sproc(string s)
+        {
+            DataTable table2 = new DataTable();
+            SqlDataReader reader;
+            using ( var command = new SqlCommand(s,cnn)
+            { CommandType = System.Data.CommandType.StoredProcedure } ) {
+                reader = command.ExecuteReader(); 
+            }
+            table2.Load(reader);
+            dataGridView1.DataSource = table2;
+            reader.Close();
+        }
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton1.Checked)
@@ -97,6 +110,18 @@ namespace PMSTest
                 
             }
             catch (Exception ex) { }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string s = "select * from Prisoner";
+            run_sproc(s);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string s = "dbo.pms_guards";
+            run_sproc(s);
         }
         
     }
