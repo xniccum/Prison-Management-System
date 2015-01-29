@@ -73,28 +73,6 @@ namespace PMSTest
             reader.Close();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked)
-            {
-                string s = "select * from Prisoner";
-                update_data(s);
-            }
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton2.Checked)
-            {
-                string s = "select * from Guard";
-                update_data(s);
-            }
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-      
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -114,7 +92,7 @@ namespace PMSTest
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string s = "select * from Prisoner";
+            string s = "dbo.pms_getAllPrisoners";
             run_sproc(s);
         }
 
@@ -122,6 +100,17 @@ namespace PMSTest
         {
             string s = "dbo.pms_guards";
             run_sproc(s);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string s = "dbo.pms_getGuardSchedule";
+            run_sproc(s);
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
         
     }
