@@ -9,6 +9,6 @@ namespace PMS_WebSite.Context
 {
     public class UserContext : DbContext
     {
-        public DbSet<User> Monsters { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
