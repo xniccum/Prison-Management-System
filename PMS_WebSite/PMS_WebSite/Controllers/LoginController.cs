@@ -1,6 +1,4 @@
-﻿using PMS_WebSite.Context;
-using PMS_WebSite.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,37 +6,27 @@ using System.Web.Mvc;
 
 namespace PMS_WebSite.Controllers
 {
-    public class UserController : Controller
+    public class LoginController : Controller
     {
-        private UserContext db = new UserContext();
-
-        // GET: User
+        // GET: Login
         public ActionResult Index()
         {
             return View();
         }
 
-
-        public ActionResult Login()
-        {
-
-            return View();
-        }
-
-        // GET: User/Details/5
+        // GET: Login/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: User/Create
-        [HttpGet]
+        // GET: Login/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: User/Create
+        // POST: Login/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -54,13 +42,13 @@ namespace PMS_WebSite.Controllers
             }
         }
 
-        // GET: User/Edit/5
+        // GET: Login/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: User/Edit/5
+        // POST: Login/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -76,13 +64,13 @@ namespace PMS_WebSite.Controllers
             }
         }
 
-        // GET: User/Delete/5
+        // GET: Login/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: User/Delete/5
+        // POST: Login/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -1,45 +1,47 @@
 ﻿@model IEnumerable<PMS_WebSite.Models.User>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
 }
 
-<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.password)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.permissions)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.permissions)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+    <div class="col-md-12">
+        <div class="modal-dialog" style="margin-bottom:0">
+            <div class="modal-content">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sign In</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Username" name="email" type="text" autofocus="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            @Html.ActionLink("Login","Login","User");
+                                            <input type="submit" value="Login" class="btn btn-sm btn-success" />
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+        </div>
+    </div>
 }
 
-</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
