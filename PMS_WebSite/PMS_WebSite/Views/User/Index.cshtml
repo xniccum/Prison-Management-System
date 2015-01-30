@@ -17,14 +17,12 @@
                         <div class="panel-body">
                             <form role="form">
                                 <fieldset>
-                                    @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control",Placeholder="Username"} })
                                         @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                                     </div>
-                                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="form-group">
-                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", type = "password", Placeholder = "Password" } })
                                         @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="checkbox">
