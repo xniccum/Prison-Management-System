@@ -19,8 +19,11 @@ namespace PMSTest
         public Form1()
         {
             InitializeComponent();
-
-            startConnection();
+            //startConnection();
+            SQLhandler hand = new SQLhandler();
+            Console.WriteLine("Does this work?");
+            hand.openConnection();
+            Console.WriteLine(hand.verifyUsernamePassword("kalj", "password"));
         }
         SqlConnection dbConnection;
         string connetionString = null;
@@ -115,6 +118,11 @@ namespace PMSTest
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
