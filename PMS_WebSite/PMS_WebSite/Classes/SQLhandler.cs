@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
 
-namespace PMSTest
+namespace PMS_WebSite.Classes
 {
     /// <summary>
     /// This is a class designed to handle all interactions with a database server. 
@@ -15,29 +14,20 @@ namespace PMSTest
     /// Once connected the method verifyUsernamePassword(string, string) returns a boolean if the username and password are stored 
     /// in the User table of the database. 
     /// </summary>
-    class SQLhandler
+    public static class SQLhandler
     {
-        private string dummyUsername = "333Winter2014Prisoner";
-        private string dummyPassword = "prisoner";
-        string connectionString;
-        SqlConnection dbConnection;
-        private Boolean dbConnectionOpen = false;
-        
-        /// <summary>
-        /// Constructer. Takes no paramaters.
-        /// </summary>
-        public SQLhandler()
-        {
-            connectionString= "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
-            //openConnection();
-        }
+        private static string dummyUsername = "333Winter2014Prisoner";
+        private static string dummyPassword = "prisoner";
+        private static string connectionString;
+        private static SqlConnection dbConnection;
+        private static Boolean dbConnectionOpen = false;
 
         /// <summary>
         /// Creates a connection to the database using the default dummy username and password. 
         /// All database interaction shoudl be done through this user. 
         /// </summary>
         /// <returns> Returns false if the connection could not be made, and true if it was successfully created</returns>
-        public Boolean openConnection()
+        public static Boolean openConnection()
         {
             SqlConnection myConn = new SqlConnection();
 
@@ -55,7 +45,25 @@ namespace PMSTest
             }
 
         }
-        
+
+        /// <summary>
+        /// Closes an open connection to the database  
+        /// <returns> Returns false if the connection could not be closed, and true if it was successfully closes</returns>
+        public static Boolean closeConnection()
+        {
+            try
+            {
+                dbConnection.Close();
+                dbConnectionOpen = false;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
         /// <summary>
         /// This method verifies a username and password. Currently does not use any sort of encryption. 
         /// This method will not run if there is not a valid connection to the database. 
@@ -63,9 +71,9 @@ namespace PMSTest
         /// <param name="username">username as spelled in the User table.</param>
         /// <param name="password">password as spelled in the User table</param>
         /// <returns> returns a boolean corresponding to the validity of the Username/Password passed</returns>
-        public Boolean verifyUsernamePassword(string username, string password)
+        public static Boolean verifyUsernamePassword(string username, string password)
         {
-            if(!dbConnectionOpen)
+            if (!dbConnectionOpen)
                 return false;
 
             SqlCommand verificationCommand = new SqlCommand();
@@ -78,7 +86,6 @@ namespace PMSTest
             verificationCommand.Parameters["@Password"].Value = password;
 
             Object returned = verificationCommand.ExecuteScalar();
-            Console.WriteLine(returned.ToString());
             if (returned.ToString() == "1")
                 return true;
 

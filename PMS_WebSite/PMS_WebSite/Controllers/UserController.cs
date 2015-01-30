@@ -1,4 +1,5 @@
-﻿using PMS_WebSite.Context;
+﻿using PMS_WebSite.Classes;
+using PMS_WebSite.Context;
 using PMS_WebSite.Models;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,20 @@ namespace PMS_WebSite.Controllers
         }
 
 
-        public ActionResult Login()
+        public ActionResult Login(User user)
         {
-
+            
+            if(SQLhandler.openConnection())
+            {
+                if (SQLhandler.verifyUsernamePassword(user.username,user.password))
+                {
+                    ViewBag.Message = "Login Worked";
+                    SQLhandler.closeConnection();
+                    return RedirectToAction("Create");
+                }
+                ViewBag.Message = "Login Failed";
+                SQLhandler.closeConnection();
+            }
             return View();
         }
 
