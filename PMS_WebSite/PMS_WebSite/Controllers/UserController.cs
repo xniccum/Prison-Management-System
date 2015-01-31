@@ -16,7 +16,6 @@ namespace PMS_WebSite.Controllers
         // GET: User
         public ActionResult Index()
         {
-            ViewBag.Message = " ";
             return View();
         }
 
@@ -28,13 +27,14 @@ namespace PMS_WebSite.Controllers
             {
                 if (SQLhandler.verifyUsernamePassword(user.username,user.password))
                 {
+                    ViewBag.Message = "Login Worked";
                     SQLhandler.closeConnection();
-                    return View("Profile");
+                    return RedirectToAction("Create");
                 }
                 ViewBag.Message = "Login Failed";
                 SQLhandler.closeConnection();
             }
-            return View("Index");
+            return View();
         }
 
         // GET: User/Details/5
