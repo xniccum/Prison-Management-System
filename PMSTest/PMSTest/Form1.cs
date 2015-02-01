@@ -14,40 +14,37 @@ namespace PMSTest
 {
     public partial class Form1 : Form
     {
-        private string dummyUsername = "333Winter2014Prisoner";
-        private string dummyPassword = "prisoner";
         public Form1()
         {
             InitializeComponent();
-            startConnection();
+            //startConnection();
             SQLhandler hand = new SQLhandler();
             Console.WriteLine("Does this work?");
             hand.openConnection();
             Console.WriteLine(hand.verifyUsernamePassword("kalj", "password"));
+
         }
-        SqlConnection dbConnection;
+        SqlConnection cnn;
         string connetionString = null;
         private void button1_Click(object sender, EventArgs e)
-        {     
-            
-        }
-
-        private void startConnection()
         {
-            SqlConnection myConn = new SqlConnection(); 
-
-            connetionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
-            dbConnection = new SqlConnection(connetionString);
+           SqlConnection myConn = new SqlConnection(); 
+           {
+            
+            //System.Data.SqlClient.SqlConnection cnn ;
+            connetionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + textBox1.Text + "; password=" + textBox2.Text + ";";
+            cnn = new SqlConnection(connetionString);
             try
             {
-                dbConnection.Open();
-                MessageBox.Show("Auto-Login Accepted");
+                cnn.Open();
+                MessageBox.Show ("Authentification Accepted");
+                
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Auto-Login Failed");
+                MessageBox.Show("Authentification Failed");
             }
-
+            }
         }
        
         private void update_data(string s)
@@ -55,7 +52,7 @@ namespace PMSTest
             try
             {
                 
-                    SqlDataAdapter adapter = new SqlDataAdapter(s, dbConnection);
+                    SqlDataAdapter adapter = new SqlDataAdapter(s, cnn);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds, s);
                     dataGridView1.DataSource = ds.Tables[0];
@@ -73,7 +70,7 @@ namespace PMSTest
         {
             DataTable table2 = new DataTable();
             SqlDataReader reader;
-            using ( var command = new SqlCommand(s,dbConnection)
+            using ( var command = new SqlCommand(s,cnn)
             { CommandType = System.Data.CommandType.StoredProcedure } ) {
                 reader = command.ExecuteReader(); 
             }
@@ -88,9 +85,9 @@ namespace PMSTest
             MessageBox.Show("Logging out");
             try
             {
-                dbConnection.Close();
+                cnn.Close();
                 connetionString = null;
-                dbConnection = null;
+                cnn = null;
                 dataGridView1.DataSource = null;
                 dataGridView1.Rows.Clear();
                 dataGridView1.Refresh();    
@@ -121,11 +118,6 @@ namespace PMSTest
         {
 
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-  
+        
     }
 }
