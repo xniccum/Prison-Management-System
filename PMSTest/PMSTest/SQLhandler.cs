@@ -29,7 +29,7 @@ namespace PMSTest
         public SQLhandler()
         {
             connectionString= "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
-            //openConnection();
+            openConnection();
         }
 
         /// <summary>

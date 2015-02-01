@@ -19,7 +19,7 @@ namespace PMSTest
         public Form1()
         {
             InitializeComponent();
-            //startConnection();
+            startConnection();
             SQLhandler hand = new SQLhandler();
             Console.WriteLine("Does this work?");
             hand.openConnection();
