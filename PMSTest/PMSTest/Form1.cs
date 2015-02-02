@@ -31,7 +31,7 @@ namespace PMSTest
            SqlConnection myConn = new SqlConnection(); 
            {
             
-            //System.Data.SqlClient.SqlConnection cnn ;
+            System.Data.SqlClient.SqlConnection cnn ;
             connetionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + textBox1.Text + "; password=" + textBox2.Text + ";";
             cnn = new SqlConnection(connetionString);
             try
