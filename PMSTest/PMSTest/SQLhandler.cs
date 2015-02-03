@@ -84,5 +84,27 @@ namespace PMSTest
 
             return false;
         }
-    }
+
+        public Boolean isLoggedIn()
+        {
+
+            return dbConnectionOpen;
+        }
+
+        public SqlDataReader getGuardsReader()
+        {
+            return new SqlDataReader();
+        }
+
+        public SqlDataReader getPrisonersReader()
+        {
+            return new SqlDataReader();
+        }
+
+        public SqlDataReader getScheduleReader()
+        {
+            return new SqlDataReader();
+        }
+
+        }
 }
