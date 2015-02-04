@@ -14,37 +14,43 @@ namespace PMSTest
 {
     public partial class Form1 : Form
     {
+        SQLhandler dbHandler;
+
         public Form1()
         {
             InitializeComponent();
-            //startConnection();
-            SQLhandler hand = new SQLhandler();
-            Console.WriteLine("Does this work?");
-            hand.openConnection();
-            Console.WriteLine(hand.verifyUsernamePassword("kalj", "password"));
-
+            dbHandler = new SQLhandler();
+            if (dbHandler.isConnected())
+            {
+                MessageBox.Show("Connected to database");
+            }
+            else
+            {
+                MessageBox.Show("Unable to connect");
+            }
         }
-        SqlConnection cnn;
-        string connetionString = null;
         private void button1_Click(object sender, EventArgs e)
         {
-           SqlConnection myConn = new SqlConnection(); 
-           {
+            if(dbHandler.isConnected()){
+                if(dbHandler.userLogged()) {
+                    MessageBox.Show("Already Logged In");
+                } else {
+                    if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text)
+                    {
+                        MessageBox.Show("Login Accepted");
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Username Or Password Incorrect");
+                    }
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Not connected to Database");
+            }
             
-            System.Data.SqlClient.SqlConnection cnn ;
-            connetionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + textBox1.Text + "; password=" + textBox2.Text + ";";
-            cnn = new SqlConnection(connetionString);
-            try
-            {
-                cnn.Open();
-                MessageBox.Show ("Authentification Accepted");
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Authentification Failed");
-            }
-            }
+
         }
        
         private void update_data(string s)
@@ -82,18 +88,19 @@ namespace PMSTest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Logging out");
-            try
-            {
-                cnn.Close();
-                connetionString = null;
-                cnn = null;
-                dataGridView1.DataSource = null;
-                dataGridView1.Rows.Clear();
-                dataGridView1.Refresh();    
+            if( this.dbHandler.logOut())
+                MessageBox.Show("Logged Out");
+            //try
+            //{
+            //    cnn.Close();
+            //    connetionString = null;
+            //    cnn = null;
+            //    dataGridView1.DataSource = null;
+            //    dataGridView1.Rows.Clear();
+            //    dataGridView1.Refresh();    
                 
-            }
-            catch (Exception ex) { }
+            //}
+            //catch (Exception ex) { }
         }
 
         private void button3_Click(object sender, EventArgs e)

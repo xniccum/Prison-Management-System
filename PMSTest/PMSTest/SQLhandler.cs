@@ -22,6 +22,9 @@ namespace PMSTest
         string connectionString;
         SqlConnection dbConnection;
         private Boolean dbConnectionOpen = false;
+        private Boolean userLoggedIn = false;
+        private string userUsername = "";
+        private string userPassword = "";
         
         /// <summary>
         /// Constructer. Takes no paramaters.
@@ -39,7 +42,7 @@ namespace PMSTest
         /// <returns> Returns false if the connection could not be made, and true if it was successfully created</returns>
         public Boolean openConnection()
         {
-            SqlConnection myConn = new SqlConnection();
+            dbConnection = new SqlConnection();
 
             connectionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
             dbConnection = new SqlConnection(connectionString);
@@ -79,32 +82,54 @@ namespace PMSTest
 
             Object returned = verificationCommand.ExecuteScalar();
             Console.WriteLine(returned.ToString());
-            if (returned.ToString() == "1")
+            if (returned.ToString() == "1") 
+            {
+                userLoggedIn = true;
+                this.userUsername = username;
+                this.userPassword = password;
                 return true;
+            }
 
             return false;
         }
 
-        public Boolean isLoggedIn()
+        public Boolean userLogged()
+        {
+
+            return this.userLoggedIn;
+        }
+
+        public Boolean isConnected()
         {
 
             return dbConnectionOpen;
         }
-
-        public SqlDataReader getGuardsReader()
+        public Boolean logOut()
         {
-            return new SqlDataReader();
-        }
+            if (!this.userLoggedIn || !this.dbConnectionOpen)
+            {
+                return false;
+            }
+            this.userLoggedIn = false;
+            this.userUsername = "";
+            this.userPassword = "";
+            return true;
 
-        public SqlDataReader getPrisonersReader()
-        {
-            return new SqlDataReader();
         }
+        //public SqlDataReader getGuardsReader()
+        //{
+        //    return new SqlDataReader();
+        //}
 
-        public SqlDataReader getScheduleReader()
-        {
-            return new SqlDataReader();
-        }
+        //public SqlDataReader getPrisonersReader()
+        //{
+        //    return new SqlDataReader();
+        //}
+
+        //public SqlDataReader getScheduleReader()
+        //{
+        //    return new SqlDataReader();
+        //}
 
         }
 }
