@@ -88,14 +88,14 @@ namespace PMSTest
                 return new DataTable();
             SqlDataReader dataRead;
             command.CommandType = System.Data.CommandType.StoredProcedure;
-            try
-            {
+            //try
+            //{
                 dataRead = command.ExecuteReader();
-            }
-            catch
-            {
-                return new DataTable();
-            }
+            //}
+            //catch
+            //{
+            //    return new DataTable();
+            //}
 
             DataTable returnTable = new DataTable();
             returnTable.Load(dataRead);
@@ -186,7 +186,7 @@ namespace PMSTest
         public DataTable getPrisonersTable()
         {
 
-            using (SqlCommand sprocCommand = new SqlCommand("dbo.getAllPrisoners", dbConnection))
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_getAllPrisoners", dbConnection))
             {
                 return executeSproc(sprocCommand);
             }

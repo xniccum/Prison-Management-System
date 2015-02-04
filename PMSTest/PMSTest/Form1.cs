@@ -15,11 +15,11 @@ namespace PMSTest
     public partial class Form1 : Form
     {
         SQLhandler dbHandler;
-
         public Form1()
         {
             InitializeComponent();
             dbHandler = new SQLhandler();
+            fillComboBox();
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -28,6 +28,25 @@ namespace PMSTest
             {
                 MessageBox.Show("Unable to connect");
             }
+            
+        }
+
+        private void fillComboBox()
+        {
+            comboBox1.Items.AddRange(new Object[] {
+                "Get Prisoner",
+                "Add Cell",
+                "Add Guard",
+                "Add Prisoner",
+                "Create Job",
+                "Show Altercations",
+                "Show All Cells",
+                "Show All Prisoners",
+                "Show Guard Schedule",
+                "Show All Guards",
+                "Show All Shifts",
+                "Show All Users"
+            });
         }
         //login button
         private void button1_Click(object sender, EventArgs e)
@@ -144,6 +163,64 @@ namespace PMSTest
         private void button6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            executeQuery();
+        }
+
+        private void executeQuery()
+        {
+            string selection = comboBox1.SelectedItem.ToString();
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            Console.WriteLine(selection);
+            switch (selection) {
+                case "Get Prisoner":
+                    break;
+                case "Add Cell":
+                    break;
+                case "Add Guard":
+                    break;
+                case "Add Prisoner":
+                    break;
+                case "Create Job":
+                    break;
+                case "Show Altercations":
+                    dataGridView1.DataSource = dbHandler.getAltercationTable();
+                    break;
+                case "Show All Cells":
+                    dataGridView1.DataSource = dbHandler.getCellTable();
+                    break;
+                case "Show All Prisoners":
+                    dataGridView1.DataSource = dbHandler.getPrisonersTable();
+                    break;
+                case "Show Guard Schedule":
+                    break;
+                case "Show All Guards":
+                    dataGridView1.DataSource = dbHandler.getGuardsDataTable();
+                    break;
+                case "Show All Shifts":
+                    dataGridView1.DataSource = dbHandler.getShiftsTable();
+                    break;
+                case "Show All Users":
+                    break;
+            }
+            
         }
 
         
