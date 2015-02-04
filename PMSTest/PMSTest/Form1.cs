@@ -29,15 +29,23 @@ namespace PMSTest
                 MessageBox.Show("Unable to connect");
             }
         }
+        //login button
         private void button1_Click(object sender, EventArgs e)
         {
             if(dbHandler.isConnected()){
-                if(dbHandler.userLogged()) {
+                if(dbHandler.isUserLoggedIn()) {
                     MessageBox.Show("Already Logged In");
                 } else {
-                    if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text)
+                    if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text))
                     {
+                        if (dbHandler.checkUsernamePermissions(textBox1.Text) < 1)
+                        {
+                            MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
+                            dbHandler.logOut();
+                        } else 
+                        {
                         MessageBox.Show("Login Accepted");
+                        }
                     }
                     else 
                     {
@@ -53,39 +61,45 @@ namespace PMSTest
 
         }
        
-        private void update_data(string s)
-        {
-            try
-            {
+        //private void update_data(string s)
+        //{
+        //    try
+        //    {
                 
-                    SqlDataAdapter adapter = new SqlDataAdapter(s, cnn);
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds, s);
-                    dataGridView1.DataSource = ds.Tables[0];
-                    dataGridView1.Refresh();
+        //            SqlDataAdapter adapter = new SqlDataAdapter(s, cnn);
+        //            DataSet ds = new DataSet();
+        //            adapter.Fill(ds, s);
+        //            dataGridView1.DataSource = ds.Tables[0];
+        //            dataGridView1.Refresh();
                     
                 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Must be logged on to view data");
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Must be logged on to view data");
+        //    }
+        //}
 
+
+
+        //Depricated. Will be removed. 
         private void run_sproc(string s)
         {
-            DataTable table2 = new DataTable();
-            SqlDataReader reader;
-            using ( var command = new SqlCommand(s,cnn)
-            { CommandType = System.Data.CommandType.StoredProcedure } ) {
-                reader = command.ExecuteReader(); 
-            }
-            table2.Load(reader);
-            dataGridView1.DataSource = table2;
-            reader.Close();
+            //DataTable table2 = new DataTable();
+            //SqlDataReader reader;
+            //using ( var command = new SqlCommand(s,cnn)
+            //{ 
+            //    CommandType = System.Data.CommandType.StoredProcedure 
+            //} ) 
+            //{
+            //    reader = command.ExecuteReader(); 
+            //}
+            //table2.Load(reader);
+            //dataGridView1.DataSource = table2;
+            //reader.Close();
         }
 
-
+        //logout button
         private void button2_Click(object sender, EventArgs e)
         {
             if( this.dbHandler.logOut())
@@ -111,8 +125,9 @@ namespace PMSTest
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string s = "dbo.pms_guards";
-            run_sproc(s);
+            //"dbo.pms_guards";
+            if(dbHandler.isUserLoggedIn())
+                dataGridView1.DataSource = dbHandler.getGuardsDataTable();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -125,6 +140,12 @@ namespace PMSTest
         {
 
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }

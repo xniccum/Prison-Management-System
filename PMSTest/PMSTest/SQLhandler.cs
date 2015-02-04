@@ -58,42 +58,7 @@ namespace PMSTest
             }
 
         }
-        
-        /// <summary>
-        /// This method verifies a username and password. Currently does not use any sort of encryption. 
-        /// This method will not run if there is not a valid connection to the database. 
-        /// </summary>
-        /// <param name="username">username as spelled in the User table.</param>
-        /// <param name="password">password as spelled in the User table</param>
-        /// <returns> returns a boolean corresponding to the validity of the Username/Password passed</returns>
-        public Boolean verifyUsernamePassword(string username, string password)
-        {
-            if(!dbConnectionOpen)
-                return false;
-
-            SqlCommand verificationCommand = new SqlCommand();
-            verificationCommand.CommandText = "dbo.pms_checkUsernamePassword";
-            verificationCommand.CommandType = CommandType.StoredProcedure;
-            verificationCommand.Connection = dbConnection;
-            verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
-            verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
-            verificationCommand.Parameters["@Username"].Value = username;
-            verificationCommand.Parameters["@Password"].Value = password;
-
-            Object returned = verificationCommand.ExecuteScalar();
-            Console.WriteLine(returned.ToString());
-            if (returned.ToString() == "1") 
-            {
-                userLoggedIn = true;
-                this.userUsername = username;
-                this.userPassword = password;
-                return true;
-            }
-
-            return false;
-        }
-
-        public Boolean userLogged()
+             public Boolean isUserLoggedIn()
         {
 
             return this.userLoggedIn;
@@ -116,20 +81,131 @@ namespace PMSTest
             return true;
 
         }
-        //public SqlDataReader getGuardsReader()
-        //{
-        //    return new SqlDataReader();
-        //}
 
-        //public SqlDataReader getPrisonersReader()
-        //{
-        //    return new SqlDataReader();
-        //}
+        private DataTable executeSproc(SqlCommand command)
+        {
+            if (!dbConnectionOpen || !userLoggedIn)
+                return new DataTable();
+            SqlDataReader dataRead;
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            try
+            {
+                dataRead = command.ExecuteReader();
+            }
+            catch
+            {
+                return new DataTable();
+            }
 
-        //public SqlDataReader getScheduleReader()
-        //{
-        //    return new SqlDataReader();
-        //}
+            DataTable returnTable = new DataTable();
+            returnTable.Load(dataRead);
+            return returnTable;
 
         }
+
+
+        /// <summary>
+        /// This method verifies a username and password. Currently does not use any sort of encryption. 
+        /// This method will not run if there is not a valid connection to the database. 
+        /// </summary>
+        /// <param name="username">username as spelled in the User table.</param>
+        /// <param name="password">password as spelled in the User table</param>
+        /// <returns> returns a boolean corresponding to the validity of the Username/Password passed</returns>
+        public Boolean verifyUsernamePassword(string username, string password)
+        {
+            if (!dbConnectionOpen)
+                return false;
+
+            SqlCommand verificationCommand = new SqlCommand();
+            verificationCommand.CommandText = "dbo.pms_checkUsernamePassword";
+            verificationCommand.CommandType = CommandType.StoredProcedure;
+            verificationCommand.Connection = dbConnection;
+            verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
+            verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
+            verificationCommand.Parameters["@Username"].Value = username;
+            verificationCommand.Parameters["@Password"].Value = password;
+
+            Object returned = verificationCommand.ExecuteScalar();
+            if (returned.ToString() == "1")
+            {
+                userLoggedIn = true;
+                this.userUsername = username;
+                this.userPassword = password;
+                return true;
+            }
+
+            return false;
+        }
+
+        public int checkUsernamePermissions(string username)
+        {
+            using (SqlCommand sprocCommand = new SqlCommand())
+            {
+                sprocCommand.CommandText = "dbo.pms_getPermissions";
+                sprocCommand.CommandType = CommandType.StoredProcedure;
+                sprocCommand.Connection = dbConnection;
+                sprocCommand.Parameters.Add("@Username", SqlDbType.VarChar);
+                sprocCommand.Parameters["@Username"].Value = username;
+
+                Object returned = sprocCommand.ExecuteScalar();
+                if (returned.ToString() == "1")
+                    return 1;
+                else if (returned.ToString() == "2")
+                    return 2;
+                else
+                    return 0;
+            }
+
+        }
+
+
+        public DataTable getGuardsDataTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_guards", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+        
+        public DataTable getAltercationTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_altercations", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getCellTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_cell", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getPrisonersTable()
+        {
+
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.getAllPrisoners", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getShiftsTable()
+        {
+
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_shifts", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+
+        }
+
+
+
+
+
+        }
+
 }
