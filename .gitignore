@@ -187,3 +187,4 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+PMS_WebSite/PMS_WebSite/Controllers/UserController.cs
