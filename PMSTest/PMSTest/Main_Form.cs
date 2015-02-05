@@ -39,6 +39,7 @@ namespace PMSTest
                 "Add Cell",
                 "Add Guard",
                 "Add Prisoner",
+                "Register User",
                 "Create Job",
                 "Show Altercations",
                 "Show All Cells",
@@ -46,7 +47,10 @@ namespace PMSTest
                 "Show Guard Schedule",
                 "Show All Guards",
                 "Show All Shifts",
-                "Show All Users"
+                "Show All Users",
+                "Delete Prisoner",
+                "Delete User",
+                "Move Prisoner"
             });
         }
         //login button
@@ -240,6 +244,22 @@ namespace PMSTest
                         break;
                     case "Show All Users":
                         dataGridView1.DataSource = dbHandler.getAllUsersTable();
+                        break;
+                    case "Delete Prisoner":
+                        inputForm = new Add_Data_Form("dbo.pms_deletePrisoner", this);
+                        inputForm.Show();
+                        break;
+                    case "Delete User":
+                        inputForm = new Add_Data_Form("dbo.pms_deleteUser", this);
+                        inputForm.Show();
+                        break;
+                    case "Move Prisoner":
+                        inputForm = new Add_Data_Form("dbo.movePrisonerToCell", this);
+                        inputForm.Show();
+                        break;
+                    case "Register User":
+                        inputForm = new Add_Data_Form("dbo.pms_registerUser", this);
+                        inputForm.Show();
                         break;
                 }
             }

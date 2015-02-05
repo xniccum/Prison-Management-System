@@ -303,6 +303,17 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_checkUsernamePassword", new String[] { "@Username" , "@Password" });
             this.parameterTypes.Add("dbo.pms_checkUsernamePassword", new SqlDbType[] { SqlDbType.NVarChar, SqlDbType.NVarChar});
 
+            this.parameterNames.Add("dbo.pms_deletePrisoner", new String[] { "@prisonerID" });
+            this.parameterTypes.Add("dbo.pms_deletePrisoner", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_deleteUser", new String[] { "@dropUsername" });
+            this.parameterTypes.Add("dbo.pms_deleteUser", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.movePrisonerToCell", new String[] { "@prisonerID", "@desiredCell" });
+            this.parameterTypes.Add("dbo.movePrisonerToCell", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
+            this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
 
 
