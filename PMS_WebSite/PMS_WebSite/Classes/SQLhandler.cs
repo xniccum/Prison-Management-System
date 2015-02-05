@@ -75,7 +75,6 @@ namespace PMS_WebSite.Classes
         {
             if (!dbConnectionOpen)
                 return false;
-            password = (password == null) ? " " : password;
 
             SqlCommand verificationCommand = new SqlCommand();
             verificationCommand.CommandText = "dbo.pms_checkUsernamePassword";

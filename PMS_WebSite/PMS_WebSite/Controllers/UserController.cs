@@ -1,27 +1,25 @@
 ﻿using PMS_WebSite.Classes;
-using PMS_WebSite.Context;
 using PMS_WebSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace PMS_WebSite.Controllers
 {
     public class UserController : Controller
     {
-        private UserContext db = new UserContext();
 
         // GET: User
         public ActionResult Index()
         {
-            ViewBag.Message = " ";
             return View();
         }
 
-
-        public ActionResult Login(User user)
+        [HttpPost]
+        public ActionResult Index(User user)
         {
             
             if(SQLhandler.openConnection())
@@ -29,12 +27,11 @@ namespace PMS_WebSite.Controllers
                 if (SQLhandler.verifyUsernamePassword(user.username,user.password))
                 {
                     SQLhandler.closeConnection();
-                    return View("Profile");
+                    return RedirectToAction("Index");
                 }
-                ViewBag.Message = "Login Failed";
                 SQLhandler.closeConnection();
             }
-            return View("Index");
+            return View();
         }
 
         // GET: User/Details/5
