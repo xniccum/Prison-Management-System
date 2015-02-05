@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prison_Managment_System_Site", "Prison_Managment_System_Site\Prison_Managment_System_Site.csproj", "{B7D2ED95-4657-47A6-8180-592EDFBECCC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prison_Managment_System", "Prison_Managment_System_Site\Prison_Managment_System.csproj", "{B7D2ED95-4657-47A6-8180-592EDFBECCC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

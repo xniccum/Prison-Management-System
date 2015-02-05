@@ -15,13 +15,19 @@ namespace PMSTest
     /// Once connected the method verifyUsernamePassword(string, string) returns a boolean if the username and password are stored 
     /// in the User table of the database. 
     /// </summary>
-    class SQLhandler
+    public class SQLhandler
     {
         private string dummyUsername = "333Winter2014Prisoner";
         private string dummyPassword = "prisoner";
         string connectionString;
         SqlConnection dbConnection;
         private Boolean dbConnectionOpen = false;
+        private Boolean userLoggedIn = false;
+        private string userUsername = "";
+        private string userPassword = "";
+        public Dictionary<string,string[]> parameterNames;
+        public Dictionary<string, SqlDbType[]> parameterTypes;
+
         
         /// <summary>
         /// Constructer. Takes no paramaters.
@@ -29,8 +35,11 @@ namespace PMSTest
         public SQLhandler()
         {
             connectionString= "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
-            //openConnection();
+            openConnection();
+            loadParameters();
         }
+
+
 
         /// <summary>
         /// Creates a connection to the database using the default dummy username and password. 
@@ -39,7 +48,7 @@ namespace PMSTest
         /// <returns> Returns false if the connection could not be made, and true if it was successfully created</returns>
         public Boolean openConnection()
         {
-            SqlConnection myConn = new SqlConnection();
+            dbConnection = new SqlConnection();
 
             connectionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
             dbConnection = new SqlConnection(connectionString);
@@ -55,7 +64,52 @@ namespace PMSTest
             }
 
         }
-        
+             public Boolean isUserLoggedIn()
+        {
+
+            return this.userLoggedIn;
+        }
+
+        public Boolean isConnected()
+        {
+
+            return dbConnectionOpen;
+        }
+        public Boolean logOut()
+        {
+            if (!this.userLoggedIn || !this.dbConnectionOpen)
+            {
+                return false;
+            }
+            this.userLoggedIn = false;
+            this.userUsername = "";
+            this.userPassword = "";
+            return true;
+
+        }
+
+        private DataTable executeSproc(SqlCommand command)
+        {
+            if (!dbConnectionOpen || !userLoggedIn)
+                return new DataTable();
+            SqlDataReader dataRead;
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            //try
+            //{
+                dataRead = command.ExecuteReader();
+            //}
+            //catch
+            //{
+            //    return new DataTable();
+            //}
+
+            DataTable returnTable = new DataTable();
+            returnTable.Load(dataRead);
+            return returnTable;
+
+        }
+
+
         /// <summary>
         /// This method verifies a username and password. Currently does not use any sort of encryption. 
         /// This method will not run if there is not a valid connection to the database. 
@@ -65,7 +119,7 @@ namespace PMSTest
         /// <returns> returns a boolean corresponding to the validity of the Username/Password passed</returns>
         public Boolean verifyUsernamePassword(string username, string password)
         {
-            if(!dbConnectionOpen)
+            if (!dbConnectionOpen)
                 return false;
 
             SqlCommand verificationCommand = new SqlCommand();
@@ -78,11 +132,148 @@ namespace PMSTest
             verificationCommand.Parameters["@Password"].Value = password;
 
             Object returned = verificationCommand.ExecuteScalar();
-            Console.WriteLine(returned.ToString());
             if (returned.ToString() == "1")
+            {
+                userLoggedIn = true;
+                this.userUsername = username;
+                this.userPassword = password;
                 return true;
+            }
 
             return false;
         }
+
+        public int checkUsernamePermissions(string username)
+        {
+            using (SqlCommand sprocCommand = new SqlCommand())
+            {
+                sprocCommand.CommandText = "dbo.pms_getPermissions";
+                sprocCommand.CommandType = CommandType.StoredProcedure;
+                sprocCommand.Connection = dbConnection;
+                sprocCommand.Parameters.Add("@Username", SqlDbType.VarChar);
+                sprocCommand.Parameters["@Username"].Value = username;
+
+                Object returned = sprocCommand.ExecuteScalar();
+                if (returned.ToString() == "1")
+                    return 1;
+                else if (returned.ToString() == "2")
+                    return 2;
+                else
+                    return 0;
+            }
+
+        }
+
+
+        public DataTable getGuardsDataTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_guards", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+        
+        public DataTable getAltercationTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_altercations", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getCellTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_cell", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getPrisonersTable()
+        {
+
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_getAllPrisoners", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable getShiftsTable()
+        {
+
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_shifts", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+
+        }
+
+
+
+
+
+
+        public DataTable runParamSproc(string name, string[] data)
+        {
+            if (!dbConnectionOpen)
+                return new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = name;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = dbConnection;
+            for (int i = 0; i < data.Length; i++)
+            {
+                command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
+                command.Parameters[this.parameterNames[name][i]].Value = data[i];
+            }
+            //verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
+            //verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
+            //verificationCommand.Parameters["@Username"].Value = username;
+            //verificationCommand.Parameters["@Password"].Value = password;
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable returnTable =  new DataTable();
+            returnTable.Load(reader);
+            return returnTable;
+        }
+
+        private void loadParameters()
+        {
+            this.parameterNames = new Dictionary<string, string[]>();
+            this.parameterTypes = new Dictionary<string, SqlDbType[]>();
+
+            this.parameterNames.Add("dbo.addCell", new String[] { "@cellNo", "@block" });
+            this.parameterTypes.Add("dbo.addCell", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.addGuard", new String[] { "@username", "@scheduleID" });
+            this.parameterTypes.Add("dbo.addGuard", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@desiredCell"});
+            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.createJob", new String[] { "@jobName", "@capacity", "@schedule"});
+            this.parameterTypes.Add("dbo.createJob", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.pms_getAltercation", new String[] { "@altID" });
+            this.parameterTypes.Add("dbo.pms_getAltercation", new SqlDbType[] { SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.pms_getPrisoner", new String[] { "@prisonerID"});
+            this.parameterTypes.Add("dbo.pms_getPrisoner", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_getUser", new String[] { "@username"});
+            this.parameterTypes.Add("dbo.pms_getUser", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_getPermissions", new String[] { "@username" });
+            this.parameterTypes.Add("dbo.pms_getPermissions", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_checkUsernamePassword", new String[] { "@Username" , "@Password" });
+            this.parameterTypes.Add("dbo.pms_checkUsernamePassword", new SqlDbType[] { SqlDbType.NVarChar, SqlDbType.NVarChar});
+
+
+
+
+        }
     }
+
+
+
 }
