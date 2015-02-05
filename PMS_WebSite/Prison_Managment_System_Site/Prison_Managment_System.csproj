@@ -167,6 +167,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Prisoner\Index.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Prisoner\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

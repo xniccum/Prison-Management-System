@@ -1,7 +1,8 @@
-﻿using Prison_Managment_System_Site.Classes;
+﻿using Prison_Managment_System;
 using Prison_Managment_System_Site.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,7 @@ namespace Prison_Managment_System_Site.Controllers
 {
     public class UserController : Controller
     {
+        private SQLhandler handler;
 
         [HttpGet]
         public ActionResult Login()
@@ -21,18 +23,19 @@ namespace Prison_Managment_System_Site.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            if (ModelState.IsValid)
+            ViewBag.Message = "";
+            if (!user.username.Equals("") && !user.password.Equals(""))
             {
-                    SQLhandler.openConnection();
-                    if (SQLhandler.verifyUsernamePassword(user.username, user.password))
-                    {
-                        return RedirectToAction("Index", "Prisoner");
-                    }
-                    SQLhandler.closeConnection();
-                //create new user related things
-                //Session["user-log"]
+                this.handler = new SQLhandler();
+                this.handler.openConnection();
+                if (handler.verifyUsernamePassword(user.username, user.password))
+                {
+                    Session["UserName"] = user.username;
+                    Session["Password"] = user.password;
+                    return RedirectToAction("Index", "Prisoner");
+                }
             }
-            //ModelState.AddModelError("", "User name \"" + user.username + "\" is already Taken");
+            ViewBag.Message = "*User name or Password is Invalid";
             return View(user);
         }
 
@@ -48,13 +51,7 @@ namespace Prison_Managment_System_Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                SQLhandler.openConnection();
-                if (SQLhandler.verifyUsernamePassword("",""))
-                {
-                    SQLhandler.closeConnection();
-                    return RedirectToAction("Index", "Prisoner");
-                }
-                SQLhandler.closeConnection();
+                handler.openConnection();
                 //create new user related things
                 //Session["user-log"]
             }

@@ -12,6 +12,18 @@ namespace Prison_Managment_System_Site.Models
     {
         [Key]
         public int ID { get; set; }
+        [Required(ErrorMessage = "First Name is Required")]
+        [StringLength(20)]
+        [DisplayName("First Name")]
+        public string fname { get; set; }
+        [Required(ErrorMessage = "Middle Name is Required")]
+        [StringLength(20)]
+        [DisplayName("Middle Name")]
+        public string mname { get; set; }
+        [Required(ErrorMessage = "Last Name is Required")]
+        [StringLength(20)]
+        [DisplayName("Last Name")]
+        public string lname { get; set; }
         [Required(ErrorMessage="Username is Required")]
         [StringLength(15)]
         [DisplayName("Username")]
