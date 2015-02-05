@@ -49,8 +49,9 @@ namespace Prison_Managment_System_Site.Controllers
             if (ModelState.IsValid)
             {
                 SQLhandler.openConnection();
-                if (SQLhandler)
+                if (SQLhandler.verifyUsernamePassword("",""))
                 {
+                    SQLhandler.closeConnection();
                     return RedirectToAction("Index", "Prisoner");
                 }
                 SQLhandler.closeConnection();
