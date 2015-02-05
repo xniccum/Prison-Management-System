@@ -12,10 +12,11 @@ using System.Configuration;
 
 namespace PMSTest
 {
-    public partial class Form1 : Form
+    public partial class Main_Form : Form
     {
-        SQLhandler dbHandler;
-        public Form1()
+        public SQLhandler dbHandler;
+        public Form inputForm;
+        public Main_Form()
         {
             InitializeComponent();
             dbHandler = new SQLhandler();
@@ -180,6 +181,12 @@ namespace PMSTest
             executeQuery();
         }
 
+        public void runParamSproc(string name, string[] data){
+            dataGridView1.DataSource = this.dbHandler.runParamSproc(name, data);
+
+
+         }
+
         private void executeQuery()
         {
             string selection = comboBox1.SelectedItem.ToString();
@@ -191,6 +198,8 @@ namespace PMSTest
             Console.WriteLine(selection);
             switch (selection) {
                 case "Get Prisoner":
+                    Form f = new Add_Data_Form("dbo.pms_getPrisoner",this);
+                    f.Show();
                     break;
                 case "Add Cell":
                     break;

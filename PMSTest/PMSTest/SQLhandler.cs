@@ -15,7 +15,7 @@ namespace PMSTest
     /// Once connected the method verifyUsernamePassword(string, string) returns a boolean if the username and password are stored 
     /// in the User table of the database. 
     /// </summary>
-    class SQLhandler
+    public class SQLhandler
     {
         private string dummyUsername = "333Winter2014Prisoner";
         private string dummyPassword = "prisoner";
@@ -25,6 +25,9 @@ namespace PMSTest
         private Boolean userLoggedIn = false;
         private string userUsername = "";
         private string userPassword = "";
+        public Dictionary<string,string[]> parameterNames;
+        public Dictionary<string, SqlDbType[]> parameterTypes;
+
         
         /// <summary>
         /// Constructer. Takes no paramaters.
@@ -33,7 +36,10 @@ namespace PMSTest
         {
             connectionString= "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
             openConnection();
+            loadParameters();
         }
+
+
 
         /// <summary>
         /// Creates a connection to the database using the default dummy username and password. 
@@ -206,6 +212,68 @@ namespace PMSTest
 
 
 
+
+        public DataTable runParamSproc(string name, string[] data)
+        {
+            if (!dbConnectionOpen)
+                return new DataTable();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = name;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = dbConnection;
+            for (int i = 0; i < data.Length; i++)
+            {
+                command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
+                command.Parameters[this.parameterNames[name][i]].Value = data[i];
+            }
+            //verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
+            //verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
+            //verificationCommand.Parameters["@Username"].Value = username;
+            //verificationCommand.Parameters["@Password"].Value = password;
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable returnTable =  new DataTable();
+            returnTable.Load(reader);
+            return returnTable;
         }
+
+        private void loadParameters()
+        {
+            this.parameterNames = new Dictionary<string, string[]>();
+            this.parameterTypes = new Dictionary<string, SqlDbType[]>();
+
+            this.parameterNames.Add("dbo.addCell", new String[] { "@cellNo", "@block" });
+            this.parameterTypes.Add("dbo.addCell", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.addGuard", new String[] { "@username", "@scheduleID" });
+            this.parameterTypes.Add("dbo.addGuard", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@desiredCell"});
+            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.createJob", new String[] { "@jobName", "@capacity", "@schedule"});
+            this.parameterTypes.Add("dbo.createJob", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.pms_getAltercation", new String[] { "@altID" });
+            this.parameterTypes.Add("dbo.pms_getAltercation", new SqlDbType[] { SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.pms_getPrisoner", new String[] { "@prisonerID"});
+            this.parameterTypes.Add("dbo.pms_getPrisoner", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_getUser", new String[] { "@username"});
+            this.parameterTypes.Add("dbo.pms_getUser", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_getPermissions", new String[] { "@username" });
+            this.parameterTypes.Add("dbo.pms_getPermissions", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_checkUsernamePassword", new String[] { "@Username" , "@Password" });
+            this.parameterTypes.Add("dbo.pms_checkUsernamePassword", new SqlDbType[] { SqlDbType.NVarChar, SqlDbType.NVarChar});
+
+
+
+
+        }
+    }
+
+
 
 }
