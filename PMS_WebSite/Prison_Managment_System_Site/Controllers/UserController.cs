@@ -51,11 +51,11 @@ namespace Prison_Managment_System_Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                handler.openConnection();
-                //create new user related things
-                //Session["user-log"]
+                this.handler = new SQLhandler();
+                this.handler.openConnection();
+                handler.addUser(user);
+                return RedirectToAction("Login", "User");
             }
-            //ModelState.AddModelError("", "User name \"" + user.username + "\" is already Taken");
             return View(user);
         }
     }

@@ -253,7 +253,7 @@ namespace Prison_Managment_System
 
             using (SqlCommand sprocCommand = new SqlCommand())
             {
-                sprocCommand.CommandText = "dbo.pms_prisoners";
+                sprocCommand.CommandText = "dbo.pms_getRelations";
                 sprocCommand.CommandType = CommandType.StoredProcedure;
                 sprocCommand.Connection = dbConnection;
                 sprocCommand.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
