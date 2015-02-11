@@ -16,6 +16,7 @@ namespace PMSTest
     {
         public SQLhandler dbHandler;
         public Form inputForm;
+        public Form ScheduleEditorForm;
         public Main_Form()
         {
             InitializeComponent();
@@ -277,7 +278,8 @@ namespace PMSTest
 
         private void scheduleButton_Click(object sender, EventArgs e)
         {
-
+            this.ScheduleEditorForm = new ScheduleEditor(this);
+            this.ScheduleEditorForm.Show();
         }
 
         

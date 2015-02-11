@@ -85,14 +85,17 @@
             // 
             // shiftComboBox
             // 
+            this.shiftComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shiftComboBox.FormattingEnabled = true;
             this.shiftComboBox.Location = new System.Drawing.Point(12, 24);
             this.shiftComboBox.Name = "shiftComboBox";
             this.shiftComboBox.Size = new System.Drawing.Size(121, 21);
             this.shiftComboBox.TabIndex = 5;
+            this.shiftComboBox.SelectedIndexChanged += new System.EventHandler(this.shiftComboBox_SelectedIndexChanged);
             // 
             // schedulesComboBox
             // 
+            this.schedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.schedulesComboBox.FormattingEnabled = true;
             this.schedulesComboBox.Location = new System.Drawing.Point(146, 24);
             this.schedulesComboBox.Name = "schedulesComboBox";
@@ -101,6 +104,7 @@
             // 
             // jobSchedulesComboBox
             // 
+            this.jobSchedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.jobSchedulesComboBox.FormattingEnabled = true;
             this.jobSchedulesComboBox.Location = new System.Drawing.Point(281, 24);
             this.jobSchedulesComboBox.Name = "jobSchedulesComboBox";
@@ -109,6 +113,7 @@
             // 
             // guardSchedulesComboBox
             // 
+            this.guardSchedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.guardSchedulesComboBox.FormattingEnabled = true;
             this.guardSchedulesComboBox.Location = new System.Drawing.Point(417, 24);
             this.guardSchedulesComboBox.Name = "guardSchedulesComboBox";

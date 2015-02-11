@@ -12,9 +12,13 @@ namespace PMSTest
 {
     public partial class ScheduleEditor : Form
     {
-        public ScheduleEditor()
+        Main_Form parentForm;
+        public ScheduleEditor(Main_Form passedForm)
         {
+            this.parentForm = passedForm;
             InitializeComponent();
+            shiftComboBox.Items.AddRange(new Object[] { "Add Shift", "Update Shift", "Delete Shift" });
+            guardSchedulesComboBox.Items.AddRange(new Object[] { "Update Guard Schedule" });
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)
@@ -23,6 +27,11 @@ namespace PMSTest
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void shiftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
