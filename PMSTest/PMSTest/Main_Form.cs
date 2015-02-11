@@ -50,7 +50,8 @@ namespace PMSTest
                 "Show All Users",
                 "Delete Prisoner",
                 "Delete User",
-                "Move Prisoner"
+                "Move Prisoner",
+                "Add Altercation"
             });
         }
         //login button
@@ -259,6 +260,10 @@ namespace PMSTest
                         break;
                     case "Register User":
                         inputForm = new Add_Data_Form("dbo.pms_registerUser", this);
+                        inputForm.Show();
+                        break;
+                    case "Add Altercation":
+                        inputForm = new Add_Data_Form("dbo.pms_addAltercation", this);
                         inputForm.Show();
                         break;
                 }

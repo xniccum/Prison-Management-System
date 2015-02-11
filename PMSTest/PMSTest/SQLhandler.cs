@@ -315,6 +315,8 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
             this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
+            this.parameterNames.Add("dbo.pms_addAltercation", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@Type", "@Description"});
+            this.parameterTypes.Add("dbo.pms_addAltercation", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.VarChar, SqlDbType.VarChar});
 
 
         }
