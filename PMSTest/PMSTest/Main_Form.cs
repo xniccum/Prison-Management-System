@@ -39,6 +39,7 @@ namespace PMSTest
                 "Add Cell",
                 "Add Guard",
                 "Add Prisoner",
+                "Register User",
                 "Create Job",
                 "Show Altercations",
                 "Show All Cells",
@@ -46,7 +47,10 @@ namespace PMSTest
                 "Show Guard Schedule",
                 "Show All Guards",
                 "Show All Shifts",
-                "Show All Users"
+                "Show All Users",
+                "Delete Prisoner",
+                "Delete User",
+                "Move Prisoner"
             });
         }
         //login button
@@ -195,39 +199,73 @@ namespace PMSTest
                 MessageBox.Show("Please Log In First");
                 return;
             }
-            Console.WriteLine(selection);
-            switch (selection) {
-                case "Get Prisoner":
-                    Form f = new Add_Data_Form("dbo.pms_getPrisoner",this);
-                    f.Show();
-                    break;
-                case "Add Cell":
-                    break;
-                case "Add Guard":
-                    break;
-                case "Add Prisoner":
-                    break;
-                case "Create Job":
-                    break;
-                case "Show Altercations":
-                    dataGridView1.DataSource = dbHandler.getAltercationTable();
-                    break;
-                case "Show All Cells":
-                    dataGridView1.DataSource = dbHandler.getCellTable();
-                    break;
-                case "Show All Prisoners":
-                    dataGridView1.DataSource = dbHandler.getPrisonersTable();
-                    break;
-                case "Show Guard Schedule":
-                    break;
-                case "Show All Guards":
-                    dataGridView1.DataSource = dbHandler.getGuardsDataTable();
-                    break;
-                case "Show All Shifts":
-                    dataGridView1.DataSource = dbHandler.getShiftsTable();
-                    break;
-                case "Show All Users":
-                    break;
+
+            try
+            {
+                switch (selection)
+                {
+                    case "Get Prisoner":
+                        inputForm = new Add_Data_Form("dbo.pms_getPrisoner", this);
+                        inputForm.Show();
+                        break;
+                    case "Add Cell":
+                        inputForm = new Add_Data_Form("dbo.addCell", this);
+                        inputForm.Show();
+                        break;
+                    case "Add Guard":
+                        inputForm = new Add_Data_Form("dbo.addGuard", this);
+                        inputForm.Show();
+                        break;
+                    case "Add Prisoner":
+                        inputForm = new Add_Data_Form("dbo.addPrisoner", this);
+                        inputForm.Show();
+                        break;
+                    case "Create Job":
+                        inputForm = new Add_Data_Form("dbo.createJob", this);
+                        inputForm.Show();
+                        break;
+                    case "Show Altercations":
+                        dataGridView1.DataSource = dbHandler.getAltercationTable();
+                        break;
+                    case "Show All Cells":
+                        dataGridView1.DataSource = dbHandler.getCellTable();
+                        break;
+                    case "Show All Prisoners":
+                        dataGridView1.DataSource = dbHandler.getPrisonersTable();
+                        break;
+                    case "Show Guard Schedule":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.pms_getGuardSchedule");
+                        break;
+                    case "Show All Guards":
+                        dataGridView1.DataSource = dbHandler.getGuardsDataTable();
+                        break;
+                    case "Show All Shifts":
+                        dataGridView1.DataSource = dbHandler.getShiftsTable();
+                        break;
+                    case "Show All Users":
+                        dataGridView1.DataSource = dbHandler.getAllUsersTable();
+                        break;
+                    case "Delete Prisoner":
+                        inputForm = new Add_Data_Form("dbo.pms_deletePrisoner", this);
+                        inputForm.Show();
+                        break;
+                    case "Delete User":
+                        inputForm = new Add_Data_Form("dbo.pms_deleteUser", this);
+                        inputForm.Show();
+                        break;
+                    case "Move Prisoner":
+                        inputForm = new Add_Data_Form("dbo.movePrisonerToCell", this);
+                        inputForm.Show();
+                        break;
+                    case "Register User":
+                        inputForm = new Add_Data_Form("dbo.pms_registerUser", this);
+                        inputForm.Show();
+                        break;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
             }
             
         }

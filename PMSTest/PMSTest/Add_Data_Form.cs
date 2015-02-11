@@ -13,7 +13,6 @@ namespace PMSTest
     public partial class Add_Data_Form : Form
     {
         string sprocName;
-        string[] fieldTitles;
         Main_Form main;
         int numberOfArguments;
         public Add_Data_Form(string sprocName, Main_Form main)
@@ -25,6 +24,7 @@ namespace PMSTest
             InitializeComponent();
             label1.Text = sprocName;
             fillLabels();
+
 
         }
 
@@ -43,7 +43,19 @@ namespace PMSTest
         }
         private string[] getInputList()
         {
+            string[] argList = new string[5];
+            argList[0] = textBox1.Text;
+            argList[1] = textBox2.Text;
+            argList[2] = textBox3.Text;
+            argList[3] = textBox4.Text;
+            argList[4] = textBox5.Text;
 
+            return argList;
+            //if (1 <= numberOfArguments)
+            //if (2 <= numberOfArguments)
+            //if (3 <= numberOfArguments)
+            //if (4 <= numberOfArguments)
+            //if (5 <= numberOfArguments)
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -58,7 +70,14 @@ namespace PMSTest
 
         private void AddSubmitButton_Click(object sender, EventArgs e)
         {
-            main.runParamSproc("dbo.pms_getUser", new string[] { "warden" });
+            try
+            {
+                main.runParamSproc(this.sprocName, getInputList());
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
             this.Close();
         }
 

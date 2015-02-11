@@ -94,8 +94,13 @@ namespace PMSTest
                 return new DataTable();
             SqlDataReader dataRead;
             command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
             //try
             //{
+
                 dataRead = command.ExecuteReader();
             //}
             //catch
@@ -169,6 +174,7 @@ namespace PMSTest
         {
             using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_guards", dbConnection))
             {
+
                 return executeSproc(sprocCommand);
             }
         }
@@ -208,11 +214,26 @@ namespace PMSTest
 
         }
 
+        public DataTable getAllUsersTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_users", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
 
-
-
-
-
+        public DataTable runSproc(string name){
+            using (SqlCommand sprocCommand = new SqlCommand(name, dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+        /// <summary>
+        /// Requires User to be logged in
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public DataTable runParamSproc(string name, string[] data)
         {
             if (!dbConnectionOpen)
@@ -221,15 +242,29 @@ namespace PMSTest
             command.CommandText = name;
             command.CommandType = CommandType.StoredProcedure;
             command.Connection = dbConnection;
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < this.parameterTypes[name].Length; i++)
             {
                 command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
-                command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                    }
+                    catch
+                    {
+                        return new DataTable();
+                    }
+                    }
+                else
+                {
+                    command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                }
             }
-            //verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
-            //verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
-            //verificationCommand.Parameters["@Username"].Value = username;
-            //verificationCommand.Parameters["@Password"].Value = password;
+            command.Parameters.Add("@AuthUsername",SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
             SqlDataReader reader = command.ExecuteReader();
             DataTable returnTable =  new DataTable();
             returnTable.Load(reader);
@@ -268,6 +303,17 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_checkUsernamePassword", new String[] { "@Username" , "@Password" });
             this.parameterTypes.Add("dbo.pms_checkUsernamePassword", new SqlDbType[] { SqlDbType.NVarChar, SqlDbType.NVarChar});
 
+            this.parameterNames.Add("dbo.pms_deletePrisoner", new String[] { "@prisonerID" });
+            this.parameterTypes.Add("dbo.pms_deletePrisoner", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_deleteUser", new String[] { "@dropUsername" });
+            this.parameterTypes.Add("dbo.pms_deleteUser", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.movePrisonerToCell", new String[] { "@prisonerID", "@desiredCell" });
+            this.parameterTypes.Add("dbo.movePrisonerToCell", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
+            this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
 
 
