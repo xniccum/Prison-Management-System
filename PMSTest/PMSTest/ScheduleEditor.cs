@@ -15,6 +15,8 @@ namespace PMSTest
         public ScheduleEditor()
         {
             InitializeComponent();
+            fillSchedulesComboBox();
+            fillJobSchedulesComboBox();
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)
@@ -26,5 +28,21 @@ namespace PMSTest
         {
 
         }
+        private void fillSchedulesComboBox()
+        {
+            schedulesComboBox.Items.AddRange(new Object[] {
+               "Add Schedule",
+               "Change Schedule",
+               "Delete Schedule"
+            });
+        }
+        private void fillJobSchedulesComboBox()
+        {
+            jobSchedulesComboBox.Items.AddRange(new Object[] {
+                "Add Job Schedule",
+                "Delete Job Schedule"
+            });
+        }
+
     }
 }
