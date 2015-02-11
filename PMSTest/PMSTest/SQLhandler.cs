@@ -98,15 +98,7 @@ namespace PMSTest
             command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
             command.Parameters["@AuthUsername"].Value = userUsername;
             command.Parameters["@AuthPassword"].Value = userPassword;
-            //try
-            //{
-
-                dataRead = command.ExecuteReader();
-            //}
-            //catch
-            //{
-            //    return new DataTable();
-            //}
+            dataRead = command.ExecuteReader();
 
             DataTable returnTable = new DataTable();
             returnTable.Load(dataRead);
@@ -255,7 +247,20 @@ namespace PMSTest
                     {
                         return new DataTable();
                     }
+                }
+                else if (this.parameterTypes[name][i] == SqlDbType.Time)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = TimeSpan.Parse(data[i]);
+                       
                     }
+                    catch
+                    {
+                        Console.WriteLine("Coverted Not");
+                        return new DataTable();
+                    }
+                }
                 else
                 {
                     command.Parameters[this.parameterNames[name][i]].Value = data[i];
@@ -318,6 +323,14 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_addAltercation", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@Type", "@Description"});
             this.parameterTypes.Add("dbo.pms_addAltercation", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.VarChar, SqlDbType.VarChar});
 
+            this.parameterNames.Add("dbo.shift_add", new String[] { "@StartTime", "@EndTime" });
+            this.parameterTypes.Add("dbo.shift_add", new SqlDbType[] { SqlDbType.Time, SqlDbType.Time });
+
+            this.parameterNames.Add("dbo.shift_update", new String[] { "@shiftID"});
+            this.parameterTypes.Add("dbo.shift_update", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.shift_delete", new String[] { "@shiftID", "@StartTime", "@EndTime" });
+            this.parameterTypes.Add("dbo.shift_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.Time});
 
         }
     }

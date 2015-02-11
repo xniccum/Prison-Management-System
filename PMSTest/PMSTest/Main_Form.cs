@@ -278,6 +278,11 @@ namespace PMSTest
 
         private void scheduleButton_Click(object sender, EventArgs e)
         {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
             this.ScheduleEditorForm = new ScheduleEditor(this);
             this.ScheduleEditorForm.Show();
         }

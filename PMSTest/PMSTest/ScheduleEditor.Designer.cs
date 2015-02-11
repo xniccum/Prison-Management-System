@@ -44,6 +44,19 @@
             this.guardSchedules_IUpanel = new System.Windows.Forms.Panel();
             this.jobSchedules_Dpanel = new System.Windows.Forms.Panel();
             this.jobSchedules_IUpanel = new System.Windows.Forms.Panel();
+            this.shift_delete_label1 = new System.Windows.Forms.Label();
+            this.shift_delete_label2 = new System.Windows.Forms.Label();
+            this.shift_delete_button1 = new System.Windows.Forms.Button();
+            this.shift_Delete_TextBox1 = new System.Windows.Forms.TextBox();
+            this.shift_IU_label1 = new System.Windows.Forms.Label();
+            this.shift_IU_label2 = new System.Windows.Forms.Label();
+            this.shift_IU_label3 = new System.Windows.Forms.Label();
+            this.shift_IU_textBox1 = new System.Windows.Forms.TextBox();
+            this.shift_IU_textBox2 = new System.Windows.Forms.TextBox();
+            this.shift_IU_textBox3 = new System.Windows.Forms.TextBox();
+            this.shift_IU_button1 = new System.Windows.Forms.Button();
+            this.shift_IUpanel.SuspendLayout();
+            this.shift_Dpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -122,6 +135,13 @@
             // 
             // shift_IUpanel
             // 
+            this.shift_IUpanel.Controls.Add(this.shift_IU_button1);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_textBox3);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_textBox2);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_textBox1);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_label3);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_label2);
+            this.shift_IUpanel.Controls.Add(this.shift_IU_label1);
             this.shift_IUpanel.Location = new System.Drawing.Point(12, 51);
             this.shift_IUpanel.Name = "shift_IUpanel";
             this.shift_IUpanel.Size = new System.Drawing.Size(271, 189);
@@ -129,6 +149,10 @@
             // 
             // shift_Dpanel
             // 
+            this.shift_Dpanel.Controls.Add(this.shift_Delete_TextBox1);
+            this.shift_Dpanel.Controls.Add(this.shift_delete_button1);
+            this.shift_Dpanel.Controls.Add(this.shift_delete_label2);
+            this.shift_Dpanel.Controls.Add(this.shift_delete_label1);
             this.shift_Dpanel.Location = new System.Drawing.Point(12, 263);
             this.shift_Dpanel.Name = "shift_Dpanel";
             this.shift_Dpanel.Size = new System.Drawing.Size(270, 214);
@@ -176,6 +200,99 @@
             this.jobSchedules_IUpanel.Size = new System.Drawing.Size(271, 189);
             this.jobSchedules_IUpanel.TabIndex = 13;
             // 
+            // shift_delete_label1
+            // 
+            this.shift_delete_label1.AutoSize = true;
+            this.shift_delete_label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shift_delete_label1.Location = new System.Drawing.Point(16, 13);
+            this.shift_delete_label1.Name = "shift_delete_label1";
+            this.shift_delete_label1.Size = new System.Drawing.Size(123, 25);
+            this.shift_delete_label1.TabIndex = 0;
+            this.shift_delete_label1.Text = "Delete Shift";
+            this.shift_delete_label1.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // shift_delete_label2
+            // 
+            this.shift_delete_label2.AutoSize = true;
+            this.shift_delete_label2.Location = new System.Drawing.Point(25, 54);
+            this.shift_delete_label2.Name = "shift_delete_label2";
+            this.shift_delete_label2.Size = new System.Drawing.Size(96, 13);
+            this.shift_delete_label2.TabIndex = 1;
+            this.shift_delete_label2.Text = "ID of shift to delete";
+            // 
+            // shift_delete_button1
+            // 
+            this.shift_delete_button1.Location = new System.Drawing.Point(144, 76);
+            this.shift_delete_button1.Name = "shift_delete_button1";
+            this.shift_delete_button1.Size = new System.Drawing.Size(100, 23);
+            this.shift_delete_button1.TabIndex = 2;
+            this.shift_delete_button1.Text = "Submit";
+            this.shift_delete_button1.UseVisualStyleBackColor = true;
+            // 
+            // shift_Delete_TextBox1
+            // 
+            this.shift_Delete_TextBox1.Location = new System.Drawing.Point(28, 79);
+            this.shift_Delete_TextBox1.Name = "shift_Delete_TextBox1";
+            this.shift_Delete_TextBox1.Size = new System.Drawing.Size(100, 20);
+            this.shift_Delete_TextBox1.TabIndex = 3;
+            // 
+            // shift_IU_label1
+            // 
+            this.shift_IU_label1.AutoSize = true;
+            this.shift_IU_label1.Location = new System.Drawing.Point(25, 41);
+            this.shift_IU_label1.Name = "shift_IU_label1";
+            this.shift_IU_label1.Size = new System.Drawing.Size(90, 13);
+            this.shift_IU_label1.TabIndex = 0;
+            this.shift_IU_label1.Text = "Shift ID to update";
+            // 
+            // shift_IU_label2
+            // 
+            this.shift_IU_label2.AutoSize = true;
+            this.shift_IU_label2.Location = new System.Drawing.Point(25, 76);
+            this.shift_IU_label2.Name = "shift_IU_label2";
+            this.shift_IU_label2.Size = new System.Drawing.Size(58, 13);
+            this.shift_IU_label2.TabIndex = 1;
+            this.shift_IU_label2.Text = "Start Time:";
+            // 
+            // shift_IU_label3
+            // 
+            this.shift_IU_label3.AutoSize = true;
+            this.shift_IU_label3.Location = new System.Drawing.Point(25, 115);
+            this.shift_IU_label3.Name = "shift_IU_label3";
+            this.shift_IU_label3.Size = new System.Drawing.Size(58, 13);
+            this.shift_IU_label3.TabIndex = 2;
+            this.shift_IU_label3.Text = "End Time: ";
+            // 
+            // shift_IU_textBox1
+            // 
+            this.shift_IU_textBox1.Location = new System.Drawing.Point(144, 41);
+            this.shift_IU_textBox1.Name = "shift_IU_textBox1";
+            this.shift_IU_textBox1.Size = new System.Drawing.Size(100, 20);
+            this.shift_IU_textBox1.TabIndex = 3;
+            // 
+            // shift_IU_textBox2
+            // 
+            this.shift_IU_textBox2.Location = new System.Drawing.Point(144, 76);
+            this.shift_IU_textBox2.Name = "shift_IU_textBox2";
+            this.shift_IU_textBox2.Size = new System.Drawing.Size(100, 20);
+            this.shift_IU_textBox2.TabIndex = 4;
+            // 
+            // shift_IU_textBox3
+            // 
+            this.shift_IU_textBox3.Location = new System.Drawing.Point(144, 108);
+            this.shift_IU_textBox3.Name = "shift_IU_textBox3";
+            this.shift_IU_textBox3.Size = new System.Drawing.Size(100, 20);
+            this.shift_IU_textBox3.TabIndex = 5;
+            // 
+            // shift_IU_button1
+            // 
+            this.shift_IU_button1.Location = new System.Drawing.Point(144, 150);
+            this.shift_IU_button1.Name = "shift_IU_button1";
+            this.shift_IU_button1.Size = new System.Drawing.Size(100, 23);
+            this.shift_IU_button1.TabIndex = 6;
+            this.shift_IU_button1.Text = "Submit";
+            this.shift_IU_button1.UseVisualStyleBackColor = true;
+            // 
             // ScheduleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,6 +317,10 @@
             this.Name = "ScheduleEditor";
             this.Text = "ScheduleEditor";
             this.Load += new System.EventHandler(this.ScheduleEditor_Load);
+            this.shift_IUpanel.ResumeLayout(false);
+            this.shift_IUpanel.PerformLayout();
+            this.shift_Dpanel.ResumeLayout(false);
+            this.shift_Dpanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +344,16 @@
         private System.Windows.Forms.Panel guardSchedules_IUpanel;
         private System.Windows.Forms.Panel jobSchedules_Dpanel;
         private System.Windows.Forms.Panel jobSchedules_IUpanel;
+        private System.Windows.Forms.Label shift_delete_label1;
+        private System.Windows.Forms.TextBox shift_Delete_TextBox1;
+        private System.Windows.Forms.Button shift_delete_button1;
+        private System.Windows.Forms.Label shift_delete_label2;
+        private System.Windows.Forms.Button shift_IU_button1;
+        private System.Windows.Forms.TextBox shift_IU_textBox3;
+        private System.Windows.Forms.TextBox shift_IU_textBox2;
+        private System.Windows.Forms.TextBox shift_IU_textBox1;
+        private System.Windows.Forms.Label shift_IU_label3;
+        private System.Windows.Forms.Label shift_IU_label2;
+        private System.Windows.Forms.Label shift_IU_label1;
     }
 }

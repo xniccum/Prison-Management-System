@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,9 +33,42 @@ namespace PMSTest
 
         private void shiftComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string selected = shiftComboBox.SelectedItem.ToString();
+            switch (selected) {
+                case "Add Shift":
+                    shift_add();
+                    break;
+                case "Update Shift":
+                    shift_update();
+                    break;
+                case "Delete Shift":
+                    shift_delete();
+                    break;
+            }
         }
 
+        private void shift_add()
+        {
+            string[] argList = new String[2];
+            shift_IU_label1.Visible = false;
+            shift_IU_textBox1.Visible = false;
+            argList[0] = shift_IU_textBox2.Text;
+            argList[1] = shift_IU_textBox3.Text;
+            this.parentForm.dbHandler.runParamSproc("dbo.shift_add", argList);
+        }
+
+        private void shift_update()
+        {
+            shift_IU_label1.Visible = true;
+            shift_IU_textBox1.Visible = true;
+
+            throw new NotImplementedException();
+        }
+
+        private void shift_delete()
+        {
+            throw new NotImplementedException();
+        }
         private void fillComboBoxes()
         {
             schedulesComboBox.Items.AddRange(new Object[] {
@@ -51,6 +85,11 @@ namespace PMSTest
             guardSchedulesComboBox.Items.AddRange(new Object[] { "Update Guard Schedule" });
         }
         private void fillJobSchedulesComboBox()
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
