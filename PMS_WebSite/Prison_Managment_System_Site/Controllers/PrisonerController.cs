@@ -21,13 +21,7 @@ namespace Prison_Managment_System_Site.Controllers
             this.handler.openConnection();
             if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
             {
-                DataRowCollection rows;
-                int permissonLV = this.handler.checkUsernamePermissions((string)Session["UserName"]);
-                if(permissonLV==1||permissonLV==2)
-                    rows= handler.getPrisonersTable().Rows;
-                else
-                    rows = handler.getRelations().Rows;
-                foreach (DataRow dr in rows)
+                foreach (DataRow dr in this.handler.getPrisonersTable().Rows)
                 {
                     Object[] prisoner_data = this.handler.getPrisoner(int.Parse(dr.ItemArray[0].ToString()));
                     Prisoner p = new Prisoner();
@@ -36,7 +30,6 @@ namespace Prison_Managment_System_Site.Controllers
                     p.middle_name = prisoner_data[2].ToString();
                     p.last_name = prisoner_data[3].ToString();
                     p.crime = prisoner_data[4].ToString();
-                    p.crime_description = prisoner_data[5].ToString();
                     prisoners.Add(p);
                 }
             }
@@ -50,6 +43,10 @@ namespace Prison_Managment_System_Site.Controllers
             this.handler.openConnection();
             if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
             {
+                if (!this.handler.verifyRelation(id))
+                {
+                    return View("Error");
+                }
                 Object[] temp = handler.getPrisoner(id);
                 Prisoner p = new Prisoner();
                 p.ID = int.Parse(temp[0].ToString());

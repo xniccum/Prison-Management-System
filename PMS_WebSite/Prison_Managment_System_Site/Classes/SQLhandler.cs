@@ -96,15 +96,14 @@ namespace Prison_Managment_System
             command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
             command.Parameters["@AuthUsername"].Value = userUsername;
             command.Parameters["@AuthPassword"].Value = userPassword;
-            //try
-            //{
-
+            try
+            {
                 dataRead = command.ExecuteReader();
-            //}
-            //catch
-            //{
-            //    return new DataTable();
-            //}
+            }
+            catch
+            {
+                return new DataTable();
+            }
 
             DataTable returnTable = new DataTable();
             returnTable.Load(dataRead);
@@ -142,6 +141,26 @@ namespace Prison_Managment_System
                 return true;
             }
 
+            return false;
+        }
+
+        public Boolean verifyRelation(int prisonerID)
+        {
+            if (!dbConnectionOpen)
+                return false;
+
+            SqlCommand verificationCommand = new SqlCommand();
+            verificationCommand.CommandText = "dbo.pms_verifyRelation";
+            verificationCommand.CommandType = CommandType.StoredProcedure;
+            verificationCommand.Connection = dbConnection;
+            verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
+            verificationCommand.Parameters.Add("@prisonerID", SqlDbType.SmallInt);
+            verificationCommand.Parameters["@Username"].Value = userUsername;
+            verificationCommand.Parameters["@prisonerID"].Value = prisonerID;
+
+            Object returned = verificationCommand.ExecuteScalar();
+            if (returned.ToString() == "1")
+                return true;
             return false;
         }
 
@@ -192,7 +211,7 @@ namespace Prison_Managment_System
 
         public DataTable getPrisonersTable()
         {
-            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_prisoners", dbConnection))
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_getAllPrisoners", dbConnection))
             {
                 return executeSproc(sprocCommand);
             }

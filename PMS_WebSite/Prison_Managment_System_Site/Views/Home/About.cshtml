@@ -8,30 +8,4 @@
 
 <p>The Gotham Prision for the Criminaly Insane </p>
 
-<h3>Employees</h3>
-<table class="table">
-    <tr>
-        <th>
-            @Html.Label("Name")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName())
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.crime)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
-            </td>
-        </tr>
-    }
-</table>
