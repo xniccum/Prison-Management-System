@@ -26,7 +26,6 @@ namespace Prison_Managment_System_Site.Models
         [Required(ErrorMessage = "Must Select Crime")]
         [DisplayName("Crime")]
         public string crime { get; set; }
-        [Required(ErrorMessage = "Must Write Description of Crime")]
         [DisplayName("Description")]
         public string crime_description { get; set; }
 
