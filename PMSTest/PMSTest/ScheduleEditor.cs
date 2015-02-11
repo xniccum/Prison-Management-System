@@ -17,8 +17,7 @@ namespace PMSTest
         {
             this.parentForm = passedForm;
             InitializeComponent();
-            shiftComboBox.Items.AddRange(new Object[] { "Add Shift", "Update Shift", "Delete Shift" });
-            guardSchedulesComboBox.Items.AddRange(new Object[] { "Update Guard Schedule" });
+            fillComboBoxes();
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)
@@ -35,5 +34,27 @@ namespace PMSTest
         {
 
         }
+
+        private void fillComboBoxes()
+        {
+            schedulesComboBox.Items.AddRange(new Object[] {
+               "Add Schedule",
+               "Change Schedule",
+               "Delete Schedule"
+            });
+            jobSchedulesComboBox.Items.AddRange(new Object[] {
+                "Add Job Schedule",
+                "Delete Job Schedule"
+            });
+
+            shiftComboBox.Items.AddRange(new Object[] { "Add Shift", "Update Shift", "Delete Shift" });
+            guardSchedulesComboBox.Items.AddRange(new Object[] { "Update Guard Schedule" });
+        }
+        private void fillJobSchedulesComboBox()
+        {
+
+        }
+
+
     }
 }
