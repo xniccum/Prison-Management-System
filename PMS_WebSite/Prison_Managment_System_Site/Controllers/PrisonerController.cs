@@ -11,7 +11,7 @@ namespace Prison_Managment_System_Site.Controllers
 {
     public class PrisonerController : Controller
     {
-        SQLhandler handler;
+        private SQLhandler handler;
 
         [HttpGet]
         public ActionResult Index()
@@ -21,16 +21,22 @@ namespace Prison_Managment_System_Site.Controllers
             this.handler.openConnection();
             if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
             {
-                DataRowCollection rows = handler.getFullDetailPrisonersTable().Rows;
+                DataRowCollection rows;
+                int permissonLV = this.handler.checkUsernamePermissions((string)Session["UserName"]);
+                if(permissonLV==1||permissonLV==2)
+                    rows= handler.getPrisonersTable().Rows;
+                else
+                    rows = handler.getRelations().Rows;
                 foreach (DataRow dr in rows)
                 {
+                    Object[] prisoner_data = this.handler.getPrisoner(int.Parse(dr.ItemArray[0].ToString()));
                     Prisoner p = new Prisoner();
-                    p.ID = int.Parse(dr.ItemArray[0].ToString());
-                    p.first_name = dr.ItemArray[1].ToString();
-                    p.middle_name = dr.ItemArray[2].ToString();
-                    p.last_name = dr.ItemArray[3].ToString();
-                    p.crime = dr.ItemArray[4].ToString();
-                    p.crime_description= dr.ItemArray[5].ToString();
+                    p.ID = int.Parse(prisoner_data[0].ToString());
+                    p.first_name = prisoner_data[1].ToString();
+                    p.middle_name = prisoner_data[2].ToString();
+                    p.last_name = prisoner_data[3].ToString();
+                    p.crime = prisoner_data[4].ToString();
+                    p.crime_description = prisoner_data[5].ToString();
                     prisoners.Add(p);
                 }
             }
@@ -44,7 +50,7 @@ namespace Prison_Managment_System_Site.Controllers
             this.handler.openConnection();
             if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
             {
-                Object[] temp = handler.getPrisoner(id).Rows[0].ItemArray;
+                Object[] temp = handler.getPrisoner(id);
                 Prisoner p = new Prisoner();
                 p.ID = int.Parse(temp[0].ToString());
                 p.first_name = temp[1].ToString();

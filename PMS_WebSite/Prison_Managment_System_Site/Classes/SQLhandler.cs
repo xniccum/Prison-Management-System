@@ -63,7 +63,6 @@ namespace Prison_Managment_System
             }
 
         }
-        
         public Boolean isUserLoggedIn()
         {
 
@@ -72,10 +71,8 @@ namespace Prison_Managment_System
 
         public Boolean isConnected()
         {
-
-            return dbConnectionOpen;
+            return this.dbConnectionOpen;
         }
-        
         public Boolean logOut()
         {
             if (!this.userLoggedIn || !this.dbConnectionOpen)
@@ -89,40 +86,19 @@ namespace Prison_Managment_System
 
         }
 
-        public Boolean addUser(User user)
-        {
-            if (!dbConnectionOpen)
-                return false;
-
-            SqlCommand verificationCommand = new SqlCommand();
-            verificationCommand.CommandText = "dbo.pms_registerUser";
-            verificationCommand.CommandType = CommandType.StoredProcedure;
-            verificationCommand.Connection = dbConnection;
-            verificationCommand.Parameters.Add("@fname", SqlDbType.NVarChar);
-            verificationCommand.Parameters.Add("@mname", SqlDbType.NVarChar);
-            verificationCommand.Parameters.Add("@lname", SqlDbType.NVarChar);
-            verificationCommand.Parameters.Add("@desusername", SqlDbType.NVarChar);
-            verificationCommand.Parameters.Add("@despassword", SqlDbType.NVarChar);
-            verificationCommand.Parameters["@fname"].Value = user.fname;
-            verificationCommand.Parameters["@mname"].Value = user.mname;
-            verificationCommand.Parameters["@lname"].Value = user.lname;
-            verificationCommand.Parameters["@desusername"].Value = user.username;
-            verificationCommand.Parameters["@despassword"].Value = user.password;
-
-            Object returned = verificationCommand.ExecuteScalar();
-            if (returned.ToString() == "1")
-                return true;
-            return false;
-        }
-
         private DataTable executeSproc(SqlCommand command)
         {
             if (!dbConnectionOpen || !userLoggedIn)
                 return new DataTable();
             SqlDataReader dataRead;
             command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
             //try
             //{
+
                 dataRead = command.ExecuteReader();
             //}
             //catch
@@ -189,11 +165,11 @@ namespace Prison_Managment_System
             }
 
         }
-
         public DataTable getGuardsDataTable()
         {
             using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_guards", dbConnection))
             {
+
                 return executeSproc(sprocCommand);
             }
         }
@@ -216,57 +192,24 @@ namespace Prison_Managment_System
 
         public DataTable getPrisonersTable()
         {
-
-            using (SqlCommand sprocCommand = new SqlCommand())
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_prisoners", dbConnection))
             {
-                sprocCommand.CommandText = "dbo.pms_getAllPrisoners";
-                sprocCommand.CommandType = CommandType.StoredProcedure;
-                sprocCommand.Connection = dbConnection;
-                sprocCommand.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
-                sprocCommand.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
-                sprocCommand.Parameters["@AuthUsername"].Value = this.userUsername;
-                sprocCommand.Parameters["@AuthPassword"].Value = this.userPassword;
                 return executeSproc(sprocCommand);
             }
         }
 
-        public DataTable getPrisoner(int ID)
+        public Object[] getPrisoner(int id)
         {
-
-            using (SqlCommand sprocCommand = new SqlCommand())
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_getPrisoner", dbConnection))
             {
-                sprocCommand.CommandText = "dbo.pms_getPrisoner";
-                sprocCommand.CommandType = CommandType.StoredProcedure;
-                sprocCommand.Connection = dbConnection;
-                sprocCommand.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
-                sprocCommand.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
                 sprocCommand.Parameters.Add("@prisonerID", SqlDbType.SmallInt);
-                sprocCommand.Parameters["@AuthUsername"].Value = this.userUsername;
-                sprocCommand.Parameters["@AuthPassword"].Value = this.userPassword;
-                sprocCommand.Parameters["@prisonerID"].Value = ID;
-                return executeSproc(sprocCommand);
-            }
-        }
-
-        public DataTable getFullDetailPrisonersTable()
-        {
-
-            using (SqlCommand sprocCommand = new SqlCommand())
-            {
-                sprocCommand.CommandText = "dbo.pms_getRelations";
-                sprocCommand.CommandType = CommandType.StoredProcedure;
-                sprocCommand.Connection = dbConnection;
-                sprocCommand.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
-                sprocCommand.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
-                sprocCommand.Parameters["@AuthUsername"].Value = this.userUsername;
-                sprocCommand.Parameters["@AuthPassword"].Value = this.userPassword;
-                return executeSproc(sprocCommand);
+                sprocCommand.Parameters["@prisonerID"].Value = id;
+                return executeSproc(sprocCommand).Rows[0].ItemArray;
             }
         }
 
         public DataTable getShiftsTable()
         {
-
             using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_shifts", dbConnection))
             {
                 return executeSproc(sprocCommand);
@@ -274,6 +217,64 @@ namespace Prison_Managment_System
 
         }
 
+        public DataTable getAllUsersTable()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_users", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public bool addUser(User user)
+        {
+            using (SqlCommand sprocCommand = new SqlCommand())
+            {
+                sprocCommand.CommandText = "dbo.pms_addUser";
+                sprocCommand.CommandType = CommandType.StoredProcedure;
+                sprocCommand.Connection = dbConnection;
+
+                //add arguments
+                sprocCommand.Parameters.Add("@Fname", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@Mname", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@Lname", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@Username", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@Password", SqlDbType.VarChar);
+
+                //set user attributes to arguments
+                sprocCommand.Parameters["@Fname"].Value = user.fname;
+                sprocCommand.Parameters["@Mname"].Value = user.mname;
+                sprocCommand.Parameters["@Lname"].Value = user.lname;
+                sprocCommand.Parameters["@Username"].Value = user.username;
+                sprocCommand.Parameters["@Password"].Value = user.password;
+
+                Object returned = sprocCommand.ExecuteScalar();
+                if (returned.ToString() == "1")
+                    return true;
+                return false;
+            }
+        }
+
+        public DataTable getRelations()
+        {
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_getRelations", dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+
+        public DataTable runSproc(string name){
+            using (SqlCommand sprocCommand = new SqlCommand(name, dbConnection))
+            {
+                return executeSproc(sprocCommand);
+            }
+        }
+     
+        /// <summary>
+        /// Requires User to be logged in
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public DataTable runParamSproc(string name, string[] data)
         {
             if (!dbConnectionOpen)
@@ -282,15 +283,29 @@ namespace Prison_Managment_System
             command.CommandText = name;
             command.CommandType = CommandType.StoredProcedure;
             command.Connection = dbConnection;
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < this.parameterTypes[name].Length; i++)
             {
                 command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
-                command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                    }
+                    catch
+                    {
+                        return new DataTable();
+                    }
+                    }
+                else
+                {
+                    command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                }
             }
-            //verificationCommand.Parameters.Add("@Username", SqlDbType.NVarChar);
-            //verificationCommand.Parameters.Add("@Password", SqlDbType.NVarChar);
-            //verificationCommand.Parameters["@Username"].Value = username;
-            //verificationCommand.Parameters["@Password"].Value = password;
+            command.Parameters.Add("@AuthUsername",SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
             SqlDataReader reader = command.ExecuteReader();
             DataTable returnTable =  new DataTable();
             returnTable.Load(reader);
@@ -329,6 +344,17 @@ namespace Prison_Managment_System
             this.parameterNames.Add("dbo.pms_checkUsernamePassword", new String[] { "@Username" , "@Password" });
             this.parameterTypes.Add("dbo.pms_checkUsernamePassword", new SqlDbType[] { SqlDbType.NVarChar, SqlDbType.NVarChar});
 
+            this.parameterNames.Add("dbo.pms_deletePrisoner", new String[] { "@prisonerID" });
+            this.parameterTypes.Add("dbo.pms_deletePrisoner", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_deleteUser", new String[] { "@dropUsername" });
+            this.parameterTypes.Add("dbo.pms_deleteUser", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.movePrisonerToCell", new String[] { "@prisonerID", "@desiredCell" });
+            this.parameterTypes.Add("dbo.movePrisonerToCell", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
+            this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
 
 
