@@ -33,6 +33,8 @@ namespace Prison_Managment_System_Site.Controllers
                     prisoners.Add(p);
                 }
             }
+            else
+                RedirectToAction("User");
             return View(prisoners);
         }
 
