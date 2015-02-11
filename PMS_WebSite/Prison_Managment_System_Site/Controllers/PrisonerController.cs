@@ -37,7 +37,7 @@ namespace Prison_Managment_System_Site.Controllers
             return View(prisoners);
         }
 
-        // GET: Prisoner/Details/5
+        [HttpGet]
         public ActionResult Details(int id)
         {
             this.handler = new SQLhandler();

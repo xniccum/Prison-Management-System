@@ -34,5 +34,10 @@ namespace Prison_Managment_System_Site.Models
         [StringLength(10)]
         [DisplayName("Permissions")]
         public string permissions { get; set; }
+
+        public string FullName()
+        {
+            return fname + " " + mname + " " + lname;
+        }
     }
 }
