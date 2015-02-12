@@ -247,7 +247,15 @@ namespace PMSTest
 
         private void executeQuery()
         {
-            string selection = comboBox1.SelectedItem.ToString();
+            string selection = "";
+            try
+            {
+               selection = comboBox1.SelectedItem.ToString();
+            }
+            catch
+            {
+                return;
+            }
             if (!dbHandler.isUserLoggedIn())
             {
                 MessageBox.Show("Please Log In First");
