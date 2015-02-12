@@ -16,11 +16,13 @@ namespace PMSTest
     {
         public SQLhandler dbHandler;
         public Form inputForm;
+        public Form ScheduleEditorForm;
         public Main_Form()
         {
             InitializeComponent();
             dbHandler = new SQLhandler();
-            fillComboBox();
+            //fillComboBox();
+            scheduleButton.Visible = false;
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -32,28 +34,33 @@ namespace PMSTest
             
         }
 
-        private void fillComboBox()
-        {
-            comboBox1.Items.AddRange(new Object[] {
-                "Get Prisoner",
-                "Add Cell",
-                "Add Guard",
-                "Add Prisoner",
-                "Register User",
-                "Create Job",
-                "Show Altercations",
-                "Show All Cells",
-                "Show All Prisoners",
-                "Show Guard Schedule",
-                "Show All Guards",
-                "Show All Shifts",
-                "Show All Users",
-                "Delete Prisoner",
-                "Delete User",
-                "Move Prisoner",
-                "Add Altercation"
-            });
-        }
+        //private void fillComboBox()
+        //{
+        //    comboBox1.Items.AddRange(new Object[] {
+        //        "Show Altercations",
+        //        "Show All Cells",
+        //        "Show All Prisoners",
+        //        "Show Guard Schedule",
+        //        "Show All Guards",
+        //        "Show All Shifts",
+        //        "Show All Users",
+        //        "Show Prisoners Working Jobs",
+        //        "Show All Schedules",
+        //        "Show Job Schedules",
+        //        "Get Prisoner",
+        //        "Add Altercation",
+        //        "Add Cell",
+        //        "Add Guard",
+        //        "Add Prisoner",
+        //        "Register User",
+        //        "Create Job",
+        //        "Delete Prisoner",
+        //        "Delete User",
+        //        "Move Prisoner"
+                
+        //    });
+        //}
+
         //login button
         private void button1_Click(object sender, EventArgs e)
         {
@@ -67,9 +74,19 @@ namespace PMSTest
                         {
                             MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
                             dbHandler.logOut();
-                        } else 
+                        }
+                        else if (dbHandler.checkUsernamePermissions(textBox1.Text) == 1)
                         {
-                        MessageBox.Show("Login Accepted");
+                            MessageBox.Show("Guard Login Accepted");
+                            setGuardInterface();
+                        }
+                        else
+                        {
+                        MessageBox.Show("Warden Login Accepted");
+                        setWardenInterface();
+                      
+                        
+
                         }
                     }
                     else 
@@ -85,25 +102,58 @@ namespace PMSTest
             
 
         }
-       
-        //private void update_data(string s)
-        //{
-        //    try
-        //    {
+
+        private void setGuardInterface()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(new Object[] {
+                "Show Altercations",
+                "Show All Cells",
+                "Show All Prisoners",
+                "Show Guard Schedule",
+                "Show All Guards",
+                "Show All Shifts",
+                "Show All Users",
+                "Show Prisoners Working Jobs",
+                "Show All Schedules",
+                "Show Job Schedules",
+                "Get Prisoner"
+            });
+            scheduleButton.Visible = false;
+        }
+        private void setWardenInterface()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(new Object[] {
+                "Show Altercations",
+                "Show All Cells",
+                "Show All Prisoners",
+                "Show Guard Schedule",
+                "Show All Guards",
+                "Show All Shifts",
+                "Show All Users",
+                "Show Prisoners Working Jobs",
+                "Show All Schedules",
+                "Show Job Schedules",
+                "Get Prisoner",
+                "Add Altercation",
+                "Add Cell",
+                "Add Guard",
+                "Add Prisoner",
+                "Register User",
+                "Create Job",
+                "Delete Prisoner",
+                "Delete User",
+                "Move Prisoner"
                 
-        //            SqlDataAdapter adapter = new SqlDataAdapter(s, cnn);
-        //            DataSet ds = new DataSet();
-        //            adapter.Fill(ds, s);
-        //            dataGridView1.DataSource = ds.Tables[0];
-        //            dataGridView1.Refresh();
-                    
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Must be logged on to view data");
-        //    }
-        //}
+            });
+            scheduleButton.Visible = true;
+        }
+        private void setLoggedOutInterface()
+        {
+            comboBox1.Items.Clear();
+            scheduleButton.Visible = false;
+        }
 
 
 
@@ -127,8 +177,11 @@ namespace PMSTest
         //logout button
         private void button2_Click(object sender, EventArgs e)
         {
-            if( this.dbHandler.logOut())
+            if (this.dbHandler.logOut())
+            {
                 MessageBox.Show("Logged Out");
+                setLoggedOutInterface();
+            }
             //try
             //{
             //    cnn.Close();
@@ -187,7 +240,7 @@ namespace PMSTest
         }
 
         public void runParamSproc(string name, string[] data){
-            dataGridView1.DataSource = this.dbHandler.runParamSproc(name, data);
+            dataGridView1.DataSource = this.dbHandler.runParamSproc_Datatable(name, data);
 
 
          }
@@ -266,6 +319,18 @@ namespace PMSTest
                         inputForm = new Add_Data_Form("dbo.pms_addAltercation", this);
                         inputForm.Show();
                         break;
+                    case "Show Prisoners Working Jobs":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.pwj_view");
+                        break;
+                    case "Show All Schedules":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.schedule_view");
+                        break;
+                    case "Show Job Schedules":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.jws_view");
+                        break;
+
+                
+                
                 }
             }
             catch (System.Data.SqlClient.SqlException E)
@@ -273,6 +338,17 @@ namespace PMSTest
                 MessageBox.Show(E.Message);
             }
             
+        }
+
+        private void scheduleButton_Click(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.ScheduleEditorForm = new ScheduleEditor(this);
+            this.ScheduleEditorForm.Show();
         }
 
         

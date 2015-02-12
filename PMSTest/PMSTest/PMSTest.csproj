@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScheduleEditor.Designer.cs">
+      <DependentUpon>ScheduleEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQLhandler.cs" />
     <EmbeddedResource Include="Add_Data_Form.resx">
       <DependentUpon>Add_Data_Form.cs</DependentUpon>
@@ -79,6 +85,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ScheduleEditor.resx">
+      <DependentUpon>ScheduleEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="PMSDataSet.xsc">
       <DependentUpon>PMSDataSet.xsd</DependentUpon>
     </None>
