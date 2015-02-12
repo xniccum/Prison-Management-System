@@ -74,28 +74,28 @@
             this.Monshift_input = new System.Windows.Forms.TextBox();
             this.Sunshift_input = new System.Windows.Forms.TextBox();
             this.ScheduleID_input = new System.Windows.Forms.TextBox();
-            this.guardSchedules_Dpanel = new System.Windows.Forms.Panel();
             this.guardSchedules_IUpanel = new System.Windows.Forms.Panel();
+            this.guardSchedule_scheduleID_input2 = new System.Windows.Forms.TextBox();
+            this.guardSchedule_scheduleID_label2 = new System.Windows.Forms.Label();
             this.guardSchedule_Usubmitbutton = new System.Windows.Forms.Button();
             this.guardSchedule_scheduleID_input1 = new System.Windows.Forms.TextBox();
             this.guardSchedule_scheduleID_label1 = new System.Windows.Forms.Label();
             this.guardSchedule_Ulabel = new System.Windows.Forms.Label();
             this.jobSchedules_Dpanel = new System.Windows.Forms.Panel();
+            this.jobSchedule_scheduleID_Dinput2 = new System.Windows.Forms.TextBox();
+            this.jobSchedule_ScheduleID_Dlabel2 = new System.Windows.Forms.Label();
             this.jobSchedule_Dsubmitbutton = new System.Windows.Forms.Button();
             this.jobSchedule_scheduleID_Dinput1 = new System.Windows.Forms.TextBox();
             this.jobSchedule_ScheduleID_Dlabel1 = new System.Windows.Forms.Label();
             this.jobSchedule_dlabel = new System.Windows.Forms.Label();
             this.jobSchedules_IUpanel = new System.Windows.Forms.Panel();
+            this.jobSchedules_ScheduleID_Iinput2 = new System.Windows.Forms.TextBox();
+            this.jobSchedules_scheduleID_label2 = new System.Windows.Forms.Label();
             this.jobSchedule_submitbutton = new System.Windows.Forms.Button();
             this.jobSchedules_ScheduleID_Iinput1 = new System.Windows.Forms.TextBox();
             this.jobSchedules_scheduleID_label1 = new System.Windows.Forms.Label();
             this.Jobschedules_Ilabel = new System.Windows.Forms.Label();
-            this.jobSchedules_ScheduleID_Iinput2 = new System.Windows.Forms.TextBox();
-            this.jobSchedules_scheduleID_label2 = new System.Windows.Forms.Label();
-            this.jobSchedule_scheduleID_Dinput2 = new System.Windows.Forms.TextBox();
-            this.jobSchedule_ScheduleID_Dlabel2 = new System.Windows.Forms.Label();
-            this.guardSchedule_scheduleID_input2 = new System.Windows.Forms.TextBox();
-            this.guardSchedule_scheduleID_label2 = new System.Windows.Forms.Label();
+            this.shift_IU_label4 = new System.Windows.Forms.Label();
             this.shift_IUpanel.SuspendLayout();
             this.shift_Dpanel.SuspendLayout();
             this.schedules_Dpanel.SuspendLayout();
@@ -151,7 +151,7 @@
             this.shiftComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shiftComboBox.FormattingEnabled = true;
             this.shiftComboBox.Location = new System.Drawing.Point(16, 30);
-            this.shiftComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shiftComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.shiftComboBox.Name = "shiftComboBox";
             this.shiftComboBox.Size = new System.Drawing.Size(160, 24);
             this.shiftComboBox.TabIndex = 5;
@@ -162,7 +162,7 @@
             this.schedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.schedulesComboBox.FormattingEnabled = true;
             this.schedulesComboBox.Location = new System.Drawing.Point(195, 30);
-            this.schedulesComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.schedulesComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.schedulesComboBox.Name = "schedulesComboBox";
             this.schedulesComboBox.Size = new System.Drawing.Size(160, 24);
             this.schedulesComboBox.TabIndex = 6;
@@ -173,7 +173,7 @@
             this.jobSchedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.jobSchedulesComboBox.FormattingEnabled = true;
             this.jobSchedulesComboBox.Location = new System.Drawing.Point(375, 30);
-            this.jobSchedulesComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.jobSchedulesComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.jobSchedulesComboBox.Name = "jobSchedulesComboBox";
             this.jobSchedulesComboBox.Size = new System.Drawing.Size(160, 24);
             this.jobSchedulesComboBox.TabIndex = 7;
@@ -184,7 +184,7 @@
             this.guardSchedulesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.guardSchedulesComboBox.FormattingEnabled = true;
             this.guardSchedulesComboBox.Location = new System.Drawing.Point(556, 30);
-            this.guardSchedulesComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guardSchedulesComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.guardSchedulesComboBox.Name = "guardSchedulesComboBox";
             this.guardSchedulesComboBox.Size = new System.Drawing.Size(160, 24);
             this.guardSchedulesComboBox.TabIndex = 8;
@@ -192,6 +192,7 @@
             // 
             // shift_IUpanel
             // 
+            this.shift_IUpanel.Controls.Add(this.shift_IU_label4);
             this.shift_IUpanel.Controls.Add(this.shift_IU_button1);
             this.shift_IUpanel.Controls.Add(this.shift_IU_textBox3);
             this.shift_IUpanel.Controls.Add(this.shift_IU_textBox2);
@@ -200,7 +201,7 @@
             this.shift_IUpanel.Controls.Add(this.shift_IU_label2);
             this.shift_IUpanel.Controls.Add(this.shift_IU_label1);
             this.shift_IUpanel.Location = new System.Drawing.Point(16, 62);
-            this.shift_IUpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shift_IUpanel.Margin = new System.Windows.Forms.Padding(4);
             this.shift_IUpanel.Name = "shift_IUpanel";
             this.shift_IUpanel.Size = new System.Drawing.Size(361, 233);
             this.shift_IUpanel.TabIndex = 0;
@@ -218,7 +219,7 @@
             // 
             // shift_IU_textBox3
             // 
-            this.shift_IU_textBox3.Location = new System.Drawing.Point(227, 89);
+            this.shift_IU_textBox3.Location = new System.Drawing.Point(228, 102);
             this.shift_IU_textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.shift_IU_textBox3.Name = "shift_IU_textBox3";
             this.shift_IU_textBox3.Size = new System.Drawing.Size(89, 22);
@@ -226,7 +227,7 @@
             // 
             // shift_IU_textBox2
             // 
-            this.shift_IU_textBox2.Location = new System.Drawing.Point(227, 59);
+            this.shift_IU_textBox2.Location = new System.Drawing.Point(228, 72);
             this.shift_IU_textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.shift_IU_textBox2.Name = "shift_IU_textBox2";
             this.shift_IU_textBox2.Size = new System.Drawing.Size(89, 22);
@@ -234,7 +235,7 @@
             // 
             // shift_IU_textBox1
             // 
-            this.shift_IU_textBox1.Location = new System.Drawing.Point(227, 30);
+            this.shift_IU_textBox1.Location = new System.Drawing.Point(228, 43);
             this.shift_IU_textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.shift_IU_textBox1.Name = "shift_IU_textBox1";
             this.shift_IU_textBox1.Size = new System.Drawing.Size(89, 22);
@@ -243,7 +244,7 @@
             // shift_IU_label3
             // 
             this.shift_IU_label3.AutoSize = true;
-            this.shift_IU_label3.Location = new System.Drawing.Point(23, 92);
+            this.shift_IU_label3.Location = new System.Drawing.Point(24, 105);
             this.shift_IU_label3.Name = "shift_IU_label3";
             this.shift_IU_label3.Size = new System.Drawing.Size(76, 17);
             this.shift_IU_label3.TabIndex = 2;
@@ -252,7 +253,7 @@
             // shift_IU_label2
             // 
             this.shift_IU_label2.AutoSize = true;
-            this.shift_IU_label2.Location = new System.Drawing.Point(23, 60);
+            this.shift_IU_label2.Location = new System.Drawing.Point(24, 73);
             this.shift_IU_label2.Name = "shift_IU_label2";
             this.shift_IU_label2.Size = new System.Drawing.Size(77, 17);
             this.shift_IU_label2.TabIndex = 1;
@@ -261,7 +262,7 @@
             // shift_IU_label1
             // 
             this.shift_IU_label1.AutoSize = true;
-            this.shift_IU_label1.Location = new System.Drawing.Point(23, 34);
+            this.shift_IU_label1.Location = new System.Drawing.Point(24, 47);
             this.shift_IU_label1.Name = "shift_IU_label1";
             this.shift_IU_label1.Size = new System.Drawing.Size(117, 17);
             this.shift_IU_label1.TabIndex = 0;
@@ -274,7 +275,7 @@
             this.shift_Dpanel.Controls.Add(this.shift_delete_label2);
             this.shift_Dpanel.Controls.Add(this.shift_delete_label1);
             this.shift_Dpanel.Location = new System.Drawing.Point(16, 324);
-            this.shift_Dpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.shift_Dpanel.Margin = new System.Windows.Forms.Padding(4);
             this.shift_Dpanel.Name = "shift_Dpanel";
             this.shift_Dpanel.Size = new System.Drawing.Size(360, 263);
             this.shift_Dpanel.TabIndex = 10;
@@ -310,10 +311,10 @@
             // shift_delete_label1
             // 
             this.shift_delete_label1.AutoSize = true;
-            this.shift_delete_label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shift_delete_label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.shift_delete_label1.Location = new System.Drawing.Point(14, 10);
             this.shift_delete_label1.Name = "shift_delete_label1";
-            this.shift_delete_label1.Size = new System.Drawing.Size(155, 31);
+            this.shift_delete_label1.Size = new System.Drawing.Size(112, 25);
             this.shift_delete_label1.TabIndex = 0;
             this.shift_delete_label1.Text = "Delete Shift";
             this.shift_delete_label1.Click += new System.EventHandler(this.label3_Click);
@@ -325,7 +326,7 @@
             this.schedules_Dpanel.Controls.Add(this.Schedules_ScheduleID_Dinputlabel);
             this.schedules_Dpanel.Controls.Add(this.Schedules_Dlabel);
             this.schedules_Dpanel.Location = new System.Drawing.Point(411, 324);
-            this.schedules_Dpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.schedules_Dpanel.Margin = new System.Windows.Forms.Padding(4);
             this.schedules_Dpanel.Name = "schedules_Dpanel";
             this.schedules_Dpanel.Size = new System.Drawing.Size(407, 263);
             this.schedules_Dpanel.TabIndex = 12;
@@ -390,7 +391,7 @@
             this.schedules_IUpanel.Controls.Add(this.Sunshift_input);
             this.schedules_IUpanel.Controls.Add(this.ScheduleID_input);
             this.schedules_IUpanel.Location = new System.Drawing.Point(411, 62);
-            this.schedules_IUpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.schedules_IUpanel.Margin = new System.Windows.Forms.Padding(4);
             this.schedules_IUpanel.Name = "schedules_IUpanel";
             this.schedules_IUpanel.Size = new System.Drawing.Size(408, 233);
             this.schedules_IUpanel.TabIndex = 11;
@@ -562,14 +563,6 @@
             this.ScheduleID_input.Size = new System.Drawing.Size(89, 22);
             this.ScheduleID_input.TabIndex = 0;
             // 
-            // guardSchedules_Dpanel
-            // 
-            this.guardSchedules_Dpanel.Location = new System.Drawing.Point(1239, 324);
-            this.guardSchedules_Dpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.guardSchedules_Dpanel.Name = "guardSchedules_Dpanel";
-            this.guardSchedules_Dpanel.Size = new System.Drawing.Size(407, 263);
-            this.guardSchedules_Dpanel.TabIndex = 16;
-            // 
             // guardSchedules_IUpanel
             // 
             this.guardSchedules_IUpanel.Controls.Add(this.guardSchedule_scheduleID_input2);
@@ -579,10 +572,27 @@
             this.guardSchedules_IUpanel.Controls.Add(this.guardSchedule_scheduleID_label1);
             this.guardSchedules_IUpanel.Controls.Add(this.guardSchedule_Ulabel);
             this.guardSchedules_IUpanel.Location = new System.Drawing.Point(1239, 62);
-            this.guardSchedules_IUpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guardSchedules_IUpanel.Margin = new System.Windows.Forms.Padding(4);
             this.guardSchedules_IUpanel.Name = "guardSchedules_IUpanel";
             this.guardSchedules_IUpanel.Size = new System.Drawing.Size(408, 233);
             this.guardSchedules_IUpanel.TabIndex = 15;
+            // 
+            // guardSchedule_scheduleID_input2
+            // 
+            this.guardSchedule_scheduleID_input2.Location = new System.Drawing.Point(240, 78);
+            this.guardSchedule_scheduleID_input2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.guardSchedule_scheduleID_input2.Name = "guardSchedule_scheduleID_input2";
+            this.guardSchedule_scheduleID_input2.Size = new System.Drawing.Size(89, 22);
+            this.guardSchedule_scheduleID_input2.TabIndex = 29;
+            // 
+            // guardSchedule_scheduleID_label2
+            // 
+            this.guardSchedule_scheduleID_label2.AutoSize = true;
+            this.guardSchedule_scheduleID_label2.Location = new System.Drawing.Point(236, 50);
+            this.guardSchedule_scheduleID_label2.Name = "guardSchedule_scheduleID_label2";
+            this.guardSchedule_scheduleID_label2.Size = new System.Drawing.Size(80, 17);
+            this.guardSchedule_scheduleID_label2.TabIndex = 28;
+            this.guardSchedule_scheduleID_label2.Text = "ScheduleID";
             // 
             // guardSchedule_Usubmitbutton
             // 
@@ -631,10 +641,28 @@
             this.jobSchedules_Dpanel.Controls.Add(this.jobSchedule_ScheduleID_Dlabel1);
             this.jobSchedules_Dpanel.Controls.Add(this.jobSchedule_dlabel);
             this.jobSchedules_Dpanel.Location = new System.Drawing.Point(844, 324);
-            this.jobSchedules_Dpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.jobSchedules_Dpanel.Margin = new System.Windows.Forms.Padding(4);
             this.jobSchedules_Dpanel.Name = "jobSchedules_Dpanel";
             this.jobSchedules_Dpanel.Size = new System.Drawing.Size(360, 263);
             this.jobSchedules_Dpanel.TabIndex = 14;
+            // 
+            // jobSchedule_scheduleID_Dinput2
+            // 
+            this.jobSchedule_scheduleID_Dinput2.Location = new System.Drawing.Point(214, 98);
+            this.jobSchedule_scheduleID_Dinput2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jobSchedule_scheduleID_Dinput2.Name = "jobSchedule_scheduleID_Dinput2";
+            this.jobSchedule_scheduleID_Dinput2.Size = new System.Drawing.Size(89, 22);
+            this.jobSchedule_scheduleID_Dinput2.TabIndex = 25;
+            // 
+            // jobSchedule_ScheduleID_Dlabel2
+            // 
+            this.jobSchedule_ScheduleID_Dlabel2.AutoSize = true;
+            this.jobSchedule_ScheduleID_Dlabel2.Location = new System.Drawing.Point(212, 70);
+            this.jobSchedule_ScheduleID_Dlabel2.Name = "jobSchedule_ScheduleID_Dlabel2";
+            this.jobSchedule_ScheduleID_Dlabel2.Size = new System.Drawing.Size(72, 17);
+            this.jobSchedule_ScheduleID_Dlabel2.TabIndex = 24;
+            this.jobSchedule_ScheduleID_Dlabel2.Text = "Job Name";
+            this.jobSchedule_ScheduleID_Dlabel2.Click += new System.EventHandler(this.jobSchedule_ScheduleID_Dlabel2_Click);
             // 
             // jobSchedule_Dsubmitbutton
             // 
@@ -683,11 +711,28 @@
             this.jobSchedules_IUpanel.Controls.Add(this.jobSchedules_scheduleID_label1);
             this.jobSchedules_IUpanel.Controls.Add(this.Jobschedules_Ilabel);
             this.jobSchedules_IUpanel.Location = new System.Drawing.Point(844, 62);
-            this.jobSchedules_IUpanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.jobSchedules_IUpanel.Margin = new System.Windows.Forms.Padding(4);
             this.jobSchedules_IUpanel.Name = "jobSchedules_IUpanel";
             this.jobSchedules_IUpanel.Size = new System.Drawing.Size(361, 233);
             this.jobSchedules_IUpanel.TabIndex = 13;
             this.jobSchedules_IUpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.jobSchedules_IUpanel_Paint);
+            // 
+            // jobSchedules_ScheduleID_Iinput2
+            // 
+            this.jobSchedules_ScheduleID_Iinput2.Location = new System.Drawing.Point(214, 78);
+            this.jobSchedules_ScheduleID_Iinput2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jobSchedules_ScheduleID_Iinput2.Name = "jobSchedules_ScheduleID_Iinput2";
+            this.jobSchedules_ScheduleID_Iinput2.Size = new System.Drawing.Size(89, 22);
+            this.jobSchedules_ScheduleID_Iinput2.TabIndex = 21;
+            // 
+            // jobSchedules_scheduleID_label2
+            // 
+            this.jobSchedules_scheduleID_label2.AutoSize = true;
+            this.jobSchedules_scheduleID_label2.Location = new System.Drawing.Point(212, 50);
+            this.jobSchedules_scheduleID_label2.Name = "jobSchedules_scheduleID_label2";
+            this.jobSchedules_scheduleID_label2.Size = new System.Drawing.Size(72, 17);
+            this.jobSchedules_scheduleID_label2.TabIndex = 20;
+            this.jobSchedules_scheduleID_label2.Text = "Job Name";
             // 
             // jobSchedule_submitbutton
             // 
@@ -727,64 +772,21 @@
             this.Jobschedules_Ilabel.TabIndex = 0;
             this.Jobschedules_Ilabel.Text = "Add Job Schedule";
             // 
-            // jobSchedules_ScheduleID_Iinput2
+            // shift_IU_label4
             // 
-            this.jobSchedules_ScheduleID_Iinput2.Location = new System.Drawing.Point(214, 78);
-            this.jobSchedules_ScheduleID_Iinput2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.jobSchedules_ScheduleID_Iinput2.Name = "jobSchedules_ScheduleID_Iinput2";
-            this.jobSchedules_ScheduleID_Iinput2.Size = new System.Drawing.Size(89, 22);
-            this.jobSchedules_ScheduleID_Iinput2.TabIndex = 21;
-            // 
-            // jobSchedules_scheduleID_label2
-            // 
-            this.jobSchedules_scheduleID_label2.AutoSize = true;
-            this.jobSchedules_scheduleID_label2.Location = new System.Drawing.Point(212, 50);
-            this.jobSchedules_scheduleID_label2.Name = "jobSchedules_scheduleID_label2";
-            this.jobSchedules_scheduleID_label2.Size = new System.Drawing.Size(72, 17);
-            this.jobSchedules_scheduleID_label2.TabIndex = 20;
-            this.jobSchedules_scheduleID_label2.Text = "Job Name";
-            // 
-            // jobSchedule_scheduleID_Dinput2
-            // 
-            this.jobSchedule_scheduleID_Dinput2.Location = new System.Drawing.Point(214, 98);
-            this.jobSchedule_scheduleID_Dinput2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.jobSchedule_scheduleID_Dinput2.Name = "jobSchedule_scheduleID_Dinput2";
-            this.jobSchedule_scheduleID_Dinput2.Size = new System.Drawing.Size(89, 22);
-            this.jobSchedule_scheduleID_Dinput2.TabIndex = 25;
-            // 
-            // jobSchedule_ScheduleID_Dlabel2
-            // 
-            this.jobSchedule_ScheduleID_Dlabel2.AutoSize = true;
-            this.jobSchedule_ScheduleID_Dlabel2.Location = new System.Drawing.Point(212, 70);
-            this.jobSchedule_ScheduleID_Dlabel2.Name = "jobSchedule_ScheduleID_Dlabel2";
-            this.jobSchedule_ScheduleID_Dlabel2.Size = new System.Drawing.Size(72, 17);
-            this.jobSchedule_ScheduleID_Dlabel2.TabIndex = 24;
-            this.jobSchedule_ScheduleID_Dlabel2.Text = "Job Name";
-            this.jobSchedule_ScheduleID_Dlabel2.Click += new System.EventHandler(this.jobSchedule_ScheduleID_Dlabel2_Click);
-            // 
-            // guardSchedule_scheduleID_input2
-            // 
-            this.guardSchedule_scheduleID_input2.Location = new System.Drawing.Point(240, 78);
-            this.guardSchedule_scheduleID_input2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.guardSchedule_scheduleID_input2.Name = "guardSchedule_scheduleID_input2";
-            this.guardSchedule_scheduleID_input2.Size = new System.Drawing.Size(89, 22);
-            this.guardSchedule_scheduleID_input2.TabIndex = 29;
-            // 
-            // guardSchedule_scheduleID_label2
-            // 
-            this.guardSchedule_scheduleID_label2.AutoSize = true;
-            this.guardSchedule_scheduleID_label2.Location = new System.Drawing.Point(236, 50);
-            this.guardSchedule_scheduleID_label2.Name = "guardSchedule_scheduleID_label2";
-            this.guardSchedule_scheduleID_label2.Size = new System.Drawing.Size(80, 17);
-            this.guardSchedule_scheduleID_label2.TabIndex = 28;
-            this.guardSchedule_scheduleID_label2.Text = "ScheduleID";
+            this.shift_IU_label4.AutoSize = true;
+            this.shift_IU_label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.shift_IU_label4.Location = new System.Drawing.Point(22, 10);
+            this.shift_IU_label4.Name = "shift_IU_label4";
+            this.shift_IU_label4.Size = new System.Drawing.Size(92, 25);
+            this.shift_IU_label4.TabIndex = 18;
+            this.shift_IU_label4.Text = "Add Shift";
             // 
             // ScheduleEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1668, 610);
-            this.Controls.Add(this.guardSchedules_Dpanel);
+            this.ClientSize = new System.Drawing.Size(1673, 894);
             this.Controls.Add(this.guardSchedules_IUpanel);
             this.Controls.Add(this.jobSchedules_Dpanel);
             this.Controls.Add(this.jobSchedules_IUpanel);
@@ -800,7 +802,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ScheduleEditor";
             this.Text = "ScheduleEditor";
             this.Load += new System.EventHandler(this.ScheduleEditor_Load);
@@ -837,7 +839,6 @@
         private System.Windows.Forms.Panel shift_Dpanel;
         private System.Windows.Forms.Panel schedules_Dpanel;
         private System.Windows.Forms.Panel schedules_IUpanel;
-        private System.Windows.Forms.Panel guardSchedules_Dpanel;
         private System.Windows.Forms.Panel guardSchedules_IUpanel;
         private System.Windows.Forms.Panel jobSchedules_Dpanel;
         private System.Windows.Forms.Panel jobSchedules_IUpanel;
@@ -893,5 +894,6 @@
         private System.Windows.Forms.Label jobSchedule_ScheduleID_Dlabel2;
         private System.Windows.Forms.TextBox guardSchedule_scheduleID_input2;
         private System.Windows.Forms.Label guardSchedule_scheduleID_label2;
+        private System.Windows.Forms.Label shift_IU_label4;
     }
 }

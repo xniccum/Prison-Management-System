@@ -14,11 +14,15 @@ namespace PMSTest
     public partial class ScheduleEditor : Form
     {
         Main_Form parentForm;
+        Panel currentPanel;
         public ScheduleEditor(Main_Form passedForm)
         {
             this.parentForm = passedForm;
             InitializeComponent();
             fillComboBoxes();
+            setAllPanesInvisible();
+            currentPanel = shift_IUpanel;
+            this.Size = new Size(407, 263);
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)
@@ -50,22 +54,25 @@ namespace PMSTest
 
        private void setup_shift_add()
         {
+            focusPanel(shift_IUpanel);
             shift_IU_label1.Visible = false;
             shift_IU_textBox1.Visible = false;
+            shift_IU_label4.Text = "Add Shift";
         }
 
         private void setup_shift_update()
         {
+            focusPanel(shift_IUpanel);
             shift_IU_label1.Visible = true;
             shift_IU_textBox1.Visible = true;
+            shift_IU_label4.Text = "Update Shift";
 
         }
         public void setup_shift_delete()
         {
-
+            focusPanel(shift_Dpanel);
             
         }
-
         private void shift_add()
         {
             string[] argList = new String[2];
@@ -87,7 +94,6 @@ namespace PMSTest
             }
             MessageBox.Show("Success!");
         }
-
         public void shift_update(){
 
             string[] argList = new String[3];
@@ -109,8 +115,6 @@ namespace PMSTest
             }
             MessageBox.Show("Success!");
         }
-
-
         private void shift_delete()
         {
             string[] argList = new String[1];
@@ -146,7 +150,6 @@ namespace PMSTest
             shiftComboBox.Items.AddRange(new Object[] { "Add Shift", "Update Shift", "Delete Shift" });
             guardSchedulesComboBox.Items.AddRange(new Object[] { "Update Guard Schedule" });
         }
-
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -182,6 +185,7 @@ namespace PMSTest
         }
         private void setup_schedule_change()
         {
+            focusPanel(schedules_IUpanel);
             scheduleadd_label.Visible = false;
             ScheduleID_label.Visible = true;
             ScheduleID_input.Visible = true;
@@ -189,6 +193,7 @@ namespace PMSTest
         }
         private void setup_schedule_add()
         {
+            focusPanel(schedules_IUpanel);
             scheduleupdate_label.Visible = false;
             scheduleadd_label.Visible = true;
             ScheduleID_label.Visible = false;
@@ -197,6 +202,7 @@ namespace PMSTest
         private void setup_schedule_delete()
         {
 
+            focusPanel(schedules_Dpanel);
         }
         private void schedule_add()
         {
@@ -342,27 +348,11 @@ namespace PMSTest
                 MessageBox.Show(E.Message);
             }
         }
-        
-
-        private void shift_IU_button1_Click(object sender, EventArgs e)
-        {
-            string selected = shiftComboBox.SelectedItem.ToString();
-            switch (selected)
-            {
-                case "Add Shift":
-                    shift_add();
-                    break;
-                case "Update Shift":
-                    shift_update();
-                    break;
-            }
-        }
-
+        private void shift_IU_button1_Click(object sender, EventArgs e) { }
         private void shift_delete_button1_Click(object sender, EventArgs e)
         {
             shift_delete();
         }
-
         private void jobSchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selected = jobSchedulesComboBox.SelectedItem.ToString();
@@ -418,37 +408,31 @@ namespace PMSTest
         }
         public void setup_jws_add()
         {
-
+            focusPanel(jobSchedules_IUpanel);
         }
         public void setup_jws_delete()
         {
-
+            focusPanel(jobSchedules_Dpanel);
         }
-
         private void jobSchedules_IUpanel_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void jobSchedule_ScheduleID_Dlabel2_Click(object sender, EventArgs e)
         {
         }
-
         private void jobSchedule_submitbutton_Click(object sender, EventArgs e)
         {
             jws_add();
         }
-
         private void jobSchedule_Dsubmitbutton_Click(object sender, EventArgs e)
         {
             jws_delete();
         }
-
         private void guardSchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             setup_guardSchedule_update();
         }
-
         private void guardSchedule_update()
         {
             string[] argList = new String[2];
@@ -469,17 +453,14 @@ namespace PMSTest
             }
             MessageBox.Show("Success!");
         }
-
         private void setup_guardSchedule_update()
         {
-
+            focusPanel(guardSchedules_IUpanel);
         }
-
         private void guardSchedule_Usubmitbutton_Click(object sender, EventArgs e)
         {
             guardSchedule_update();
         }
-
         private void Schedules_Dsubmitbutton_Click(object sender, EventArgs e)
         {
             string selected = schedulesComboBox.SelectedItem.ToString();
@@ -517,5 +498,25 @@ namespace PMSTest
             }
         }
 
+        private void setAllPanesInvisible()
+        {
+            shift_Dpanel.Visible = false;
+            shift_IUpanel.Visible = false;
+            schedules_Dpanel.Visible = false;
+            schedules_IUpanel.Visible = false;
+            jobSchedules_IUpanel.Visible = false;
+            jobSchedules_Dpanel.Visible = false;
+            guardSchedules_IUpanel.Visible = false;
+
+        }
+        private void focusPanel(Panel desired)
+        {
+            setAllPanesInvisible();
+            desired.Visible = true;
+            Point oldLocation = this.currentPanel.Location;
+            this.currentPanel.Location = desired.Location;
+            desired.Location = oldLocation;
+            this.currentPanel = desired;
+        }
     }
 }
