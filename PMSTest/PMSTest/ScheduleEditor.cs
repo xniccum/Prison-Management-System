@@ -22,7 +22,7 @@ namespace PMSTest
             fillComboBoxes();
             setAllPanesInvisible();
             currentPanel = shift_IUpanel;
-            this.Size = new Size(600, 300);
+            this.Size = new Size(800, 500);
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)

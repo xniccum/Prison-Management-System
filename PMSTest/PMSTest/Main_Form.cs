@@ -21,7 +21,8 @@ namespace PMSTest
         {
             InitializeComponent();
             dbHandler = new SQLhandler();
-            fillComboBox();
+            //fillComboBox();
+            scheduleButton.Visible = false;
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -33,8 +34,96 @@ namespace PMSTest
             
         }
 
-        private void fillComboBox()
+        //private void fillComboBox()
+        //{
+        //    comboBox1.Items.AddRange(new Object[] {
+        //        "Show Altercations",
+        //        "Show All Cells",
+        //        "Show All Prisoners",
+        //        "Show Guard Schedule",
+        //        "Show All Guards",
+        //        "Show All Shifts",
+        //        "Show All Users",
+        //        "Show Prisoners Working Jobs",
+        //        "Show All Schedules",
+        //        "Show Job Schedules",
+        //        "Get Prisoner",
+        //        "Add Altercation",
+        //        "Add Cell",
+        //        "Add Guard",
+        //        "Add Prisoner",
+        //        "Register User",
+        //        "Create Job",
+        //        "Delete Prisoner",
+        //        "Delete User",
+        //        "Move Prisoner"
+                
+        //    });
+        //}
+
+        //login button
+        private void button1_Click(object sender, EventArgs e)
         {
+            if(dbHandler.isConnected()){
+                if(dbHandler.isUserLoggedIn()) {
+                    MessageBox.Show("Already Logged In");
+                } else {
+                    if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text))
+                    {
+                        if (dbHandler.checkUsernamePermissions(textBox1.Text) < 1)
+                        {
+                            MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
+                            dbHandler.logOut();
+                        }
+                        else if (dbHandler.checkUsernamePermissions(textBox1.Text) == 1)
+                        {
+                            MessageBox.Show("Guard Login Accepted");
+                            setGuardInterface();
+                        }
+                        else
+                        {
+                        MessageBox.Show("Warden Login Accepted");
+                        setWardenInterface();
+                      
+                        
+
+                        }
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Username Or Password Incorrect");
+                    }
+                }
+            }
+            else 
+            {
+                MessageBox.Show("Not connected to Database");
+            }
+            
+
+        }
+
+        private void setGuardInterface()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(new Object[] {
+                "Show Altercations",
+                "Show All Cells",
+                "Show All Prisoners",
+                "Show Guard Schedule",
+                "Show All Guards",
+                "Show All Shifts",
+                "Show All Users",
+                "Show Prisoners Working Jobs",
+                "Show All Schedules",
+                "Show Job Schedules",
+                "Get Prisoner"
+            });
+            scheduleButton.Visible = false;
+        }
+        private void setWardenInterface()
+        {
+            comboBox1.Items.Clear();
             comboBox1.Items.AddRange(new Object[] {
                 "Show Altercations",
                 "Show All Cells",
@@ -58,57 +147,13 @@ namespace PMSTest
                 "Move Prisoner"
                 
             });
+            scheduleButton.Visible = true;
         }
-        //login button
-        private void button1_Click(object sender, EventArgs e)
+        private void setLoggedOutInterface()
         {
-            if(dbHandler.isConnected()){
-                if(dbHandler.isUserLoggedIn()) {
-                    MessageBox.Show("Already Logged In");
-                } else {
-                    if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text))
-                    {
-                        if (dbHandler.checkUsernamePermissions(textBox1.Text) < 1)
-                        {
-                            MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
-                            dbHandler.logOut();
-                        } else 
-                        {
-                        MessageBox.Show("Login Accepted");
-                        }
-                    }
-                    else 
-                    {
-                        MessageBox.Show("Username Or Password Incorrect");
-                    }
-                }
-            }
-            else 
-            {
-                MessageBox.Show("Not connected to Database");
-            }
-            
-
+            comboBox1.Items.Clear();
+            scheduleButton.Visible = false;
         }
-       
-        //private void update_data(string s)
-        //{
-        //    try
-        //    {
-                
-        //            SqlDataAdapter adapter = new SqlDataAdapter(s, cnn);
-        //            DataSet ds = new DataSet();
-        //            adapter.Fill(ds, s);
-        //            dataGridView1.DataSource = ds.Tables[0];
-        //            dataGridView1.Refresh();
-                    
-                
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Must be logged on to view data");
-        //    }
-        //}
 
 
 
@@ -132,8 +177,11 @@ namespace PMSTest
         //logout button
         private void button2_Click(object sender, EventArgs e)
         {
-            if( this.dbHandler.logOut())
+            if (this.dbHandler.logOut())
+            {
                 MessageBox.Show("Logged Out");
+                setLoggedOutInterface();
+            }
             //try
             //{
             //    cnn.Close();
