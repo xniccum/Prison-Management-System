@@ -87,14 +87,16 @@ namespace PMSTest
             argList[0] = shift_IU_textBox1.Text;
             argList[1] = shift_IU_textBox2.Text;
             argList[2] = shift_IU_textBox3.Text;
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_update", argList))
+            try
             {
-                MessageBox.Show("Syntax Error, Please try again");
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_update", argList);
             }
-            else
+            catch (System.Data.SqlClient.SqlException E)
             {
-                MessageBox.Show("Update Succesfull");
+                MessageBox.Show(E.Message);
+                return;
             }
+            MessageBox.Show("Success!");
         }
 
 
@@ -102,14 +104,16 @@ namespace PMSTest
         {
             string[] argList = new String[1];
             argList[0] = shift_Delete_TextBox1.Text;
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList))
+            try
             {
-                MessageBox.Show("Syntax Error, Please try again");
-            } 
-            else
-            {
-                MessageBox.Show("Delete Successfull");
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList);
             }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return;
+            }
+            MessageBox.Show("Success!");
         }
         private void fillComboBoxes()
         {
@@ -275,24 +279,108 @@ namespace PMSTest
 
         private void jobSchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selected = shiftComboBox.SelectedItem.ToString();
+            string selected = jobSchedulesComboBox.SelectedItem.ToString();
             switch (selected)
             {
                 case "Add Job Schedule":
-                    shift_add();
+                    setup_jws_add();
                     break;
                 case "Delete Job Schedule":
-                    shift_update();
+                    setup_jws_delete();
                     break;
             }
         }
         public void jws_add()
         {
-
+            string[] argList = new String[2];
+            argList[0] = jobSchedules_ScheduleID_Iinput1.Text;
+            argList[1] = jobSchedules_ScheduleID_Iinput2.Text;
+            try
+            {
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_add", argList);
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return; 
+            }
+            MessageBox.Show("Success!");
         }
-        public void jws_update()
+        public void jws_delete()
+        {
+            string[] argList = new String[2];
+            argList[0] = jobSchedule_scheduleID_Dinput1.Text;
+            argList[1] = jobSchedule_scheduleID_Dinput2.Text;
+            try
+            {
+               this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_delete", argList);
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return;
+            }
+            MessageBox.Show("Success!");
+        }
+        public void setup_jws_add()
         {
 
+        }
+        public void setup_jws_delete()
+        {
+
+        }
+
+        private void jobSchedules_IUpanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void jobSchedule_ScheduleID_Dlabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void jobSchedule_submitbutton_Click(object sender, EventArgs e)
+        {
+            jws_add();
+        }
+
+        private void jobSchedule_Dsubmitbutton_Click(object sender, EventArgs e)
+        {
+            jws_delete();
+        }
+
+        private void guardSchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            setup_guardSchedule_update();
+        }
+
+        private void guardSchedule_update()
+        {
+            string[] argList = new String[2];
+            argList[0] = guardSchedule_scheduleID_input1.Text;
+            argList[1] = guardSchedule_scheduleID_input2.Text;
+            try
+            {
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.guardSchedule_update", argList);
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return;
+            }
+            MessageBox.Show("Success!");
+        }
+
+        private void setup_guardSchedule_update()
+        {
+
+        }
+
+        private void guardSchedule_Usubmitbutton_Click(object sender, EventArgs e)
+        {
+            guardSchedule_update();
         }
 
 

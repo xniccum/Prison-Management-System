@@ -412,6 +412,9 @@ namespace PMSTest
             this.parameterNames.Add("dbo.schedule_delete", new String[] { "@scheduleID" });
             this.parameterTypes.Add("dbo.schedule_delete", new SqlDbType[] { SqlDbType.SmallInt });
 
+            this.parameterNames.Add("dbo.guardSchedule_update", new String[] { "@guardID", "@ScheduleID" });
+            this.parameterTypes.Add("dbo.guardSchedule_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
+
         }
     }
 
