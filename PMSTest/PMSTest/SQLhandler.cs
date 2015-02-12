@@ -239,13 +239,20 @@ namespace PMSTest
                 command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
                 if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
                 {
-                    try
+                    if (data[i] == null)
                     {
-                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        command.Parameters[this.parameterNames[name][i]].Value = null;
                     }
-                    catch
+                    else
                     {
-                        return new DataTable();
+                        try
+                        {
+                            command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        }
+                        catch
+                        {
+                            return new DataTable();
+                        }
                     }
                 }
                 else if (this.parameterTypes[name][i] == SqlDbType.Time)
@@ -288,13 +295,20 @@ namespace PMSTest
                 command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
                 if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
                 {
-                    try
+                    if (data[i] == null)
                     {
-                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        command.Parameters[this.parameterNames[name][i]].Value = null;
                     }
-                    catch
+                    else
                     {
-                        return false;
+                        try
+                        {
+                            command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        }
+                        catch
+                        {
+                            return false;
+                        }
                     }
                 }
                 else if (this.parameterTypes[name][i] == SqlDbType.Time)

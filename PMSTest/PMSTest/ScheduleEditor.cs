@@ -75,6 +75,10 @@ namespace PMSTest
             {
                 MessageBox.Show("Syntax Error, Please try again");
             }
+            else
+            {
+                MessageBox.Show("Add Successfull");
+            }
         }
 
         public void shift_update(){
@@ -87,6 +91,10 @@ namespace PMSTest
             {
                 MessageBox.Show("Syntax Error, Please try again");
             }
+            else
+            {
+                MessageBox.Show("Update Succesfull");
+            }
         }
 
 
@@ -97,6 +105,10 @@ namespace PMSTest
             if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList))
             {
                 MessageBox.Show("Syntax Error, Please try again");
+            } 
+            else
+            {
+                MessageBox.Show("Delete Successfull");
             }
         }
         private void fillComboBoxes()
@@ -140,6 +152,33 @@ namespace PMSTest
                     shift_update();
                     break;
             }
+        }
+
+        private void shift_delete_button1_Click(object sender, EventArgs e)
+        {
+            shift_delete();
+        }
+
+        private void jobSchedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = shiftComboBox.SelectedItem.ToString();
+            switch (selected)
+            {
+                case "Add Job Schedule":
+                    shift_add();
+                    break;
+                case "Delete Job Schedule":
+                    shift_update();
+                    break;
+            }
+        }
+        public void jws_add()
+        {
+
+        }
+        public void jws_update()
+        {
+
         }
 
 
