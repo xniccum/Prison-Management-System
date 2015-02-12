@@ -22,7 +22,7 @@ namespace PMSTest
             fillComboBoxes();
             setAllPanesInvisible();
             currentPanel = shift_IUpanel;
-            this.Size = new Size(407, 263);
+            this.Size = new Size(600, 300);
         }
 
         private void ScheduleEditor_Load(object sender, EventArgs e)
@@ -348,7 +348,18 @@ namespace PMSTest
                 MessageBox.Show(E.Message);
             }
         }
-        private void shift_IU_button1_Click(object sender, EventArgs e) { }
+        private void shift_IU_button1_Click(object sender, EventArgs e) { 
+            string selected = shiftComboBox.SelectedItem.ToString();
+            switch (selected)
+            {
+                case "Add Shift":
+                    shift_add();
+                    break;
+                case "Update Shift":
+                    shift_update();
+                    break;
+            }
+        }
         private void shift_delete_button1_Click(object sender, EventArgs e)
         {
             shift_delete();

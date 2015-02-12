@@ -36,12 +36,6 @@ namespace PMSTest
         private void fillComboBox()
         {
             comboBox1.Items.AddRange(new Object[] {
-                "Get Prisoner",
-                "Add Cell",
-                "Add Guard",
-                "Add Prisoner",
-                "Register User",
-                "Create Job",
                 "Show Altercations",
                 "Show All Cells",
                 "Show All Prisoners",
@@ -49,10 +43,20 @@ namespace PMSTest
                 "Show All Guards",
                 "Show All Shifts",
                 "Show All Users",
+                "Show Prisoners Working Jobs",
+                "Show All Schedules",
+                "Show Job Schedules",
+                "Get Prisoner",
+                "Add Altercation",
+                "Add Cell",
+                "Add Guard",
+                "Add Prisoner",
+                "Register User",
+                "Create Job",
                 "Delete Prisoner",
                 "Delete User",
-                "Move Prisoner",
-                "Add Altercation"
+                "Move Prisoner"
+                
             });
         }
         //login button
@@ -267,6 +271,19 @@ namespace PMSTest
                         inputForm = new Add_Data_Form("dbo.pms_addAltercation", this);
                         inputForm.Show();
                         break;
+                    case "Show Prisoners Working Jobs":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.pwj_view");
+                        break;
+                    case "Show All Schedules":
+                        inputForm = new Add_Data_Form("dbo.pms_addAltercation", this);
+                        inputForm.Show();
+                        throw new NotImplementedException();
+                    case "Show Job Schedules":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.jws_view");
+                        break;
+
+                
+                
                 }
             }
             catch (System.Data.SqlClient.SqlException E)

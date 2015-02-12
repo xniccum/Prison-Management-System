@@ -199,7 +199,7 @@ namespace PMSTest
         public DataTable getShiftsTable()
         {
 
-            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_shifts", dbConnection))
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.shift_view", dbConnection))
             {
                 return executeSproc(sprocCommand);
             }
