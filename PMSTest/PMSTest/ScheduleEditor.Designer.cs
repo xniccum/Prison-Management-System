@@ -325,6 +325,7 @@
             this.Schedules_Dsubmitbutton.TabIndex = 19;
             this.Schedules_Dsubmitbutton.Text = "Submit";
             this.Schedules_Dsubmitbutton.UseVisualStyleBackColor = true;
+            this.Schedules_Dsubmitbutton.Click += new System.EventHandler(this.Schedules_Dsubmitbutton_Click);
             // 
             // Schedules_ScheduleID_Dinput
             // 

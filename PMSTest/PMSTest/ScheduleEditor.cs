@@ -181,21 +181,79 @@ namespace PMSTest
         private void schedule_add()
         {
             string[] argList = new String[7];
-            argList[0] = Sunshift_input.Text;
-            argList[1] = Monshift_input.Text;
-            argList[2] = Tuesshift_input.Text;
-            argList[3] = Wedshift_input.Text;
-            argList[4] = Thursshift_input.Text;
-            argList[5] = Frishift_input.Text;
-            argList[6] = Satshift_input.Text;
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_insert", argList))
+            if (string.IsNullOrEmpty(Sunshift_input.Text))
             {
-                MessageBox.Show("Did not work");
+                argList[0] = null;
+            }
+            else
+            {
+                argList[0] = Sunshift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Monshift_input.Text))
+            {
+                argList[1] = null;
+            }
+            else
+            {
+                argList[1] = Monshift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Tuesshift_input.Text))
+            {
+                argList[2] = null;
+            }
+            else
+            {
+                argList[2] = Tuesshift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Wedshift_input.Text))
+            {
+                argList[3] = null;
+            }
+            else
+            {
+                argList[3] = Wedshift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Thursshift_input.Text))
+            {
+                argList[4] = null;
+            }
+            else
+            {
+                argList[4] = Thursshift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Frishift_input.Text))
+            {
+                argList[5] = null;
+            }
+            else
+            {
+                argList[5] = Frishift_input.Text;
+            }
+            if (string.IsNullOrEmpty(Satshift_input.Text))
+            {
+                argList[6] = null;
+            }
+            else
+            {
+                argList[6] = Satshift_input.Text;
+            }
+            try {
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_insert", argList);
+                MessageBox.Show("Add Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
             }
         }
         private void schedule_update() { 
             string[] argList = new String[8];
-            argList[0] = ScheduleID_input.Text;
+            if(string.IsNullOrEmpty(ScheduleID_input.Text)) {
+                argList[0] = null;
+            }
+            else {
+                argList[0] = ScheduleID_input.Text;
+            }
             if (string.IsNullOrEmpty(Sunshift_input.Text))
             {
                 argList[1] = null;
@@ -247,9 +305,13 @@ namespace PMSTest
             {
                 argList[7] = Satshift_input.Text;
             }
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_update", argList))
+            try {
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_update", argList);
+                MessageBox.Show("Update Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
             {
-                MessageBox.Show("Did not work");
+                MessageBox.Show(E.Message);
             }
         }
         
@@ -295,6 +357,38 @@ namespace PMSTest
 
         }
 
+        private void Schedules_Dsubmitbutton_Click(object sender, EventArgs e)
+        {
+            string selected = schedulesComboBox.SelectedItem.ToString();
+            switch (selected)
+            {
+                case "Delete Schedule":
+                    schedule_delete();
+                    break;
+                
+            }
+        }
+        private void schedule_delete()
+        {
+            string[] argList = new String[1];
+            if (string.IsNullOrEmpty(Schedules_ScheduleID_Dinput.Text))
+            {
+                argList[0] = null;
+            }
+            else
+            {
+                argList[0] = Schedules_ScheduleID_Dinput.Text;
+            }
+            try
+            {
+                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_delete", argList);
+                MessageBox.Show("Delete Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
+        }
 
     }
 }
