@@ -339,6 +339,15 @@ namespace PMSTest
             this.parameterNames.Add("dbo.shift_delete", new String[] { "@shiftID", "@StartTime", "@EndTime" });
             this.parameterTypes.Add("dbo.shift_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.Time});
 
+            this.parameterNames.Add("dbo.schedule_insert", new String[] { "@sunshift", "@monshift", "@tuesshift", "@wedshift", "@thursshift", "@frishift", "@satshift" });
+            this.parameterTypes.Add("dbo.schedule_insert", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.schedule_update", new String[] { "@scheduleID", "@sunshift", "@monshift", "@tuesshift", "@wedshift", "@thursshift", "@frishift", "@satshift" });
+            this.parameterTypes.Add("dbo.schedule_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, });
+
+            this.parameterNames.Add("dbo.schedule_delete", new String[] { "@scheduleID" });
+            this.parameterTypes.Add("dbo.schedule_delete", new SqlDbType[] { SqlDbType.SmallInt });
+
         }
     }
 
