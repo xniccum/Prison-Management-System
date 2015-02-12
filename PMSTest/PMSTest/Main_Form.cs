@@ -275,9 +275,8 @@ namespace PMSTest
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.pwj_view");
                         break;
                     case "Show All Schedules":
-                        inputForm = new Add_Data_Form("dbo.pms_addAltercation", this);
-                        inputForm.Show();
-                        throw new NotImplementedException();
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.schedule_view");
+                        break;
                     case "Show Job Schedules":
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.jws_view");
                         break;
