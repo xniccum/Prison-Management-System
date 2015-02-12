@@ -13,14 +13,14 @@ namespace Prison_Managment_System_Site.Controllers
     {
         private SQLhandler handler;
 
-        [HttpGet]
-        public ActionResult Index()
+        private List<Prison_Managment_System_Site.Models.Prisoner> getPrisoners()
         {
             this.handler = new SQLhandler();
-            List<Prison_Managment_System_Site.Models.Prisoner> prisoners = new List<Prison_Managment_System_Site.Models.Prisoner>();
             this.handler.openConnection();
+            List<Prison_Managment_System_Site.Models.Prisoner> prisoners = new List<Prison_Managment_System_Site.Models.Prisoner>();
             if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
             {
+
                 foreach (DataRow dr in this.handler.getPrisonersTable().Rows)
                 {
                     Object[] prisoner_data = this.handler.getPrisoner(int.Parse(dr.ItemArray[0].ToString()));
@@ -35,7 +35,49 @@ namespace Prison_Managment_System_Site.Controllers
             }
             else
                 RedirectToAction("User");
-            return View(prisoners);
+            return prisoners;
+        }
+
+        private List<Prison_Managment_System_Site.Models.Prisoner> getRelatedPrisoners()
+        {
+            this.handler = new SQLhandler();
+            this.handler.openConnection();
+            List<Prison_Managment_System_Site.Models.Prisoner> prisoners = new List<Prison_Managment_System_Site.Models.Prisoner>();
+            if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
+            {
+
+                foreach (DataRow dr in this.handler.getRelations().Rows)
+                {
+                    Prisoner p = new Prisoner();
+                    p.ID = int.Parse(dr.ItemArray[0].ToString());
+                    p.first_name = dr.ItemArray[1].ToString();
+                    p.middle_name = dr.ItemArray[2].ToString();
+                    p.last_name = dr.ItemArray[3].ToString();
+                    p.crime = dr.ItemArray[4].ToString();
+                    prisoners.Add(p);
+                }
+            }
+            else
+                RedirectToAction("User");
+            return prisoners;
+        }
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            ViewBag.Checked = "false";
+            return View(getPrisoners());
+        }
+
+        [HttpPost]
+        public ActionResult Index(FormCollection collection)
+        {
+            if (collection.Get("filterRelation") == "on")
+            {
+                ViewBag.Checked = "true";
+                return View(getRelatedPrisoners());
+            }
+            return View(getPrisoners());
         }
 
         [HttpGet]
