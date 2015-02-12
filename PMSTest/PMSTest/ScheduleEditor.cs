@@ -108,6 +108,10 @@ namespace PMSTest
         {
 
         }
+        private void schedulesComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void shift_IU_button1_Click(object sender, EventArgs e)
         {
