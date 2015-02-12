@@ -71,14 +71,21 @@ namespace PMSTest
             string[] argList = new String[2];
             argList[0] = shift_IU_textBox2.Text;
             argList[1] = shift_IU_textBox3.Text;
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_add", argList))
+            
+            try
             {
-                MessageBox.Show("Syntax Error, Please try again");
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_add", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
             }
-            else
+            catch (System.Data.SqlClient.SqlException E)
             {
-                MessageBox.Show("Add Successfull");
+                MessageBox.Show(E.Message);
+                return;
             }
+            MessageBox.Show("Success!");
         }
 
         public void shift_update(){
@@ -89,7 +96,11 @@ namespace PMSTest
             argList[2] = shift_IU_textBox3.Text;
             try
             {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_update", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_update", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
             }
             catch (System.Data.SqlClient.SqlException E)
             {
@@ -106,7 +117,12 @@ namespace PMSTest
             argList[0] = shift_Delete_TextBox1.Text;
             try
             {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+
             }
             catch (System.Data.SqlClient.SqlException E)
             {
@@ -242,7 +258,11 @@ namespace PMSTest
                 argList[6] = Satshift_input.Text;
             }
             try {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_insert", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_insert", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
                 MessageBox.Show("Add Successful");
             }
             catch (System.Data.SqlClient.SqlException E)
@@ -310,7 +330,11 @@ namespace PMSTest
                 argList[7] = Satshift_input.Text;
             }
             try {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_update", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_update", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
                 MessageBox.Show("Update Successful");
             }
             catch (System.Data.SqlClient.SqlException E)
@@ -359,7 +383,11 @@ namespace PMSTest
             argList[1] = jobSchedules_ScheduleID_Iinput2.Text;
             try
             {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_add", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_add", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
             }
             catch (System.Data.SqlClient.SqlException E)
             {
@@ -375,7 +403,11 @@ namespace PMSTest
             argList[1] = jobSchedule_scheduleID_Dinput2.Text;
             try
             {
-               this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_delete", argList);
+               if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.jws_delete", argList))
+               {
+                   MessageBox.Show("Invalid Syntax");
+                   return;
+               }
             }
             catch (System.Data.SqlClient.SqlException E)
             {
@@ -400,7 +432,6 @@ namespace PMSTest
 
         private void jobSchedule_ScheduleID_Dlabel2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void jobSchedule_submitbutton_Click(object sender, EventArgs e)
@@ -425,7 +456,11 @@ namespace PMSTest
             argList[1] = guardSchedule_scheduleID_input2.Text;
             try
             {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.guardSchedule_update", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.guardSchedule_update", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
             }
             catch (System.Data.SqlClient.SqlException E)
             {
@@ -469,7 +504,11 @@ namespace PMSTest
             }
             try
             {
-                this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_delete", argList);
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.schedule_delete", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
                 MessageBox.Show("Delete Successful");
             }
             catch (System.Data.SqlClient.SqlException E)
