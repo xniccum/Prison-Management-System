@@ -188,7 +188,7 @@ namespace PMSTest
         }
 
         public void runParamSproc(string name, string[] data){
-            dataGridView1.DataSource = this.dbHandler.runParamSproc(name, data);
+            dataGridView1.DataSource = this.dbHandler.runParamSproc_Datatable(name, data);
 
 
          }

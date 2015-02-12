@@ -226,7 +226,7 @@ namespace PMSTest
         /// <param name="name"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DataTable runParamSproc(string name, string[] data)
+        public DataTable runParamSproc_Datatable(string name, string[] data)
         {
             if (!dbConnectionOpen)
                 return new DataTable();
@@ -274,6 +274,13 @@ namespace PMSTest
             DataTable returnTable =  new DataTable();
             returnTable.Load(reader);
             return returnTable;
+        }
+
+        public Boolean runParamSproc_Boolean(string name, string[] data)
+        {
+            if (runParamSproc_Datatable(name, data).Rows.Count == 0)
+                return true;
+            return true;
         }
 
         private void loadParameters()

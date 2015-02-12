@@ -36,13 +36,13 @@ namespace PMSTest
             string selected = shiftComboBox.SelectedItem.ToString();
             switch (selected) {
                 case "Add Shift":
-                    shift_add();
+                    setup_shift_add();
                     break;
                 case "Update Shift":
                     shift_update();
                     break;
                 case "Delete Shift":
-                    shift_delete();
+                    setup_shift_delete();
                     break;
             }
         }
@@ -50,14 +50,20 @@ namespace PMSTest
         private void shift_add()
         {
             string[] argList = new String[2];
-            shift_IU_label1.Visible = false;
-            shift_IU_textBox1.Visible = false;
             argList[0] = shift_IU_textBox2.Text;
             argList[1] = shift_IU_textBox3.Text;
-            this.parentForm.dbHandler.runParamSproc("dbo.shift_add", argList);
+            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_add", argList))
+            {
+                MessageBox.Show("Did not work");
+            }
+        }
+       private void setup_shift_add()
+        {
+            shift_IU_label1.Visible = false;
+            shift_IU_textBox1.Visible = false;
         }
 
-        private void shift_update()
+        private void setup_shift_update()
         {
             shift_IU_label1.Visible = true;
             shift_IU_textBox1.Visible = true;
@@ -65,6 +71,15 @@ namespace PMSTest
             throw new NotImplementedException();
         }
 
+        public void shift_update(){
+
+            throw new NotImplementedException();
+        }
+
+        public void setup_shift_delete(){
+
+            throw new NotImplementedException();
+        }
         private void shift_delete()
         {
             throw new NotImplementedException();
@@ -92,6 +107,20 @@ namespace PMSTest
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void shift_IU_button1_Click(object sender, EventArgs e)
+        {
+            string selected = shiftComboBox.SelectedItem.ToString();
+            switch (selected)
+            {
+                case "Add Shift":
+                    shift_add();
+                    break;
+                case "Update Shift":
+                    shift_update();
+                    break;
+            }
         }
 
 
