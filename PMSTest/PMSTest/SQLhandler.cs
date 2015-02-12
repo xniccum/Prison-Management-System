@@ -257,7 +257,6 @@ namespace PMSTest
                     }
                     catch
                     {
-                        Console.WriteLine("Coverted Not");
                         return new DataTable();
                     }
                 }
@@ -278,8 +277,50 @@ namespace PMSTest
 
         public Boolean runParamSproc_Boolean(string name, string[] data)
         {
-            if (runParamSproc_Datatable(name, data).Rows.Count == 0)
-                return true;
+            if (!dbConnectionOpen)
+                return false;
+            SqlCommand command = new SqlCommand();
+            command.CommandText = name;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = dbConnection;
+            for (int i = 0; i < this.parameterTypes[name].Length; i++)
+            {
+                command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
+                if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
+                else if (this.parameterTypes[name][i] == SqlDbType.Time)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = TimeSpan.Parse(data[i]);
+
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                }
+            }
+            command.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable returnTable = new DataTable();
+            returnTable.Load(reader);
             return true;
         }
 
@@ -333,11 +374,20 @@ namespace PMSTest
             this.parameterNames.Add("dbo.shift_add", new String[] { "@StartTime", "@EndTime" });
             this.parameterTypes.Add("dbo.shift_add", new SqlDbType[] { SqlDbType.Time, SqlDbType.Time });
 
-            this.parameterNames.Add("dbo.shift_update", new String[] { "@shiftID"});
-            this.parameterTypes.Add("dbo.shift_update", new SqlDbType[] { SqlDbType.SmallInt });
+            this.parameterNames.Add("dbo.shift_update", new String[] { "@shiftID", "@StartTime", "@EndTime" });
+            this.parameterTypes.Add("dbo.shift_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.Time, SqlDbType.Time });
 
-            this.parameterNames.Add("dbo.shift_delete", new String[] { "@shiftID", "@StartTime", "@EndTime" });
-            this.parameterTypes.Add("dbo.shift_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.Time});
+            this.parameterNames.Add("dbo.shift_delete", new String[] { "@shiftID"});
+            this.parameterTypes.Add("dbo.shift_delete", new SqlDbType[] { SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.jws_add", new String[] { "@ScheduleID", "@jobName" });
+            this.parameterTypes.Add("dbo.jws_add", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.jws_delete", new String[] { "@ScheduleID", "@jobName" });
+            this.parameterTypes.Add("dbo.jws_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+
+            
 
         }
     }

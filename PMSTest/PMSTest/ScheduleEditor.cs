@@ -39,7 +39,7 @@ namespace PMSTest
                     setup_shift_add();
                     break;
                 case "Update Shift":
-                    shift_update();
+                    setup_shift_update();
                     break;
                 case "Delete Shift":
                     setup_shift_delete();
@@ -47,16 +47,7 @@ namespace PMSTest
             }
         }
 
-        private void shift_add()
-        {
-            string[] argList = new String[2];
-            argList[0] = shift_IU_textBox2.Text;
-            argList[1] = shift_IU_textBox3.Text;
-            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_add", argList))
-            {
-                MessageBox.Show("Did not work");
-            }
-        }
+
        private void setup_shift_add()
         {
             shift_IU_label1.Visible = false;
@@ -68,21 +59,45 @@ namespace PMSTest
             shift_IU_label1.Visible = true;
             shift_IU_textBox1.Visible = true;
 
-            throw new NotImplementedException();
+        }
+        public void setup_shift_delete()
+        {
+
+            
+        }
+
+        private void shift_add()
+        {
+            string[] argList = new String[2];
+            argList[0] = shift_IU_textBox2.Text;
+            argList[1] = shift_IU_textBox3.Text;
+            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_add", argList))
+            {
+                MessageBox.Show("Syntax Error, Please try again");
+            }
         }
 
         public void shift_update(){
 
-            throw new NotImplementedException();
+            string[] argList = new String[3];
+            argList[0] = shift_IU_textBox1.Text;
+            argList[1] = shift_IU_textBox2.Text;
+            argList[2] = shift_IU_textBox3.Text;
+            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_update", argList))
+            {
+                MessageBox.Show("Syntax Error, Please try again");
+            }
         }
 
-        public void setup_shift_delete(){
 
-            throw new NotImplementedException();
-        }
         private void shift_delete()
         {
-            throw new NotImplementedException();
+            string[] argList = new String[1];
+            argList[0] = shift_Delete_TextBox1.Text;
+            if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.shift_delete", argList))
+            {
+                MessageBox.Show("Syntax Error, Please try again");
+            }
         }
         private void fillComboBoxes()
         {

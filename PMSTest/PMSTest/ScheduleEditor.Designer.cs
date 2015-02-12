@@ -191,7 +191,7 @@
             // shift_IU_button1
             // 
             this.shift_IU_button1.Location = new System.Drawing.Point(171, 138);
-            this.shift_IU_button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_IU_button1.Margin = new System.Windows.Forms.Padding(2);
             this.shift_IU_button1.Name = "shift_IU_button1";
             this.shift_IU_button1.Size = new System.Drawing.Size(67, 19);
             this.shift_IU_button1.TabIndex = 6;
@@ -202,7 +202,7 @@
             // shift_IU_textBox3
             // 
             this.shift_IU_textBox3.Location = new System.Drawing.Point(170, 72);
-            this.shift_IU_textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_IU_textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.shift_IU_textBox3.Name = "shift_IU_textBox3";
             this.shift_IU_textBox3.Size = new System.Drawing.Size(68, 20);
             this.shift_IU_textBox3.TabIndex = 5;
@@ -210,7 +210,7 @@
             // shift_IU_textBox2
             // 
             this.shift_IU_textBox2.Location = new System.Drawing.Point(170, 48);
-            this.shift_IU_textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_IU_textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.shift_IU_textBox2.Name = "shift_IU_textBox2";
             this.shift_IU_textBox2.Size = new System.Drawing.Size(68, 20);
             this.shift_IU_textBox2.TabIndex = 4;
@@ -218,7 +218,7 @@
             // shift_IU_textBox1
             // 
             this.shift_IU_textBox1.Location = new System.Drawing.Point(170, 24);
-            this.shift_IU_textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_IU_textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.shift_IU_textBox1.Name = "shift_IU_textBox1";
             this.shift_IU_textBox1.Size = new System.Drawing.Size(68, 20);
             this.shift_IU_textBox1.TabIndex = 3;
@@ -267,7 +267,7 @@
             // shift_Delete_TextBox1
             // 
             this.shift_Delete_TextBox1.Location = new System.Drawing.Point(20, 115);
-            this.shift_Delete_TextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_Delete_TextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.shift_Delete_TextBox1.Name = "shift_Delete_TextBox1";
             this.shift_Delete_TextBox1.Size = new System.Drawing.Size(68, 20);
             this.shift_Delete_TextBox1.TabIndex = 3;
@@ -275,7 +275,7 @@
             // shift_delete_button1
             // 
             this.shift_delete_button1.Location = new System.Drawing.Point(171, 162);
-            this.shift_delete_button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.shift_delete_button1.Margin = new System.Windows.Forms.Padding(2);
             this.shift_delete_button1.Name = "shift_delete_button1";
             this.shift_delete_button1.Size = new System.Drawing.Size(75, 35);
             this.shift_delete_button1.TabIndex = 2;
@@ -318,7 +318,7 @@
             // Schedules_Dsubmitbutton
             // 
             this.Schedules_Dsubmitbutton.Location = new System.Drawing.Point(118, 75);
-            this.Schedules_Dsubmitbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedules_Dsubmitbutton.Margin = new System.Windows.Forms.Padding(2);
             this.Schedules_Dsubmitbutton.Name = "Schedules_Dsubmitbutton";
             this.Schedules_Dsubmitbutton.Size = new System.Drawing.Size(57, 27);
             this.Schedules_Dsubmitbutton.TabIndex = 19;
@@ -328,7 +328,7 @@
             // Schedules_ScheduleID_Dinput
             // 
             this.Schedules_ScheduleID_Dinput.Location = new System.Drawing.Point(20, 75);
-            this.Schedules_ScheduleID_Dinput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedules_ScheduleID_Dinput.Margin = new System.Windows.Forms.Padding(2);
             this.Schedules_ScheduleID_Dinput.Name = "Schedules_ScheduleID_Dinput";
             this.Schedules_ScheduleID_Dinput.Size = new System.Drawing.Size(68, 20);
             this.Schedules_ScheduleID_Dinput.TabIndex = 2;
@@ -383,7 +383,7 @@
             // Schedule_IUsubmitbutton
             // 
             this.Schedule_IUsubmitbutton.Location = new System.Drawing.Point(225, 153);
-            this.Schedule_IUsubmitbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Schedule_IUsubmitbutton.Margin = new System.Windows.Forms.Padding(2);
             this.Schedule_IUsubmitbutton.Name = "Schedule_IUsubmitbutton";
             this.Schedule_IUsubmitbutton.Size = new System.Drawing.Size(57, 27);
             this.Schedule_IUsubmitbutton.TabIndex = 18;
@@ -495,7 +495,7 @@
             // Satshfit_input
             // 
             this.Satshfit_input.Location = new System.Drawing.Point(139, 153);
-            this.Satshfit_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Satshfit_input.Margin = new System.Windows.Forms.Padding(2);
             this.Satshfit_input.Name = "Satshfit_input";
             this.Satshfit_input.Size = new System.Drawing.Size(68, 20);
             this.Satshfit_input.TabIndex = 7;
@@ -503,7 +503,7 @@
             // Frishift_input
             // 
             this.Frishift_input.Location = new System.Drawing.Point(139, 116);
-            this.Frishift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Frishift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Frishift_input.Name = "Frishift_input";
             this.Frishift_input.Size = new System.Drawing.Size(68, 20);
             this.Frishift_input.TabIndex = 6;
@@ -511,7 +511,7 @@
             // Thursshift_input
             // 
             this.Thursshift_input.Location = new System.Drawing.Point(139, 83);
-            this.Thursshift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Thursshift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Thursshift_input.Name = "Thursshift_input";
             this.Thursshift_input.Size = new System.Drawing.Size(68, 20);
             this.Thursshift_input.TabIndex = 5;
@@ -519,7 +519,7 @@
             // Wedshift_input
             // 
             this.Wedshift_input.Location = new System.Drawing.Point(139, 45);
-            this.Wedshift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Wedshift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Wedshift_input.Name = "Wedshift_input";
             this.Wedshift_input.Size = new System.Drawing.Size(68, 20);
             this.Wedshift_input.TabIndex = 4;
@@ -527,7 +527,7 @@
             // Tuesshift_input
             // 
             this.Tuesshift_input.Location = new System.Drawing.Point(33, 153);
-            this.Tuesshift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Tuesshift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Tuesshift_input.Name = "Tuesshift_input";
             this.Tuesshift_input.Size = new System.Drawing.Size(68, 20);
             this.Tuesshift_input.TabIndex = 3;
@@ -535,7 +535,7 @@
             // Monshift_input
             // 
             this.Monshift_input.Location = new System.Drawing.Point(33, 116);
-            this.Monshift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Monshift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Monshift_input.Name = "Monshift_input";
             this.Monshift_input.Size = new System.Drawing.Size(68, 20);
             this.Monshift_input.TabIndex = 2;
@@ -543,7 +543,7 @@
             // Sunshift_input
             // 
             this.Sunshift_input.Location = new System.Drawing.Point(33, 83);
-            this.Sunshift_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Sunshift_input.Margin = new System.Windows.Forms.Padding(2);
             this.Sunshift_input.Name = "Sunshift_input";
             this.Sunshift_input.Size = new System.Drawing.Size(68, 20);
             this.Sunshift_input.TabIndex = 1;
@@ -551,7 +551,7 @@
             // ScheduleID_input
             // 
             this.ScheduleID_input.Location = new System.Drawing.Point(33, 45);
-            this.ScheduleID_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ScheduleID_input.Margin = new System.Windows.Forms.Padding(2);
             this.ScheduleID_input.Name = "ScheduleID_input";
             this.ScheduleID_input.Size = new System.Drawing.Size(68, 20);
             this.ScheduleID_input.TabIndex = 0;
@@ -577,7 +577,7 @@
             // guardSchedule_Usubmitbutton
             // 
             this.guardSchedule_Usubmitbutton.Location = new System.Drawing.Point(153, 60);
-            this.guardSchedule_Usubmitbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guardSchedule_Usubmitbutton.Margin = new System.Windows.Forms.Padding(2);
             this.guardSchedule_Usubmitbutton.Name = "guardSchedule_Usubmitbutton";
             this.guardSchedule_Usubmitbutton.Size = new System.Drawing.Size(57, 27);
             this.guardSchedule_Usubmitbutton.TabIndex = 27;
@@ -587,7 +587,7 @@
             // guardSchedule_scheduleID_input
             // 
             this.guardSchedule_scheduleID_input.Location = new System.Drawing.Point(42, 64);
-            this.guardSchedule_scheduleID_input.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guardSchedule_scheduleID_input.Margin = new System.Windows.Forms.Padding(2);
             this.guardSchedule_scheduleID_input.Name = "guardSchedule_scheduleID_input";
             this.guardSchedule_scheduleID_input.Size = new System.Drawing.Size(68, 20);
             this.guardSchedule_scheduleID_input.TabIndex = 26;
@@ -627,7 +627,7 @@
             // jobSchedule_Dsubmitbutton
             // 
             this.jobSchedule_Dsubmitbutton.Location = new System.Drawing.Point(123, 77);
-            this.jobSchedule_Dsubmitbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobSchedule_Dsubmitbutton.Margin = new System.Windows.Forms.Padding(2);
             this.jobSchedule_Dsubmitbutton.Name = "jobSchedule_Dsubmitbutton";
             this.jobSchedule_Dsubmitbutton.Size = new System.Drawing.Size(57, 27);
             this.jobSchedule_Dsubmitbutton.TabIndex = 23;
@@ -637,7 +637,7 @@
             // jobSchedule_scheduleID_Dinput
             // 
             this.jobSchedule_scheduleID_Dinput.Location = new System.Drawing.Point(27, 80);
-            this.jobSchedule_scheduleID_Dinput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobSchedule_scheduleID_Dinput.Margin = new System.Windows.Forms.Padding(2);
             this.jobSchedule_scheduleID_Dinput.Name = "jobSchedule_scheduleID_Dinput";
             this.jobSchedule_scheduleID_Dinput.Size = new System.Drawing.Size(68, 20);
             this.jobSchedule_scheduleID_Dinput.TabIndex = 22;
@@ -677,7 +677,7 @@
             // jobSchedule_submitbutton
             // 
             this.jobSchedule_submitbutton.Location = new System.Drawing.Point(123, 60);
-            this.jobSchedule_submitbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobSchedule_submitbutton.Margin = new System.Windows.Forms.Padding(2);
             this.jobSchedule_submitbutton.Name = "jobSchedule_submitbutton";
             this.jobSchedule_submitbutton.Size = new System.Drawing.Size(57, 27);
             this.jobSchedule_submitbutton.TabIndex = 19;
@@ -687,7 +687,7 @@
             // jobSchedules_ScheduleID_Iinput
             // 
             this.jobSchedules_ScheduleID_Iinput.Location = new System.Drawing.Point(27, 64);
-            this.jobSchedules_ScheduleID_Iinput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobSchedules_ScheduleID_Iinput.Margin = new System.Windows.Forms.Padding(2);
             this.jobSchedules_ScheduleID_Iinput.Name = "jobSchedules_ScheduleID_Iinput";
             this.jobSchedules_ScheduleID_Iinput.Size = new System.Drawing.Size(68, 20);
             this.jobSchedules_ScheduleID_Iinput.TabIndex = 10;
