@@ -349,8 +349,8 @@ namespace PMSTest
             this.parameterNames.Add("dbo.addGuard", new String[] { "@username", "@scheduleID" });
             this.parameterTypes.Add("dbo.addGuard", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
 
-            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@desiredCell"});
-            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt});
+            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@crimeDescription", "@desiredCell"});
+            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt });
 
             this.parameterNames.Add("dbo.createJob", new String[] { "@jobName", "@capacity", "@schedule"});
             this.parameterTypes.Add("dbo.createJob", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.SmallInt});

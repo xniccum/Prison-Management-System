@@ -61,6 +61,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PMSDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PrisonerEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrisonerEditor.Designer.cs">
+      <DependentUpon>PrisonerEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScheduleEditor.cs">
@@ -75,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrisonerEditor.resx">
+      <DependentUpon>PrisonerEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -17,12 +17,14 @@ namespace PMSTest
         public SQLhandler dbHandler;
         public Form inputForm;
         public Form ScheduleEditorForm;
+        public Form PrisonerEditorForm;
         public Main_Form()
         {
             InitializeComponent();
             dbHandler = new SQLhandler();
             //fillComboBox();
             scheduleButton.Visible = false;
+            prisonerButton.Visible = false;
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -120,6 +122,7 @@ namespace PMSTest
                 "Get Prisoner"
             });
             scheduleButton.Visible = false;
+            prisonerButton.Visible = false;
         }
         private void setWardenInterface()
         {
@@ -148,11 +151,13 @@ namespace PMSTest
                 
             });
             scheduleButton.Visible = true;
+            prisonerButton.Visible = true;
         }
         private void setLoggedOutInterface()
         {
             comboBox1.Items.Clear();
             scheduleButton.Visible = false;
+            prisonerButton.Visible = false;
         }
 
 
@@ -357,6 +362,17 @@ namespace PMSTest
             }
             this.ScheduleEditorForm = new ScheduleEditor(this);
             this.ScheduleEditorForm.Show();
+        }
+
+        private void prisonerButton_Click(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.PrisonerEditorForm = new PrisonerEditor(this);
+            this.PrisonerEditorForm.Show();
         }
 
         
