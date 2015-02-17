@@ -98,15 +98,7 @@ namespace PMSTest
             command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
             command.Parameters["@AuthUsername"].Value = userUsername;
             command.Parameters["@AuthPassword"].Value = userPassword;
-            //try
-            //{
-
-                dataRead = command.ExecuteReader();
-            //}
-            //catch
-            //{
-            //    return new DataTable();
-            //}
+            dataRead = command.ExecuteReader();
 
             DataTable returnTable = new DataTable();
             returnTable.Load(dataRead);
@@ -207,7 +199,7 @@ namespace PMSTest
         public DataTable getShiftsTable()
         {
 
-            using (SqlCommand sprocCommand = new SqlCommand("dbo.pms_shifts", dbConnection))
+            using (SqlCommand sprocCommand = new SqlCommand("dbo.shift_view", dbConnection))
             {
                 return executeSproc(sprocCommand);
             }
@@ -234,7 +226,7 @@ namespace PMSTest
         /// <param name="name"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public DataTable runParamSproc(string name, string[] data)
+        public DataTable runParamSproc_Datatable(string name, string[] data)
         {
             if (!dbConnectionOpen)
                 return new DataTable();
@@ -247,15 +239,34 @@ namespace PMSTest
                 command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
                 if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
                 {
+                    if (data[i] == null)
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = null;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        }
+                        catch
+                        {
+                            return new DataTable();
+                        }
+                    }
+                }
+                else if (this.parameterTypes[name][i] == SqlDbType.Time)
+                {
                     try
                     {
-                        command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        command.Parameters[this.parameterNames[name][i]].Value = TimeSpan.Parse(data[i]);
+                       
                     }
                     catch
                     {
                         return new DataTable();
                     }
-                    }
+                }
                 else
                 {
                     command.Parameters[this.parameterNames[name][i]].Value = data[i];
@@ -271,6 +282,62 @@ namespace PMSTest
             return returnTable;
         }
 
+        public Boolean runParamSproc_Boolean(string name, string[] data)
+        {
+            if (!dbConnectionOpen)
+                return false;
+            SqlCommand command = new SqlCommand();
+            command.CommandText = name;
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = dbConnection;
+            for (int i = 0; i < this.parameterTypes[name].Length; i++)
+            {
+                command.Parameters.Add(this.parameterNames[name][i], this.parameterTypes[name][i]);
+                if (this.parameterTypes[name][i] == SqlDbType.SmallInt)
+                {
+                    if (data[i] == null)
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = null;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            command.Parameters[this.parameterNames[name][i]].Value = Convert.ToInt32(data[i]);
+                        }
+                        catch
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else if (this.parameterTypes[name][i] == SqlDbType.Time)
+                {
+                    try
+                    {
+                        command.Parameters[this.parameterNames[name][i]].Value = TimeSpan.Parse(data[i]);
+
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    command.Parameters[this.parameterNames[name][i]].Value = data[i];
+                }
+            }
+            command.Parameters.Add("@AuthUsername", SqlDbType.VarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.VarChar);
+            command.Parameters["@AuthUsername"].Value = userUsername;
+            command.Parameters["@AuthPassword"].Value = userPassword;
+            SqlDataReader reader = command.ExecuteReader();
+            DataTable returnTable = new DataTable();
+            returnTable.Load(reader);
+            return true;
+        }
+
         private void loadParameters()
         {
             this.parameterNames = new Dictionary<string, string[]>();
@@ -282,8 +349,8 @@ namespace PMSTest
             this.parameterNames.Add("dbo.addGuard", new String[] { "@username", "@scheduleID" });
             this.parameterTypes.Add("dbo.addGuard", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
 
-            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@desiredCell"});
-            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt});
+            this.parameterNames.Add("dbo.addPrisoner", new String[] { "@pFName", "@pMName" , "@pLName" , "@crime", "@crimeDescription", "@desiredCell"});
+            this.parameterTypes.Add("dbo.addPrisoner", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt });
 
             this.parameterNames.Add("dbo.createJob", new String[] { "@jobName", "@capacity", "@schedule"});
             this.parameterTypes.Add("dbo.createJob", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.SmallInt});
@@ -315,7 +382,38 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
             this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
+            this.parameterNames.Add("dbo.pms_addAltercation", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@Type", "@Description"});
+            this.parameterTypes.Add("dbo.pms_addAltercation", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.VarChar, SqlDbType.VarChar});
 
+            this.parameterNames.Add("dbo.shift_add", new String[] { "@StartTime", "@EndTime" });
+            this.parameterTypes.Add("dbo.shift_add", new SqlDbType[] { SqlDbType.Time, SqlDbType.Time });
+
+            this.parameterNames.Add("dbo.shift_update", new String[] { "@shiftID", "@StartTime", "@EndTime" });
+            this.parameterTypes.Add("dbo.shift_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.Time, SqlDbType.Time });
+
+            this.parameterNames.Add("dbo.shift_delete", new String[] { "@shiftID"});
+            this.parameterTypes.Add("dbo.shift_delete", new SqlDbType[] { SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.jws_add", new String[] { "@ScheduleID", "@jobName" });
+            this.parameterTypes.Add("dbo.jws_add", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.jws_delete", new String[] { "@ScheduleID", "@jobName" });
+            this.parameterTypes.Add("dbo.jws_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+
+
+            
+
+            this.parameterNames.Add("dbo.schedule_insert", new String[] { "@sunshift", "@monshift", "@tuesshift", "@wedshift", "@thursshift", "@frishift", "@satshift" });
+            this.parameterTypes.Add("dbo.schedule_insert", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt});
+
+            this.parameterNames.Add("dbo.schedule_update", new String[] { "@scheduleID", "@sunshift", "@monshift", "@tuesshift", "@wedshift", "@thursshift", "@frishift", "@satshift" });
+            this.parameterTypes.Add("dbo.schedule_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, });
+
+            this.parameterNames.Add("dbo.schedule_delete", new String[] { "@scheduleID" });
+            this.parameterTypes.Add("dbo.schedule_delete", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.guardSchedule_update", new String[] { "@guardID", "@ScheduleID" });
+            this.parameterTypes.Add("dbo.guardSchedule_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
 
         }
     }
