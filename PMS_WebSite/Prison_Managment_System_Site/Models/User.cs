@@ -25,15 +25,15 @@ namespace Prison_Managment_System_Site.Models
         [DisplayName("Last Name")]
         public string lname { get; set; }
         [Required(ErrorMessage="Username is Required")]
-        [StringLength(15)]
+        [StringLength(20)]
         [DisplayName("Username")]
         public string username { get; set; }
-        [StringLength(10)]
+        [Required(ErrorMessage = "Password is Required")]
+        [StringLength(20)]
         [DisplayName("Password")]
         public string password { get; set; }
-        [StringLength(10)]
         [DisplayName("Permissions")]
-        public string permissions { get; set; }
+        public int permissions { get; set; }
 
         public string FullName()
         {

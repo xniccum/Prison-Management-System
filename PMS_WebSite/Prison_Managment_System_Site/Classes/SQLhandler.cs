@@ -132,16 +132,48 @@ namespace Prison_Managment_System
             verificationCommand.Parameters["@Username"].Value = username;
             verificationCommand.Parameters["@Password"].Value = password;
 
-            Object returned = verificationCommand.ExecuteScalar();
-            if (returned.ToString() == "1")
+            try
             {
-                userLoggedIn = true;
-                this.userUsername = username;
-                this.userPassword = password;
-                return true;
+                Object returned = verificationCommand.ExecuteScalar();
+                if (returned.ToString() == "1")
+                {
+                    userLoggedIn = true;
+                    this.userUsername = username;
+                    this.userPassword = password;
+                    return true;
+                }
+            }
+            catch(SqlException){}
+            return false;
+        }
+
+        public DataTable getFilteredPrisoners(string username,string password,bool related,string searchString)
+        {
+            SqlDataReader dataRead;
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "dbo.searchPrisoners";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Connection = dbConnection;
+            command.Parameters.Add("@AuthUsername", SqlDbType.NVarChar);
+            command.Parameters.Add("@AuthPassword", SqlDbType.NVarChar);
+            command.Parameters.Add("@related", SqlDbType.Bit);
+            command.Parameters.Add("@searchstring", SqlDbType.NVarChar);
+            command.Parameters["@AuthUsername"].Value = username;
+            command.Parameters["@AuthPassword"].Value = password;
+            command.Parameters["@related"].Value = related;
+            command.Parameters["@searchstring"].Value = searchString;
+            try
+            {
+                dataRead = command.ExecuteReader();
+            }
+            catch
+            {
+                return new DataTable();
             }
 
-            return false;
+            DataTable returnTable = new DataTable();
+            returnTable.Load(dataRead);
+            return returnTable;
         }
 
         public Boolean verifyRelation(int prisonerID)
@@ -248,7 +280,7 @@ namespace Prison_Managment_System
         {
             using (SqlCommand sprocCommand = new SqlCommand())
             {
-                sprocCommand.CommandText = "dbo.pms_addUser";
+                sprocCommand.CommandText = "dbo.pms_registerUser";
                 sprocCommand.CommandType = CommandType.StoredProcedure;
                 sprocCommand.Connection = dbConnection;
 
@@ -256,15 +288,15 @@ namespace Prison_Managment_System
                 sprocCommand.Parameters.Add("@Fname", SqlDbType.VarChar);
                 sprocCommand.Parameters.Add("@Mname", SqlDbType.VarChar);
                 sprocCommand.Parameters.Add("@Lname", SqlDbType.VarChar);
-                sprocCommand.Parameters.Add("@Username", SqlDbType.VarChar);
-                sprocCommand.Parameters.Add("@Password", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@desusername", SqlDbType.VarChar);
+                sprocCommand.Parameters.Add("@despassword", SqlDbType.VarChar);
 
                 //set user attributes to arguments
                 sprocCommand.Parameters["@Fname"].Value = user.fname;
                 sprocCommand.Parameters["@Mname"].Value = user.mname;
                 sprocCommand.Parameters["@Lname"].Value = user.lname;
-                sprocCommand.Parameters["@Username"].Value = user.username;
-                sprocCommand.Parameters["@Password"].Value = user.password;
+                sprocCommand.Parameters["@desusername"].Value = user.username;
+                sprocCommand.Parameters["@despassword"].Value = user.password;
 
                 Object returned = sprocCommand.ExecuteScalar();
                 if (returned.ToString() == "1")

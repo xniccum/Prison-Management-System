@@ -13,95 +13,109 @@ namespace Prison_Managment_System_Site.Controllers
     {
         private SQLhandler handler;
 
-        private List<Prison_Managment_System_Site.Models.Prisoner> getPrisoners()
+        private void initilizeHandler()
         {
             this.handler = new SQLhandler();
             this.handler.openConnection();
-            List<Prison_Managment_System_Site.Models.Prisoner> prisoners = new List<Prison_Managment_System_Site.Models.Prisoner>();
-            if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
-            {
-
-                foreach (DataRow dr in this.handler.getPrisonersTable().Rows)
-                {
-                    Object[] prisoner_data = this.handler.getPrisoner(int.Parse(dr.ItemArray[0].ToString()));
-                    Prisoner p = new Prisoner();
-                    p.ID = int.Parse(prisoner_data[0].ToString());
-                    p.first_name = prisoner_data[1].ToString();
-                    p.middle_name = prisoner_data[2].ToString();
-                    p.last_name = prisoner_data[3].ToString();
-                    p.crime = prisoner_data[4].ToString();
-                    prisoners.Add(p);
-                }
-            }
-            else
-                RedirectToAction("User");
-            return prisoners;
+            this.handler.verifyUsernamePassword(Session["UserName"].ToString(), Session["Password"].ToString());
         }
 
-        private List<Prison_Managment_System_Site.Models.Prisoner> getRelatedPrisoners()
+        private List<Prisoner> initilize_prisoners()
         {
-            this.handler = new SQLhandler();
-            this.handler.openConnection();
-            List<Prison_Managment_System_Site.Models.Prisoner> prisoners = new List<Prison_Managment_System_Site.Models.Prisoner>();
-            if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
-            {
+            this.initilizeHandler();
+            return new List<Prisoner>();
+        }
 
-                foreach (DataRow dr in this.handler.getRelations().Rows)
-                {
-                    Prisoner p = new Prisoner();
-                    p.ID = int.Parse(dr.ItemArray[0].ToString());
-                    p.first_name = dr.ItemArray[1].ToString();
-                    p.middle_name = dr.ItemArray[2].ToString();
-                    p.last_name = dr.ItemArray[3].ToString();
-                    p.crime = dr.ItemArray[4].ToString();
-                    prisoners.Add(p);
-                }
+        private Prisoner constructPrisoner(Object[] prisoner_data)
+        {
+            Prisoner p = new Prisoner();
+            p.ID = int.Parse(prisoner_data[0].ToString());
+            p.first_name = prisoner_data[1].ToString();
+            p.middle_name = prisoner_data[2].ToString();
+            p.last_name = prisoner_data[3].ToString();
+            p.crime = prisoner_data[4].ToString();
+            return p;
+        }
+
+        private List<Prisoner> getAllPrisoners()
+        {
+            this.initilizeHandler();
+            List<Prisoner> prisoners = new List<Prisoner>();
+            foreach (DataRow dr in this.handler.getPrisonersTable().Rows)
+            {
+                Object[] prisoner_data = this.handler.getPrisoner(int.Parse(dr.ItemArray[0].ToString()));
+                prisoners.Add(constructPrisoner(prisoner_data));
             }
-            else
-                RedirectToAction("User");
             return prisoners;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.Checked = "false";
-            return View(getPrisoners());
+
+            if (Session["UserName"]!=null)
+            {
+                return View(getAllPrisoners());
+            }
+            return RedirectToAction("Login","User");
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Index(FormCollection collection)
         {
-            if (collection.Get("filterRelation") == "on")
+            if (Session["UserName"] != null)
             {
-                ViewBag.Checked = "true";
-                return View(getRelatedPrisoners());
+                List<Prisoner> prisoners = initilize_prisoners();
+                if (collection.Get("filterRelation") == "on" || collection.Get("Search") != "")
+                {
+                    bool check = (collection.Get("filterRelation") == "on");
+                    string searchString = Server.HtmlEncode(collection.Get("Search"));
+
+                    DataTable temp = null;
+                    if (searchString != "")
+                    {
+                        foreach (string s in searchString.Split(new Char[] { ' ' }))
+                        {
+                            if (temp == null)
+                            {
+                                temp = this.handler.getFilteredPrisoners(Session["UserName"].ToString(),Session["Password"].ToString(), check, s);
+                            }
+                            else
+                                temp.Merge(this.handler.getFilteredPrisoners((string)Session["UserName"], (string)Session["Password"], check, s));
+                        }
+                    }
+                    else
+                    {
+                        temp = this.handler.getRelations();
+                    }
+                    foreach (DataRow dr in temp.Rows)
+                    {
+                        prisoners.Add(constructPrisoner(dr.ItemArray));
+                    }
+                    return View(prisoners);
+                }
+                return View(getAllPrisoners());
             }
-            return View(getPrisoners());
+            return RedirectToAction("Login", "User");
         }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-            this.handler = new SQLhandler();
-            this.handler.openConnection();
-            if (this.handler.verifyUsernamePassword((string)Session["UserName"], (string)Session["Password"]))
+            if (Session["UserName"]!=null)
             {
-                if (!this.handler.verifyRelation(id))
+                this.initilizeHandler();
+                if (!this.handler.verifyRelation(id) && this.handler.checkUsernamePermissions(Session["UserName"].ToString())<1)
                 {
                     return View("Error");
                 }
                 Object[] temp = handler.getPrisoner(id);
-                Prisoner p = new Prisoner();
-                p.ID = int.Parse(temp[0].ToString());
-                p.first_name = temp[1].ToString();
-                p.middle_name = temp[2].ToString();
-                p.last_name = temp[3].ToString();
-                p.crime = temp[4].ToString();
+                Prisoner p = constructPrisoner(temp);
                 p.crime_description = temp[5].ToString();
                 return View(p);
             }
-            return View();
+            return RedirectToAction("Login", "User");
         }
     }
 }
