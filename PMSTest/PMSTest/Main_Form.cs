@@ -27,7 +27,6 @@ namespace PMSTest
             InitializeComponent();
             hideWardenButtons();
             dbHandler = new SQLhandler();
-            //fillComboBox();
 
             if (dbHandler.isConnected())
             {
