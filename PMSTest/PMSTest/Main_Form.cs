@@ -269,6 +269,8 @@ namespace PMSTest
                 return;
             }
 
+
+            //This try - catch section brings up error messages if there is incorrect syntax. 
             try
             {
                 switch (selection)

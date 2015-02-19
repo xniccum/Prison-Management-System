@@ -10,36 +10,13 @@ using System.Windows.Forms;
 
 namespace PMSTest
 {
-    public partial class CellEditor : Form
+    public partial class GuardEditor : Form
     {
         Main_Form parentForm;
-        Panel currentPanel;
-
-        public CellEditor(Main_Form passedForm)
+        public GuardEditor(Main_Form parent)
         {
             InitializeComponent();
-            this.parentForm = passedForm;
-        }
-
-
-        private void focusPanel(Panel desired)
-        {
-            desired.Visible = true;
-            Point oldLocation = this.currentPanel.Location;
-            this.currentPanel.Location = desired.Location;
-            desired.Location = oldLocation;
-            this.currentPanel = desired;
-        }
-
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            this.parentForm = parent;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,7 +26,7 @@ namespace PMSTest
             argList[1] = textBox2.Text;
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.movePrisonerToCell", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.addGuard", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
@@ -63,19 +40,13 @@ namespace PMSTest
             MessageBox.Show("Success!");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            string[] argList = new String[2];
+            string[] argList = new String[1];
             argList[0] = textBox3.Text;
-            argList[1] = textBox4.Text;
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.addCell", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.guard_delete", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
