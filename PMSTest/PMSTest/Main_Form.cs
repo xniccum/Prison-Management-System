@@ -119,6 +119,7 @@ namespace PMSTest
                 "Show Prisoners Working Jobs",
                 "Show All Schedules",
                 "Show Job Schedules",
+                "Show Cell Histories",
                 "Get Prisoner"
             });
             scheduleButton.Visible = false;
@@ -138,6 +139,7 @@ namespace PMSTest
                 "Show Prisoners Working Jobs",
                 "Show All Schedules",
                 "Show Job Schedules",
+                "Show Cell Histories",
                 "Get Prisoner",
                 "Add Altercation",
                 "Add Cell",
@@ -341,6 +343,11 @@ namespace PMSTest
                     case "Show Job Schedules":
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.jws_view");
                         break;
+                    case "Show Cell Histories":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.pms_cellhistory_view");
+                        break;
+
+
 
                 
                 
