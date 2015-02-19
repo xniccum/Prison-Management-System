@@ -18,7 +18,6 @@ namespace PMSTest
         public Form inputForm;
         public Form ScheduleEditorForm;
         public Form PrisonerEditorForm;
-        public Form UserEditorForm;
         public Main_Form()
         {
             InitializeComponent();
@@ -26,7 +25,6 @@ namespace PMSTest
             //fillComboBox();
             scheduleButton.Visible = false;
             prisonerButton.Visible = false;
-            userButton.Visible = false;
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -74,10 +72,10 @@ namespace PMSTest
                 } else {
                     if(dbHandler.verifyUsernamePassword(textBox1.Text,textBox2.Text))
                     {
-                        if (dbHandler.checkUsernamePermissions(textBox1.Text) == 2)
+                        if (dbHandler.checkUsernamePermissions(textBox1.Text) < 1)
                         {
-                            MessageBox.Show("Warden Login Accepted");
-                            setWardenInterface();
+                            MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
+                            dbHandler.logOut();
                         }
                         else if (dbHandler.checkUsernamePermissions(textBox1.Text) == 1)
                         {
@@ -86,8 +84,11 @@ namespace PMSTest
                         }
                         else
                         {
-                            MessageBox.Show("You do not have permission to use this software. \nPlease contact a warden or a guard.");
-                            dbHandler.logOut();
+                        MessageBox.Show("Warden Login Accepted");
+                        setWardenInterface();
+                      
+                        
+
                         }
                     }
                     else 
@@ -123,7 +124,6 @@ namespace PMSTest
             });
             scheduleButton.Visible = false;
             prisonerButton.Visible = false;
-            userButton.Visible = false;
         }
         private void setWardenInterface()
         {
@@ -154,15 +154,31 @@ namespace PMSTest
             });
             scheduleButton.Visible = true;
             prisonerButton.Visible = true;
-            userButton.Visible = true;
-
         }
         private void setLoggedOutInterface()
         {
             comboBox1.Items.Clear();
             scheduleButton.Visible = false;
             prisonerButton.Visible = false;
-            userButton.Visible = false;
+        }
+
+
+
+        //Depricated. Will be removed. 
+        private void run_sproc(string s)
+        {
+            //DataTable table2 = new DataTable();
+            //SqlDataReader reader;
+            //using ( var command = new SqlCommand(s,cnn)
+            //{ 
+            //    CommandType = System.Data.CommandType.StoredProcedure 
+            //} ) 
+            //{
+            //    reader = command.ExecuteReader(); 
+            //}
+            //table2.Load(reader);
+            //dataGridView1.DataSource = table2;
+            //reader.Close();
         }
 
         //logout button
@@ -189,6 +205,7 @@ namespace PMSTest
         private void button3_Click(object sender, EventArgs e)
         {
             string s = "dbo.pms_getAllPrisoners";
+            run_sproc(s);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -201,6 +218,7 @@ namespace PMSTest
         private void button5_Click(object sender, EventArgs e)
         {
             string s = "dbo.pms_getGuardSchedule";
+            run_sproc(s);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -228,10 +246,11 @@ namespace PMSTest
             executeQuery();
         }
 
-        public void runParamSproc(string name, string[] data)
-        {
+        public void runParamSproc(string name, string[] data){
             dataGridView1.DataSource = this.dbHandler.runParamSproc_Datatable(name, data);
-        }
+
+
+         }
 
         private void executeQuery()
         {
@@ -363,17 +382,6 @@ namespace PMSTest
             }
             this.PrisonerEditorForm = new PrisonerEditor(this);
             this.PrisonerEditorForm.Show();
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            if (!dbHandler.isUserLoggedIn())
-            {
-                MessageBox.Show("Please Log In First");
-                return;
-            }
-            this.UserEditorForm = new UserEditor(this);
-            this.UserEditorForm.Show();
         }
 
         
