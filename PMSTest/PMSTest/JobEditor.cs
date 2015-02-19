@@ -111,11 +111,11 @@ namespace PMSTest
         private void button5_Click(object sender, EventArgs e)
         {
             string[] argList = new String[2];
-            argList[0] = textBox10.Text;
-            argList[1] = textBox9.Text;
+            argList[0] = textBox7.Text;
+            argList[1] = textBox8.Text;
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pwj_delete", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pwj_add", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
