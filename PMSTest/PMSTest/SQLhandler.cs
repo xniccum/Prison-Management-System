@@ -400,9 +400,6 @@ namespace PMSTest
             this.parameterNames.Add("dbo.jws_delete", new String[] { "@ScheduleID", "@jobName" });
             this.parameterTypes.Add("dbo.jws_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
-
-            
-
             this.parameterNames.Add("dbo.schedule_insert", new String[] { "@sunshift", "@monshift", "@tuesshift", "@wedshift", "@thursshift", "@frishift", "@satshift" });
             this.parameterTypes.Add("dbo.schedule_insert", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.SmallInt});
 
@@ -415,14 +412,21 @@ namespace PMSTest
             this.parameterNames.Add("dbo.guardSchedule_update", new String[] { "@guardID", "@ScheduleID" });
             this.parameterTypes.Add("dbo.guardSchedule_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt });
 
-            this.parameterNames.Add("dbo.guard_delete", new String[] { "@guardID"});
-            this.parameterTypes.Add("dbo.guard_delete", new SqlDbType[] { SqlDbType.SmallInt});
+            this.parameterNames.Add("dbo.prisoner_update", new String[] { "@prisonerID", "@fname", "@mname", "@lname", "@crime", "@crimedescription" });
+            this.parameterTypes.Add("dbo.prisoner_update", new SqlDbType[] {SqlDbType.SmallInt, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar});
+
+            this.parameterNames.Add("dbo.guard_delete", new String[] { "@guardID" });
+            this.parameterTypes.Add("dbo.guard_delete", new SqlDbType[] { SqlDbType.SmallInt });
 
             this.parameterNames.Add("dbo.job_update", new String[] { "@jobName", "@newcapacity" });
             this.parameterTypes.Add("dbo.job_update", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt });
 
-            this.parameterNames.Add("dbo.job_delete", new String[] { "@jobName"});
-            this.parameterTypes.Add("dbo.job_delete", new SqlDbType[] { SqlDbType.VarChar});
+            this.parameterNames.Add("dbo.job_delete", new String[] { "@jobName" });
+            this.parameterTypes.Add("dbo.job_delete", new SqlDbType[] { SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_updateUser", new String[] { "@fname", "@mname", "@lname", "@username", "@password", "@userpermission" });
+            this.parameterTypes.Add("dbo.pms_updateUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.SmallInt });
+
 
         }
     }

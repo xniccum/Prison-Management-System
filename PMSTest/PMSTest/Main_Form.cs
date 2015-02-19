@@ -18,13 +18,17 @@ namespace PMSTest
         public Form inputForm;
         public Form ScheduleEditorForm;
         public Form PrisonerEditorForm;
+        public Form CellEditorForm;
+        public Form JobEditorForm;
+        public Form UserEditorForm;
+        public Form GuardEditorForm;
         public Main_Form()
         {
             InitializeComponent();
+            hideWardenButtons();
             dbHandler = new SQLhandler();
             //fillComboBox();
-            scheduleButton.Visible = false;
-            prisonerButton.Visible = false;
+
             if (dbHandler.isConnected())
             {
                 MessageBox.Show("Connected to database");
@@ -34,6 +38,16 @@ namespace PMSTest
                 MessageBox.Show("Unable to connect");
             }
             
+        }
+        private void hideWardenButtons()
+        {
+            scheduleButton.Visible = false;
+            prisonerButton.Visible = false;
+            jobButton.Visible = false;
+            userButton.Visible = false;
+            guardButton.Visible = false;
+            cellButton.Visible = false;
+
         }
 
         //private void fillComboBox()
@@ -124,6 +138,10 @@ namespace PMSTest
             });
             scheduleButton.Visible = false;
             prisonerButton.Visible = false;
+            jobButton.Visible = false;
+            userButton.Visible = false;
+            guardButton.Visible = false;
+            cellButton.Visible = false;
         }
         private void setWardenInterface()
         {
@@ -153,7 +171,11 @@ namespace PMSTest
                 
             });
             scheduleButton.Visible = true;
-            prisonerButton.Visible = true;
+            prisonerButton.Visible = true; 
+            jobButton.Visible = true;
+            userButton.Visible = true;
+            guardButton.Visible = true;
+            cellButton.Visible = true;
         }
         private void setLoggedOutInterface()
         {
@@ -269,8 +291,6 @@ namespace PMSTest
                 return;
             }
 
-
-            //This try - catch section brings up error messages if there is incorrect syntax. 
             try
             {
                 switch (selection)
@@ -349,8 +369,6 @@ namespace PMSTest
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.pms_cellhistory_view");
                         break;
 
-
-
                 
                 
                 }
@@ -382,6 +400,50 @@ namespace PMSTest
             }
             this.PrisonerEditorForm = new PrisonerEditor(this);
             this.PrisonerEditorForm.Show();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.UserEditorForm = new UserEditor(this);
+            this.UserEditorForm.Show();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.CellEditorForm = new CellEditor(this);
+            this.CellEditorForm.Show();
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.GuardEditorForm = new GuardEditor(this);
+            this.GuardEditorForm.Show();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.JobEditorForm = new JobEditor(this);
+            this.JobEditorForm.Show();
         }
 
         
