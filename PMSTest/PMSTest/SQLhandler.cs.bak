@@ -137,13 +137,8 @@
             this.prisoner_delete_TextBox1.Location = new System.Drawing.Point(26, 96);
             this.prisoner_delete_TextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.prisoner_delete_TextBox1.Name = "prisoner_delete_TextBox1";
-<<<<<<< HEAD
-            this.prisoner_delete_TextBox1.Size = new System.Drawing.Size(89, 22);
-            this.prisoner_delete_TextBox1.TabIndex = 3;
-=======
             this.prisoner_delete_TextBox1.Size = new System.Drawing.Size(100, 26);
             this.prisoner_delete_TextBox1.TabIndex = 1;
->>>>>>> origin/Dan-Std
             // 
             // prisoner_dprisoner_panel
             // 
@@ -159,16 +154,9 @@
             // 
             // prisoner_delete_button1
             // 
-<<<<<<< HEAD
-            this.prisoner_delete_button1.Location = new System.Drawing.Point(228, 124);
-            this.prisoner_delete_button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.prisoner_delete_button1.Name = "prisoner_delete_button1";
-            this.prisoner_delete_button1.Size = new System.Drawing.Size(100, 43);
-=======
             this.prisoner_delete_button1.Location = new System.Drawing.Point(282, 167);
             this.prisoner_delete_button1.Name = "prisoner_delete_button1";
             this.prisoner_delete_button1.Size = new System.Drawing.Size(86, 42);
->>>>>>> origin/Dan-Std
             this.prisoner_delete_button1.TabIndex = 2;
             this.prisoner_delete_button1.Text = "Submit";
             this.prisoner_delete_button1.UseVisualStyleBackColor = true;
@@ -231,13 +219,8 @@
             this.prisoner_cell_textbox.Location = new System.Drawing.Point(175, 60);
             this.prisoner_cell_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.prisoner_cell_textbox.Name = "prisoner_cell_textbox";
-<<<<<<< HEAD
-            this.prisoner_cell_textbox.Size = new System.Drawing.Size(89, 22);
-            this.prisoner_cell_textbox.TabIndex = 38;
-=======
             this.prisoner_cell_textbox.Size = new System.Drawing.Size(100, 26);
             this.prisoner_cell_textbox.TabIndex = 6;
->>>>>>> origin/Dan-Std
             // 
             // prisoner_iu_button
             // 
@@ -309,78 +292,48 @@
             this.prisonerID_iu_textbox.Location = new System.Drawing.Point(18, 60);
             this.prisonerID_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.prisonerID_iu_textbox.Name = "prisonerID_iu_textbox";
-<<<<<<< HEAD
-            this.prisonerID_iu_textbox.Size = new System.Drawing.Size(89, 22);
-            this.prisonerID_iu_textbox.TabIndex = 24;
-=======
             this.prisonerID_iu_textbox.Size = new System.Drawing.Size(100, 26);
             this.prisonerID_iu_textbox.TabIndex = 2;
->>>>>>> origin/Dan-Std
             // 
             // crimedescription_iu_textbox
             // 
             this.crimedescription_iu_textbox.Location = new System.Drawing.Point(175, 154);
             this.crimedescription_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.crimedescription_iu_textbox.Name = "crimedescription_iu_textbox";
-<<<<<<< HEAD
-            this.crimedescription_iu_textbox.Size = new System.Drawing.Size(181, 22);
-            this.crimedescription_iu_textbox.TabIndex = 23;
-=======
             this.crimedescription_iu_textbox.Size = new System.Drawing.Size(203, 26);
             this.crimedescription_iu_textbox.TabIndex = 8;
->>>>>>> origin/Dan-Std
             // 
             // crime_iu_textbox
             // 
             this.crime_iu_textbox.Location = new System.Drawing.Point(175, 107);
             this.crime_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.crime_iu_textbox.Name = "crime_iu_textbox";
-<<<<<<< HEAD
-            this.crime_iu_textbox.Size = new System.Drawing.Size(89, 22);
-            this.crime_iu_textbox.TabIndex = 22;
-=======
             this.crime_iu_textbox.Size = new System.Drawing.Size(100, 26);
             this.crime_iu_textbox.TabIndex = 7;
->>>>>>> origin/Dan-Std
             // 
             // lname_iu_textbox
             // 
             this.lname_iu_textbox.Location = new System.Drawing.Point(18, 194);
             this.lname_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lname_iu_textbox.Name = "lname_iu_textbox";
-<<<<<<< HEAD
-            this.lname_iu_textbox.Size = new System.Drawing.Size(89, 22);
-            this.lname_iu_textbox.TabIndex = 21;
-=======
             this.lname_iu_textbox.Size = new System.Drawing.Size(100, 26);
             this.lname_iu_textbox.TabIndex = 5;
->>>>>>> origin/Dan-Std
             // 
             // mname_iu_textbox
             // 
             this.mname_iu_textbox.Location = new System.Drawing.Point(18, 154);
             this.mname_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mname_iu_textbox.Name = "mname_iu_textbox";
-<<<<<<< HEAD
-            this.mname_iu_textbox.Size = new System.Drawing.Size(89, 22);
-            this.mname_iu_textbox.TabIndex = 20;
-=======
             this.mname_iu_textbox.Size = new System.Drawing.Size(100, 26);
             this.mname_iu_textbox.TabIndex = 4;
->>>>>>> origin/Dan-Std
             // 
             // fname_iu_textbox
             // 
             this.fname_iu_textbox.Location = new System.Drawing.Point(18, 107);
             this.fname_iu_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.fname_iu_textbox.Name = "fname_iu_textbox";
-<<<<<<< HEAD
-            this.fname_iu_textbox.Size = new System.Drawing.Size(89, 22);
-            this.fname_iu_textbox.TabIndex = 19;
-=======
             this.fname_iu_textbox.Size = new System.Drawing.Size(100, 26);
             this.fname_iu_textbox.TabIndex = 3;
->>>>>>> origin/Dan-Std
             // 
             // prisoner_iu_label
             // 
@@ -399,13 +352,8 @@
             this.prisonerComboBox.Location = new System.Drawing.Point(36, 41);
             this.prisonerComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.prisonerComboBox.Name = "prisonerComboBox";
-<<<<<<< HEAD
-            this.prisonerComboBox.Size = new System.Drawing.Size(160, 24);
-            this.prisonerComboBox.TabIndex = 21;
-=======
             this.prisonerComboBox.Size = new System.Drawing.Size(180, 28);
             this.prisonerComboBox.TabIndex = 1;
->>>>>>> origin/Dan-Std
             this.prisonerComboBox.SelectedIndexChanged += new System.EventHandler(this.prisonerComboBox_SelectedIndexChanged);
             // 
             // PrisonerEdit_label
