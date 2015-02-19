@@ -94,6 +94,12 @@
       <DependentUpon>ScheduleEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="SQLhandler.cs" />
+    <Compile Include="UserEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserEditor.Designer.cs">
+      <DependentUpon>UserEditor.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Add_Data_Form.resx">
       <DependentUpon>Add_Data_Form.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="ScheduleEditor.resx">
       <DependentUpon>ScheduleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserEditor.resx">
+      <DependentUpon>UserEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="PMSDataSet.xsc">
       <DependentUpon>PMSDataSet.xsd</DependentUpon>
