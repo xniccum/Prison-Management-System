@@ -134,7 +134,7 @@
             this.prisoner_delete_TextBox1.Location = new System.Drawing.Point(29, 120);
             this.prisoner_delete_TextBox1.Name = "prisoner_delete_TextBox1";
             this.prisoner_delete_TextBox1.Size = new System.Drawing.Size(100, 26);
-            this.prisoner_delete_TextBox1.TabIndex = 3;
+            this.prisoner_delete_TextBox1.TabIndex = 1;
             // 
             // prisoner_dprisoner_panel
             // 
@@ -150,12 +150,13 @@
             // 
             // prisoner_delete_button1
             // 
-            this.prisoner_delete_button1.Location = new System.Drawing.Point(256, 155);
+            this.prisoner_delete_button1.Location = new System.Drawing.Point(282, 167);
             this.prisoner_delete_button1.Name = "prisoner_delete_button1";
-            this.prisoner_delete_button1.Size = new System.Drawing.Size(112, 54);
+            this.prisoner_delete_button1.Size = new System.Drawing.Size(86, 42);
             this.prisoner_delete_button1.TabIndex = 2;
             this.prisoner_delete_button1.Text = "Submit";
             this.prisoner_delete_button1.UseVisualStyleBackColor = true;
+            this.prisoner_delete_button1.Click += new System.EventHandler(this.prisoner_delete_button1_Click);
             // 
             // prisoner_delete_label2
             // 
@@ -214,7 +215,7 @@
             this.prisoner_cell_textbox.Location = new System.Drawing.Point(197, 75);
             this.prisoner_cell_textbox.Name = "prisoner_cell_textbox";
             this.prisoner_cell_textbox.Size = new System.Drawing.Size(100, 26);
-            this.prisoner_cell_textbox.TabIndex = 38;
+            this.prisoner_cell_textbox.TabIndex = 6;
             // 
             // prisoner_iu_button
             // 
@@ -285,42 +286,42 @@
             this.prisonerID_iu_textbox.Location = new System.Drawing.Point(20, 75);
             this.prisonerID_iu_textbox.Name = "prisonerID_iu_textbox";
             this.prisonerID_iu_textbox.Size = new System.Drawing.Size(100, 26);
-            this.prisonerID_iu_textbox.TabIndex = 24;
+            this.prisonerID_iu_textbox.TabIndex = 2;
             // 
             // crimedescription_iu_textbox
             // 
             this.crimedescription_iu_textbox.Location = new System.Drawing.Point(197, 193);
             this.crimedescription_iu_textbox.Name = "crimedescription_iu_textbox";
             this.crimedescription_iu_textbox.Size = new System.Drawing.Size(203, 26);
-            this.crimedescription_iu_textbox.TabIndex = 23;
+            this.crimedescription_iu_textbox.TabIndex = 8;
             // 
             // crime_iu_textbox
             // 
             this.crime_iu_textbox.Location = new System.Drawing.Point(197, 134);
             this.crime_iu_textbox.Name = "crime_iu_textbox";
             this.crime_iu_textbox.Size = new System.Drawing.Size(100, 26);
-            this.crime_iu_textbox.TabIndex = 22;
+            this.crime_iu_textbox.TabIndex = 7;
             // 
             // lname_iu_textbox
             // 
             this.lname_iu_textbox.Location = new System.Drawing.Point(20, 242);
             this.lname_iu_textbox.Name = "lname_iu_textbox";
             this.lname_iu_textbox.Size = new System.Drawing.Size(100, 26);
-            this.lname_iu_textbox.TabIndex = 21;
+            this.lname_iu_textbox.TabIndex = 5;
             // 
             // mname_iu_textbox
             // 
             this.mname_iu_textbox.Location = new System.Drawing.Point(20, 193);
             this.mname_iu_textbox.Name = "mname_iu_textbox";
             this.mname_iu_textbox.Size = new System.Drawing.Size(100, 26);
-            this.mname_iu_textbox.TabIndex = 20;
+            this.mname_iu_textbox.TabIndex = 4;
             // 
             // fname_iu_textbox
             // 
             this.fname_iu_textbox.Location = new System.Drawing.Point(20, 134);
             this.fname_iu_textbox.Name = "fname_iu_textbox";
             this.fname_iu_textbox.Size = new System.Drawing.Size(100, 26);
-            this.fname_iu_textbox.TabIndex = 19;
+            this.fname_iu_textbox.TabIndex = 3;
             // 
             // prisoner_iu_label
             // 
@@ -340,7 +341,7 @@
             this.prisonerComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.prisonerComboBox.Name = "prisonerComboBox";
             this.prisonerComboBox.Size = new System.Drawing.Size(180, 28);
-            this.prisonerComboBox.TabIndex = 21;
+            this.prisonerComboBox.TabIndex = 1;
             this.prisonerComboBox.SelectedIndexChanged += new System.EventHandler(this.prisonerComboBox_SelectedIndexChanged);
             // 
             // PrisonerEdit_label
