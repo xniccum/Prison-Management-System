@@ -73,7 +73,7 @@ namespace Prison_Managment_System_Site.Controllers
                 user.mname = Server.HtmlEncode(user.mname);
                 user.lname = Server.HtmlEncode(user.lname);
                 user.username = Server.HtmlEncode(user.username);
-                user.username = Server.HtmlEncode(user.password);
+                user.password = Server.HtmlEncode(user.password);
                 this.handler = new SQLhandler();
                 this.handler.openConnection();
                 handler.addUser(user);
