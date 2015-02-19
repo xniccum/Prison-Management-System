@@ -34,6 +34,9 @@
             this.user_delete_label2 = new System.Windows.Forms.Label();
             this.user_delete_label = new System.Windows.Forms.Label();
             this.user_IUpanel = new System.Windows.Forms.Panel();
+            this.permission_textbox = new System.Windows.Forms.TextBox();
+            this.permissionLabel = new System.Windows.Forms.Label();
+            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
             this.username_label = new System.Windows.Forms.Label();
             this.username_textbox = new System.Windows.Forms.TextBox();
             this.user_iu_button = new System.Windows.Forms.Button();
@@ -47,9 +50,6 @@
             this.user_iu_label = new System.Windows.Forms.Label();
             this.userComboBox = new System.Windows.Forms.ComboBox();
             this.UserEdit_label = new System.Windows.Forms.Label();
-            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
-            this.permissionLabel = new System.Windows.Forms.Label();
-            this.permission_textbox = new System.Windows.Forms.TextBox();
             this.user_duser_panel.SuspendLayout();
             this.user_IUpanel.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,7 @@
             this.prisoner_delete_button1.TabIndex = 2;
             this.prisoner_delete_button1.Text = "Submit";
             this.prisoner_delete_button1.UseVisualStyleBackColor = true;
+            this.prisoner_delete_button1.Click += new System.EventHandler(this.prisoner_delete_button1_Click);
             // 
             // user_delete_label2
             // 
@@ -124,6 +125,30 @@
             this.user_IUpanel.Name = "user_IUpanel";
             this.user_IUpanel.Size = new System.Drawing.Size(361, 233);
             this.user_IUpanel.TabIndex = 26;
+            // 
+            // permission_textbox
+            // 
+            this.permission_textbox.Location = new System.Drawing.Point(175, 157);
+            this.permission_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.permission_textbox.Name = "permission_textbox";
+            this.permission_textbox.Size = new System.Drawing.Size(89, 22);
+            this.permission_textbox.TabIndex = 42;
+            // 
+            // permissionLabel
+            // 
+            this.permissionLabel.AutoSize = true;
+            this.permissionLabel.Location = new System.Drawing.Point(172, 137);
+            this.permissionLabel.Name = "permissionLabel";
+            this.permissionLabel.Size = new System.Drawing.Size(77, 17);
+            this.permissionLabel.TabIndex = 41;
+            this.permissionLabel.Text = "Permission";
+            // 
+            // password_textbox
+            // 
+            this.password_textbox.Location = new System.Drawing.Point(175, 114);
+            this.password_textbox.Name = "password_textbox";
+            this.password_textbox.Size = new System.Drawing.Size(89, 22);
+            this.password_textbox.TabIndex = 30;
             // 
             // username_label
             // 
@@ -243,30 +268,6 @@
             this.UserEdit_label.Size = new System.Drawing.Size(38, 17);
             this.UserEdit_label.TabIndex = 27;
             this.UserEdit_label.Text = "User";
-            // 
-            // password_textbox
-            // 
-            this.password_textbox.Location = new System.Drawing.Point(175, 114);
-            this.password_textbox.Name = "password_textbox";
-            this.password_textbox.Size = new System.Drawing.Size(89, 22);
-            this.password_textbox.TabIndex = 30;
-            // 
-            // permissionLabel
-            // 
-            this.permissionLabel.AutoSize = true;
-            this.permissionLabel.Location = new System.Drawing.Point(172, 137);
-            this.permissionLabel.Name = "permissionLabel";
-            this.permissionLabel.Size = new System.Drawing.Size(77, 17);
-            this.permissionLabel.TabIndex = 41;
-            this.permissionLabel.Text = "Permission";
-            // 
-            // permission_textbox
-            // 
-            this.permission_textbox.Location = new System.Drawing.Point(175, 157);
-            this.permission_textbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.permission_textbox.Name = "permission_textbox";
-            this.permission_textbox.Size = new System.Drawing.Size(89, 22);
-            this.permission_textbox.TabIndex = 42;
             // 
             // UserEditor
             // 

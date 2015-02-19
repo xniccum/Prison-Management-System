@@ -212,6 +212,28 @@ namespace PMSTest
 
         private void user_delete()
         {
+            string[] argList = new String[1];
+            if (string.IsNullOrEmpty(prisoner_delete_TextBox1.Text))
+            {
+                return;
+            }
+            else
+            {
+                argList[0] = prisoner_delete_TextBox1.Text;
+            }
+            try
+            {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_deleteUser", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+                MessageBox.Show("Delete Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
         }
 
         private void user_iu_button_Click(object sender, EventArgs e)
@@ -226,6 +248,11 @@ namespace PMSTest
                     user_update();
                     break;
             }
+        }
+
+        private void prisoner_delete_button1_Click(object sender, EventArgs e)
+        {
+            user_delete();
         }
     }
 }
