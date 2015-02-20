@@ -446,7 +446,6 @@ namespace PMSTest
             this.parameterTypes.Add("dbo.pms_deleteRelation", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
 
 
-
         }
     }
 
