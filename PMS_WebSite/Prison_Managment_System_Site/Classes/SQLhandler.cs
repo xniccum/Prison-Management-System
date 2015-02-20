@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using Prison_Managment_System_Site.Models;
+using System.Configuration;
 
 namespace Prison_Managment_System
 {
@@ -18,8 +19,8 @@ namespace Prison_Managment_System
     /// </summary>
     public class SQLhandler
     {
-        private string dummyUsername = "333Winter2014Prisoner";
-        private string dummyPassword = "prisoner";
+        //private string dummyUsername = "333Winter2014Prisoner";
+        //private string dummyPassword = "prisoner";
         string connectionString;
         SqlConnection dbConnection;
         private Boolean dbConnectionOpen = false;
@@ -35,7 +36,6 @@ namespace Prison_Managment_System
         /// </summary>
         public SQLhandler()
         {
-            connectionString= "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
             openConnection();
             loadParameters();
         }
@@ -48,8 +48,9 @@ namespace Prison_Managment_System
         public Boolean openConnection()
         {
             dbConnection = new SqlConnection();
-
-            connectionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + dummyUsername + "; password=" + dummyPassword + ";";
+            connectionString = "Data Source=titan.csse.rose-hulman.edu;Initial Catalog=PMS; User ID=" + 
+                ConfigurationManager.ConnectionStrings["username"] +
+                "; password=" + ConfigurationManager.ConnectionStrings["password"] + ";";
             dbConnection = new SqlConnection(connectionString);
             try
             {
