@@ -13,22 +13,11 @@ namespace PMSTest
     public partial class CellEditor : Form
     {
         Main_Form parentForm;
-        Panel currentPanel;
 
         public CellEditor(Main_Form passedForm)
         {
             InitializeComponent();
             this.parentForm = passedForm;
-        }
-
-
-        private void focusPanel(Panel desired)
-        {
-            desired.Visible = true;
-            Point oldLocation = this.currentPanel.Location;
-            this.currentPanel.Location = desired.Location;
-            desired.Location = oldLocation;
-            this.currentPanel = desired;
         }
 
 
