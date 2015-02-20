@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltercationEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltercationEditor.Designer.cs">
+      <DependentUpon>AltercationEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="CellEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </Compile>
     <EmbeddedResource Include="Add_Data_Form.resx">
       <DependentUpon>Add_Data_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltercationEditor.resx">
+      <DependentUpon>AltercationEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CellEditor.resx">
       <DependentUpon>CellEditor.cs</DependentUpon>
