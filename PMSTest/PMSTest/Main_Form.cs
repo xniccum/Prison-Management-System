@@ -42,6 +42,7 @@ namespace PMSTest
         }
         private void hideWardenButtons()
         {
+            label3.Visible = false;
             scheduleButton.Visible = false;
             prisonerButton.Visible = false;
             jobButton.Visible = false;
@@ -144,6 +145,7 @@ namespace PMSTest
                 "Get Prisoners Related to User",
                 "Get Altercations Related to Prisoner"
             });
+            label3.Visible = true;
             scheduleButton.Visible = true;
             prisonerButton.Visible = true; 
             jobButton.Visible = true;
@@ -154,9 +156,11 @@ namespace PMSTest
         }
         private void setLoggedOutInterface()
         {
+            textBox1.Text = "";
+            textBox2.Text  ="";
             comboBox1.Items.Clear();
             hideWardenButtons();
-            dataGridView1.Rows.Clear();
+            dataGridView1.DataSource = null;
             dataGridView1.Refresh();
         }
 
