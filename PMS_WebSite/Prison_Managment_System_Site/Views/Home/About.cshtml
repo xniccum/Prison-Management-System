@@ -3,8 +3,23 @@
 }
 <h2>@ViewBag.Title</h2>
 
-<p>The Gotham Prision for the Criminaly Insane </p>
-Current Number of Prisoners:
-Current Number of Guards:
+<p>The Gotham Prision for the Criminaly Insane </p><br/>
+<p>LLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam mollis, 
+    nulla eget viverra vehicula, felis leo imperdiet lacus, vel venenatis dui 
+    metus ut velit. Ut vel turpis dolor. Proin vulputate iaculis orci et pharetra. 
+    Donec eget ligula mi. Proin quis faucibus lectus, nec gravida orci. Cum sociis 
+    natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris 
+    efficitur, arcu nec accumsan fermentum, nunc est suscipit augue, ac luctus arcu est 
+    sed odio. Duis placerat nibh massa, at ullamcorper erat iaculis suscipit. Vestibulum 
+    rutrum dui ac sem aliquam, vitae ultrices ante vestibulum. Sed justo magna, posuere 
+    non imperdiet eu, scelerisque vel sem. Proin ullamcorper molestie felis ac fermentum. 
+    Nulla posuere, tellus vitae imperdiet cursus, nulla libero vestibulum ante, ut porta 
+    sapien dolor faucibus sapien. Nulla quis nisi ac tortor facilisis porta id ut est.</p>
+
+@if (HttpContext.Current.Session["prisoners"] != null)
+{
+    <h3>Current Number of Prisoners:@HttpContext.Current.Session["prisoners"]</h3>
+    <h3>Current Number of Guards:@HttpContext.Current.Session["guards"]</h3>
+}
 
 

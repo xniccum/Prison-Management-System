@@ -86,6 +86,11 @@ namespace PMSTest
 
         private void button2_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
             string[] argList = new String[1];
             if (string.IsNullOrEmpty(prisoner_delete_TextBox1.Text))
             {

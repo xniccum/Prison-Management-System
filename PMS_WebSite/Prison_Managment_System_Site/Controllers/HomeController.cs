@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prison_Managment_System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,9 @@ namespace Prison_Managment_System_Site.Controllers
 
         public ActionResult About()
         {
+            SQLhandler handler = new SQLhandler();
+            Session["guards"] = handler.getGuardCount();
+            Session["prisoners"] = handler.getPrisonerCount();
             return View();
         }
     }
