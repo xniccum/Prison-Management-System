@@ -105,7 +105,6 @@ namespace PMSTest
                 "Show Guard Schedule",
                 "Show All Guards",
                 "Show All Shifts",
-                "Show All Users",
                 "Show Prisoners Working Jobs",
                 "Show All Schedules",
                 "Show Job Schedules",
@@ -162,6 +161,38 @@ namespace PMSTest
             hideWardenButtons();
             dataGridView1.DataSource = null;
             dataGridView1.Refresh();
+            if (this.GuardEditorForm != null) 
+            { 
+               this.GuardEditorForm.Close();
+            }
+            if (this.ScheduleEditorForm != null) 
+            { 
+                this.ScheduleEditorForm.Close();
+            }
+            if (this.PrisonerEditorForm != null)
+            {
+                this.PrisonerEditorForm.Close();
+            }
+            if (this.CellEditorForm != null)
+            {
+                this.CellEditorForm.Close();
+            }
+            if (this.JobEditorForm != null)
+            {
+                this.JobEditorForm.Close();
+            }
+            if (this.UserEditorForm != null)
+            {
+                this.UserEditorForm.Close();
+            }
+            if (this.AltercationEditorForm != null)
+            {
+                this.AltercationEditorForm.Close();
+            }
+            if (this.inputForm != null)
+            {
+                this.inputForm.Close();
+            }
         }
 
         //Depricated. Will be removed. 
@@ -297,9 +328,6 @@ namespace PMSTest
                         break;
                     case "Show All Shifts":
                         dataGridView1.DataSource = dbHandler.getShiftsTable();
-                        break;
-                    case "Show All Users":
-                        dataGridView1.DataSource = dbHandler.getAllUsersTable();
                         break;
                     case "Delete Prisoner":
                         inputForm = new Add_Data_Form("dbo.pms_deletePrisoner", this);
