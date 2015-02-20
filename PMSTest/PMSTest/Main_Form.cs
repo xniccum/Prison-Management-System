@@ -326,6 +326,9 @@ namespace PMSTest
                     case "Show All Guards":
                         dataGridView1.DataSource = dbHandler.getGuardsDataTable();
                         break;
+                    case "Show All Users":
+                        dataGridView1.DataSource = dbHandler.getAllUsersTable();
+                        break;
                     case "Show All Shifts":
                         dataGridView1.DataSource = dbHandler.getShiftsTable();
                         break;
