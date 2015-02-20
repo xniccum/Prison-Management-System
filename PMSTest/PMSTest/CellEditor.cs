@@ -49,7 +49,7 @@ namespace PMSTest
             argList[1] = textBox2.Text;
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.movePrisonerToCell", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.addCell", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
@@ -75,7 +75,7 @@ namespace PMSTest
             argList[1] = textBox4.Text;
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.addCell", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.movePrisonerToCell", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
