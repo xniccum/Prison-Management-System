@@ -445,7 +445,14 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_deleteRelation", new String[] { "@username", "@prisonerID" });
             this.parameterTypes.Add("dbo.pms_deleteRelation", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
 
+            this.parameterNames.Add("dbo.relations_viewByUser", new String[] { "@username" });
+            this.parameterTypes.Add("dbo.relations_viewByUser", new SqlDbType[] { SqlDbType.VarChar });
 
+            this.parameterNames.Add("dbo.relations_viewByPrisoner", new String[] { "@prisonerID" });
+            this.parameterTypes.Add("dbo.relations_viewByPrisoner", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_deleteCell", new String[] { "@cellNo" });
+            this.parameterTypes.Add("dbo.pms_deleteCell", new SqlDbType[] { SqlDbType.SmallInt });
         }
     }
 

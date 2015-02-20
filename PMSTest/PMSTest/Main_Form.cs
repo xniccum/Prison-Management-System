@@ -138,7 +138,10 @@ namespace PMSTest
                 "Show Cell Histories",
                 "Show Released Prisoners",
                 "Show All Jobs",
-                "Get Prisoner"
+                "Show All Prisoner Family Member Pairs",
+                "Get Prisoner",
+                "Get Users Related to Prisoner",
+                "Get Prisoners Related to User"
                 
             });
             scheduleButton.Visible = true;
@@ -153,6 +156,8 @@ namespace PMSTest
         {
             comboBox1.Items.Clear();
             hideWardenButtons();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
         }
 
 
@@ -332,6 +337,17 @@ namespace PMSTest
 
                     case "Show All Jobs":
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.job_view");
+                        break;
+                    case "Get Users Related to Prisoner":
+                        inputForm = new Add_Data_Form("dbo.relations_viewByPrisoner", this);
+                        inputForm.Show();
+                        break;
+                    case "Get Prisoners Related to User":
+                        inputForm = new Add_Data_Form("dbo.relations_viewByUser", this);
+                        inputForm.Show();
+                        break;
+                    case "Show All Prisoner Family Member Pairs":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.relations_view");
                         break;
 
                 
