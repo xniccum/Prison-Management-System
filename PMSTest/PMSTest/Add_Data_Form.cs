@@ -16,7 +16,6 @@ namespace PMSTest
         Main_Form main;
         int numberOfArguments;
         public Add_Data_Form(string sprocName, Main_Form main)
-
         {
             this.sprocName = sprocName;
             this.numberOfArguments = main.dbHandler.parameterNames[sprocName].Length;
@@ -24,8 +23,6 @@ namespace PMSTest
             InitializeComponent();
             label1.Text = sprocName;
             fillLabels();
-
-
         }
 
         private void fillLabels()

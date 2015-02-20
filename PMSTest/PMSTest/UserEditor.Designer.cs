@@ -31,7 +31,6 @@
             this.user_IUpanel = new System.Windows.Forms.Panel();
             this.permission_textbox = new System.Windows.Forms.TextBox();
             this.permissionLabel = new System.Windows.Forms.Label();
-            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
             this.username_label = new System.Windows.Forms.Label();
             this.username_textbox = new System.Windows.Forms.TextBox();
             this.user_iu_button = new System.Windows.Forms.Button();
@@ -68,17 +67,24 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.relation_AR_TB = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.prisonerID_AR_TB = new System.Windows.Forms.TextBox();
+            this.label = new System.Windows.Forms.Label();
             this.user_AR_TB = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.prisonerID_AR_TB = new System.Windows.Forms.TextBox();
-            this.label = new System.Windows.Forms.Label();
-            this.relation_AR_TB = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.prisoner_D_TB = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.user_D_TB = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.relation_U_TB = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -88,13 +94,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.prisoner_D_TB = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.user_D_TB = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
+            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
             this.user_IUpanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -103,18 +103,18 @@
             this.tabPage3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.tabPage6.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // user_IUpanel
             // 
+            this.user_IUpanel.Controls.Add(this.password_textbox);
             this.user_IUpanel.Controls.Add(this.permission_textbox);
             this.user_IUpanel.Controls.Add(this.permissionLabel);
-            this.user_IUpanel.Controls.Add(this.password_textbox);
             this.user_IUpanel.Controls.Add(this.username_label);
             this.user_IUpanel.Controls.Add(this.username_textbox);
             this.user_IUpanel.Controls.Add(this.user_iu_button);
@@ -148,13 +148,6 @@
             this.permissionLabel.Size = new System.Drawing.Size(77, 17);
             this.permissionLabel.TabIndex = 41;
             this.permissionLabel.Text = "Permission";
-            // 
-            // password_textbox
-            // 
-            this.password_textbox.Location = new System.Drawing.Point(175, 114);
-            this.password_textbox.Name = "password_textbox";
-            this.password_textbox.Size = new System.Drawing.Size(89, 22);
-            this.password_textbox.TabIndex = 30;
             // 
             // username_label
             // 
@@ -504,26 +497,6 @@
             this.tabPage4.Text = "Add Relation";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.panel5);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1008, 505);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Delete Relation";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tabPage6
-            // 
-            this.tabPage6.Controls.Add(this.panel4);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1008, 505);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Update Relation";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.relation_AR_TB);
@@ -539,6 +512,40 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(278, 186);
             this.panel3.TabIndex = 31;
+            // 
+            // relation_AR_TB
+            // 
+            this.relation_AR_TB.Location = new System.Drawing.Point(18, 145);
+            this.relation_AR_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.relation_AR_TB.Name = "relation_AR_TB";
+            this.relation_AR_TB.Size = new System.Drawing.Size(89, 22);
+            this.relation_AR_TB.TabIndex = 7;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(15, 126);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 17);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Relation";
+            // 
+            // prisonerID_AR_TB
+            // 
+            this.prisonerID_AR_TB.Location = new System.Drawing.Point(18, 100);
+            this.prisonerID_AR_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.prisonerID_AR_TB.Name = "prisonerID_AR_TB";
+            this.prisonerID_AR_TB.Size = new System.Drawing.Size(89, 22);
+            this.prisonerID_AR_TB.TabIndex = 5;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(15, 81);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(74, 17);
+            this.label.TabIndex = 4;
+            this.label.Text = "PrisonerID";
             // 
             // user_AR_TB
             // 
@@ -578,39 +585,94 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Add Relation";
             // 
-            // prisonerID_AR_TB
+            // tabPage5
             // 
-            this.prisonerID_AR_TB.Location = new System.Drawing.Point(18, 100);
-            this.prisonerID_AR_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.prisonerID_AR_TB.Name = "prisonerID_AR_TB";
-            this.prisonerID_AR_TB.Size = new System.Drawing.Size(89, 22);
-            this.prisonerID_AR_TB.TabIndex = 5;
+            this.tabPage5.Controls.Add(this.panel5);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1008, 505);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Delete Relation";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label
+            // panel5
             // 
-            this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(15, 81);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(74, 17);
-            this.label.TabIndex = 4;
-            this.label.Text = "PrisonerID";
+            this.panel5.Controls.Add(this.prisoner_D_TB);
+            this.panel5.Controls.Add(this.label18);
+            this.panel5.Controls.Add(this.user_D_TB);
+            this.panel5.Controls.Add(this.button5);
+            this.panel5.Controls.Add(this.label19);
+            this.panel5.Controls.Add(this.label20);
+            this.panel5.Location = new System.Drawing.Point(9, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(236, 136);
+            this.panel5.TabIndex = 33;
             // 
-            // relation_AR_TB
+            // prisoner_D_TB
             // 
-            this.relation_AR_TB.Location = new System.Drawing.Point(18, 145);
-            this.relation_AR_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.relation_AR_TB.Name = "relation_AR_TB";
-            this.relation_AR_TB.Size = new System.Drawing.Size(89, 22);
-            this.relation_AR_TB.TabIndex = 7;
+            this.prisoner_D_TB.Location = new System.Drawing.Point(18, 100);
+            this.prisoner_D_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.prisoner_D_TB.Name = "prisoner_D_TB";
+            this.prisoner_D_TB.Size = new System.Drawing.Size(89, 22);
+            this.prisoner_D_TB.TabIndex = 5;
             // 
-            // label13
+            // label18
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(15, 126);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 17);
-            this.label13.TabIndex = 6;
-            this.label13.Text = "Relation";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(15, 81);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(74, 17);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "PrisonerID";
+            // 
+            // user_D_TB
+            // 
+            this.user_D_TB.Location = new System.Drawing.Point(18, 54);
+            this.user_D_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.user_D_TB.Name = "user_D_TB";
+            this.user_D_TB.Size = new System.Drawing.Size(89, 22);
+            this.user_D_TB.TabIndex = 3;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(123, 79);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(100, 43);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "Submit";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(15, 35);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 17);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "User";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(13, 10);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(143, 25);
+            this.label20.TabIndex = 0;
+            this.label20.Text = "Delete Relation";
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.panel4);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(1008, 505);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Update Relation";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // panel4
             // 
@@ -700,74 +762,12 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Update Relation";
             // 
-            // panel5
+            // password_textbox
             // 
-            this.panel5.Controls.Add(this.prisoner_D_TB);
-            this.panel5.Controls.Add(this.label18);
-            this.panel5.Controls.Add(this.user_D_TB);
-            this.panel5.Controls.Add(this.button5);
-            this.panel5.Controls.Add(this.label19);
-            this.panel5.Controls.Add(this.label20);
-            this.panel5.Location = new System.Drawing.Point(9, 4);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(236, 136);
-            this.panel5.TabIndex = 33;
-            // 
-            // prisoner_D_TB
-            // 
-            this.prisoner_D_TB.Location = new System.Drawing.Point(18, 100);
-            this.prisoner_D_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.prisoner_D_TB.Name = "prisoner_D_TB";
-            this.prisoner_D_TB.Size = new System.Drawing.Size(89, 22);
-            this.prisoner_D_TB.TabIndex = 5;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(15, 81);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(74, 17);
-            this.label18.TabIndex = 4;
-            this.label18.Text = "PrisonerID";
-            // 
-            // user_D_TB
-            // 
-            this.user_D_TB.Location = new System.Drawing.Point(18, 54);
-            this.user_D_TB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.user_D_TB.Name = "user_D_TB";
-            this.user_D_TB.Size = new System.Drawing.Size(89, 22);
-            this.user_D_TB.TabIndex = 3;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(123, 79);
-            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(100, 43);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Submit";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(15, 35);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(38, 17);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "User";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(13, 10);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(143, 25);
-            this.label20.TabIndex = 0;
-            this.label20.Text = "Delete Relation";
+            this.password_textbox.Location = new System.Drawing.Point(175, 112);
+            this.password_textbox.Name = "password_textbox";
+            this.password_textbox.Size = new System.Drawing.Size(89, 22);
+            this.password_textbox.TabIndex = 43;
             // 
             // UserEditor
             // 
@@ -788,14 +788,14 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -814,7 +814,6 @@
         private System.Windows.Forms.TextBox mname_iu_textbox;
         private System.Windows.Forms.TextBox fname_iu_textbox;
         private System.Windows.Forms.Label user_iu_label;
-        private System.Windows.Forms.MaskedTextBox password_textbox;
         private System.Windows.Forms.Label permissionLabel;
         private System.Windows.Forms.TextBox permission_textbox;
         private System.Windows.Forms.TabControl tabControl1;
@@ -869,6 +868,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.MaskedTextBox password_textbox;
 
 
     }
