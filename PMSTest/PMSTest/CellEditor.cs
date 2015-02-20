@@ -77,5 +77,25 @@ namespace PMSTest
             }
             MessageBox.Show("Success!");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string[] argList = new String[1];
+            argList[0] = textBox5.Text;
+            try
+            {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_deleteCell", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return;
+            }
+            MessageBox.Show("Success!");
+        }
     }
 }
