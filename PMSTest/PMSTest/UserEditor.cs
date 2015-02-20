@@ -27,6 +27,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(fname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -35,6 +36,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(mname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -43,6 +45,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(lname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -51,6 +54,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(username_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -59,6 +63,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(password_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
