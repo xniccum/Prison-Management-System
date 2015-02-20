@@ -382,11 +382,11 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pms_registerUser", new String[] { "@fname", "@mname", "@lname", "@desusername", "@despassword" });
             this.parameterTypes.Add("dbo.pms_registerUser", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar, SqlDbType.VarChar });
 
-            this.parameterNames.Add("dbo.pms_addAltercation", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@Type", "@Description"});
-            this.parameterTypes.Add("dbo.pms_addAltercation", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.VarChar, SqlDbType.VarChar});
+            this.parameterNames.Add("dbo.pms_addAltercation", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@date", "@Description"});
+            this.parameterTypes.Add("dbo.pms_addAltercation", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.Date, SqlDbType.VarChar});
 
-            this.parameterNames.Add("dbo.altercation_update", new String[] { "@Prisoner1ID", "@Prisoner2ID", "@@date", "@Description" });
-            this.parameterTypes.Add("dbo.altercation_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.SmallInt, SqlDbType.Date, SqlDbType.VarChar });
+            this.parameterNames.Add("dbo.altercation_update", new String[] { "@altNO", "@newdescription" });
+            this.parameterTypes.Add("dbo.altercation_update", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
             this.parameterNames.Add("dbo.shift_add", new String[] { "@StartTime", "@EndTime" });
             this.parameterTypes.Add("dbo.shift_add", new SqlDbType[] { SqlDbType.Time, SqlDbType.Time });

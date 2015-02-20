@@ -22,6 +22,8 @@ namespace PMSTest
         public Form JobEditorForm;
         public Form UserEditorForm;
         public Form GuardEditorForm;
+        public Form AltercationEditorForm;
+        
         public Main_Form()
         {
             InitializeComponent();
@@ -46,35 +48,9 @@ namespace PMSTest
             userButton.Visible = false;
             guardButton.Visible = false;
             cellButton.Visible = false;
+            altercationButton.Visible = false;
 
         }
-
-        //private void fillComboBox()
-        //{
-        //    comboBox1.Items.AddRange(new Object[] {
-        //        "Show Altercations",
-        //        "Show All Cells",
-        //        "Show All Prisoners",
-        //        "Show Guard Schedule",
-        //        "Show All Guards",
-        //        "Show All Shifts",
-        //        "Show All Users",
-        //        "Show Prisoners Working Jobs",
-        //        "Show All Schedules",
-        //        "Show Job Schedules",
-        //        "Get Prisoner",
-        //        "Add Altercation",
-        //        "Add Cell",
-        //        "Add Guard",
-        //        "Add Prisoner",
-        //        "Register User",
-        //        "Create Job",
-        //        "Delete Prisoner",
-        //        "Delete User",
-        //        "Move Prisoner"
-                
-        //    });
-        //}
 
         //login button
         private void button1_Click(object sender, EventArgs e)
@@ -141,6 +117,7 @@ namespace PMSTest
             userButton.Visible = false;
             guardButton.Visible = false;
             cellButton.Visible = false;
+            altercationButton.Visible = false;
         }
         private void setWardenInterface()
         {
@@ -175,6 +152,7 @@ namespace PMSTest
             userButton.Visible = true;
             guardButton.Visible = true;
             cellButton.Visible = true;
+            altercationButton.Visible = true;
         }
         private void setLoggedOutInterface()
         {
@@ -210,17 +188,6 @@ namespace PMSTest
                 MessageBox.Show("Logged Out");
                 setLoggedOutInterface();
             }
-            //try
-            //{
-            //    cnn.Close();
-            //    connetionString = null;
-            //    cnn = null;
-            //    dataGridView1.DataSource = null;
-            //    dataGridView1.Rows.Clear();
-            //    dataGridView1.Refresh();    
-                
-            //}
-            //catch (Exception ex) { }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -269,8 +236,6 @@ namespace PMSTest
 
         public void runParamSproc(string name, string[] data){
             dataGridView1.DataSource = this.dbHandler.runParamSproc_Datatable(name, data);
-
-
          }
 
         private void executeQuery()
@@ -443,6 +408,17 @@ namespace PMSTest
             }
             this.JobEditorForm = new JobEditor(this);
             this.JobEditorForm.Show();
+        }
+
+        private void button3_Click_2(object sender, EventArgs e)
+        {
+            if (!dbHandler.isUserLoggedIn())
+            {
+                MessageBox.Show("Please Log In First");
+                return;
+            }
+            this.AltercationEditorForm = new AltercationEditor(this);
+            this.AltercationEditorForm.Show();
         }
 
         

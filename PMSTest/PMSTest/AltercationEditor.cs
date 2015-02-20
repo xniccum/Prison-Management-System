@@ -44,6 +44,27 @@ namespace PMSTest
             argList[3] = description_TB.Text;
             try
             {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_addAltercation", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+                return;
+            }
+            MessageBox.Show("Success!");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string[] argList = new String[2];
+            argList[0] = altercation_num_TB.Text;
+            argList[1] = descriptionU_TB.Text;
+            try
+            {
                 if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.altercation_update", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
