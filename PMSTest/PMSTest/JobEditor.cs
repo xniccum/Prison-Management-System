@@ -23,8 +23,8 @@ namespace PMSTest
         {
             string[] argList = new String[3];
             argList[0] = textBox1.Text;
-            argList[1] = textBox2.Text;
-            argList[2] = textBox3.Text;
+            argList[1] = textBox3.Text;
+            argList[2] = textBox2.Text;
             try
             {
                 if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.createJob", argList))
