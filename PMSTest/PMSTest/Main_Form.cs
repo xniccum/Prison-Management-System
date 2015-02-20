@@ -157,16 +157,7 @@ namespace PMSTest
                 "Show All Schedules",
                 "Show Job Schedules",
                 "Show Cell Histories",
-                "Get Prisoner",
-                "Add Altercation",
-                "Add Cell",
-                "Add Guard",
-                "Add Prisoner",
-                "Register User",
-                "Create Job",
-                "Delete Prisoner",
-                "Delete User",
-                "Move Prisoner"
+                "Get Prisoner"
                 
             });
             scheduleButton.Visible = true;
@@ -179,8 +170,7 @@ namespace PMSTest
         private void setLoggedOutInterface()
         {
             comboBox1.Items.Clear();
-            scheduleButton.Visible = false;
-            prisonerButton.Visible = false;
+            hideWardenButtons();
         }
 
 
