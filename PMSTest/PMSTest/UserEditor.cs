@@ -13,80 +13,15 @@ namespace PMSTest
     public partial class UserEditor : Form
     {
         Main_Form parentForm;
-        Panel currentPanel;
 
         public UserEditor(Main_Form passedForm)
         {
             this.parentForm = passedForm;
             InitializeComponent();
-            fillComboBoxes();
-            setAllPanesInvisible();
-            currentPanel = user_IUpanel;
             this.Size = new Size(800, 500);
         }
-        private void fillComboBoxes()
-        {
-            userComboBox.Items.AddRange(new Object[] {
-                "Add User", 
-                "Update User", 
-                "Delete User"
-            });
-        }
-        private void setAllPanesInvisible()
-        {
-            user_duser_panel.Visible = false;
-            user_IUpanel.Visible = false;
 
-        }
-        private void focusPanel(Panel desired)
-        {
-            setAllPanesInvisible();
-            desired.Visible = true;
-            Point oldLocation = this.currentPanel.Location;
-            this.currentPanel.Location = desired.Location;
-            desired.Location = oldLocation;
-            this.currentPanel = desired;
-        }
-        
-        private void prisonerComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selected = userComboBox.SelectedItem.ToString();
-            switch (selected)
-            {
-                case "Add User":
-                    setup_user_add();
-                    break;
-                case "Update User":
-                    setup_user_update();
-                    break;
-                case "Delete User":
-                    setup_user_delete();
-                    break;
-            }
-        }
-
-        private void setup_user_add()
-        {
-            focusPanel(user_IUpanel);
-            user_iu_label.Text = "Add prisoner";
-            permissionLabel.Visible = false;
-            permission_textbox.Visible = false;
-        }
-
-        private void setup_user_update()
-        {
-            focusPanel(user_IUpanel);
-            user_iu_label.Text = "Update prisoner";
-            permissionLabel.Visible = true;
-            permission_textbox.Visible = true;
-        }
-
-        private void setup_user_delete()
-        {
-            focusPanel(user_duser_panel);
-        }
-
-        private void user_add()
+        private void user_iu_button_Click(object sender, EventArgs e)
         {
             string[] argList = new String[5];
             if (string.IsNullOrEmpty(fname_iu_textbox.Text))
@@ -144,7 +79,33 @@ namespace PMSTest
             }
         }
 
-        private void user_update()
+        private void prisoner_delete_button1_Click(object sender, EventArgs e)
+        {
+            string[] argList = new String[1];
+            if (string.IsNullOrEmpty(prisoner_delete_TextBox1.Text))
+            {
+                return;
+            }
+            else
+            {
+                argList[0] = prisoner_delete_TextBox1.Text;
+            }
+            try
+            {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_deleteUser", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+                MessageBox.Show("Delete Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             string[] argList = new String[6];
             if (string.IsNullOrEmpty(fname_iu_textbox.Text))
@@ -210,20 +171,112 @@ namespace PMSTest
             }
         }
 
-        private void user_delete()
+        private void button3_Click(object sender, EventArgs e)
         {
-            string[] argList = new String[1];
-            if (string.IsNullOrEmpty(prisoner_delete_TextBox1.Text))
+            string[] argList = new String[3];
+            if (string.IsNullOrEmpty(user_AR_TB.Text))
             {
-                return;
+                argList[0] = null;
             }
             else
             {
-                argList[0] = prisoner_delete_TextBox1.Text;
+                argList[0] = user_AR_TB.Text;
+            }
+            if (string.IsNullOrEmpty(prisonerID_AR_TB.Text))
+            {
+                argList[1] = null;
+            }
+            else
+            {
+                argList[1] = prisonerID_AR_TB.Text;
+            }
+            if (string.IsNullOrEmpty(relation_AR_TB.Text))
+            {
+                argList[2] = null;
+            }
+            else
+            {
+                argList[2] = relation_AR_TB.Text;
             }
             try
             {
-                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_deleteUser", argList))
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_addRelation", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+                MessageBox.Show("Add Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string[] argList = new String[3];
+            if (string.IsNullOrEmpty(user_U_TB.Text))
+            {
+                argList[0] = null;
+            }
+            else
+            {
+                argList[0] = user_U_TB.Text;
+            }
+            if (string.IsNullOrEmpty(prisoner_U_TB.Text))
+            {
+                argList[1] = null;
+            }
+            else
+            {
+                argList[1] = prisoner_U_TB.Text;
+            }
+            if (string.IsNullOrEmpty(relation_U_TB.Text))
+            {
+                argList[2] = null;
+            }
+            else
+            {
+                argList[2] = relation_U_TB.Text;
+            }
+            try
+            {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_updateRelation", argList))
+                {
+                    MessageBox.Show("Invalid Syntax");
+                    return;
+                }
+                MessageBox.Show("Update Successful");
+            }
+            catch (System.Data.SqlClient.SqlException E)
+            {
+                MessageBox.Show(E.Message);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string[] argList = new String[2];
+            if (string.IsNullOrEmpty(user_D_TB.Text))
+            {
+                argList[0] = null;
+            }
+            else
+            {
+                argList[0] = user_D_TB.Text;
+            }
+            if (string.IsNullOrEmpty(prisoner_D_TB.Text))
+            {
+                argList[1] = null;
+            }
+            else
+            {
+                argList[1] = prisoner_D_TB.Text;
+            }
+            try
+            {
+                if (!this.parentForm.dbHandler.runParamSproc_Boolean("dbo.pms_deleteRelation", argList))
                 {
                     MessageBox.Show("Invalid Syntax");
                     return;
@@ -234,25 +287,6 @@ namespace PMSTest
             {
                 MessageBox.Show(E.Message);
             }
-        }
-
-        private void user_iu_button_Click(object sender, EventArgs e)
-        {
-            string selected = userComboBox.SelectedItem.ToString();
-            switch (selected)
-            {
-                case "Add User":
-                    user_add();
-                    break;
-                case "Update User":
-                    user_update();
-                    break;
-            }
-        }
-
-        private void prisoner_delete_button1_Click(object sender, EventArgs e)
-        {
-            user_delete();
         }
     }
 }

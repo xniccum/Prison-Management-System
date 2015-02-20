@@ -436,6 +436,15 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pwj_delete", new String[] { "@prisonerID", "@jobName" });
             this.parameterTypes.Add("dbo.pwj_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
+            this.parameterNames.Add("dbo.pms_addRelation", new String[] { "@username","@prisonerID", "@relationship" });
+            this.parameterTypes.Add("dbo.pms_addRelation", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_updateRelation", new String[] { "@username", "@prisonerID", "@relationship" });
+            this.parameterTypes.Add("dbo.pms_updateRelation", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt, SqlDbType.VarChar });
+
+            this.parameterNames.Add("dbo.pms_deleteRelation", new String[] { "@username", "@prisonerID" });
+            this.parameterTypes.Add("dbo.pms_deleteRelation", new SqlDbType[] { SqlDbType.VarChar, SqlDbType.SmallInt});
+
 
 
         }
