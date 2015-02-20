@@ -141,8 +141,8 @@ namespace PMSTest
                 "Show All Prisoner Family Member Pairs",
                 "Get Prisoner",
                 "Get Users Related to Prisoner",
-                "Get Prisoners Related to User"
-                
+                "Get Prisoners Related to User",
+                "Get Altercations Related to Prisoner"
             });
             scheduleButton.Visible = true;
             prisonerButton.Visible = true; 
@@ -159,8 +159,6 @@ namespace PMSTest
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
         }
-
-
 
         //Depricated. Will be removed. 
         private void run_sproc(string s)
@@ -349,9 +347,10 @@ namespace PMSTest
                     case "Show All Prisoner Family Member Pairs":
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.relations_view");
                         break;
-
-                
-                
+                    case "Get Altercations Related to Prisoner":
+                        inputForm = new Add_Data_Form("dbo.pms_getRelatedAltercations", this);
+                        inputForm.Show();
+                        break;
                 }
             }
             catch (System.Data.SqlClient.SqlException E)

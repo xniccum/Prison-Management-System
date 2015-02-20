@@ -453,6 +453,9 @@ namespace PMSTest
 
             this.parameterNames.Add("dbo.pms_deleteCell", new String[] { "@cellNo" });
             this.parameterTypes.Add("dbo.pms_deleteCell", new SqlDbType[] { SqlDbType.SmallInt });
+
+            this.parameterNames.Add("dbo.pms_getRelatedAltercations", new String[] { "@prisonerID" });
+            this.parameterTypes.Add("dbo.pms_getRelatedAltercations", new SqlDbType[] { SqlDbType.SmallInt });
         }
     }
 
