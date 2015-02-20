@@ -153,6 +153,8 @@ namespace PMSTest
         {
             comboBox1.Items.Clear();
             hideWardenButtons();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
         }
 
 
