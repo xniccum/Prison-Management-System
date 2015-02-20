@@ -110,6 +110,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(fname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -118,6 +119,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(mname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -126,6 +128,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(lname_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -134,6 +137,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(crime_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -142,6 +146,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(crimedescription_iu_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -150,6 +155,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(prisoner_cell_textbox.Text))
             {
                 MessageBox.Show("Please Fill in all entry boxes.");
+                return;
             }
             else
             {
@@ -176,6 +182,7 @@ namespace PMSTest
             if (string.IsNullOrEmpty(prisonerID_iu_textbox.Text))
             {
                 MessageBox.Show("Please insert a prisonerID.");
+                return;
             }
             else{
                 argList[0] = prisonerID_iu_textbox.Text;
