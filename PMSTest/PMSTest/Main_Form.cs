@@ -109,6 +109,8 @@ namespace PMSTest
                 "Show All Schedules",
                 "Show Job Schedules",
                 "Show Cell Histories",
+                "Show Released Prisoners",
+                "Show All Jobs",
                 "Get Prisoner"
             });
             scheduleButton.Visible = false;
@@ -134,16 +136,9 @@ namespace PMSTest
                 "Show All Schedules",
                 "Show Job Schedules",
                 "Show Cell Histories",
-                "Get Prisoner",
-                "Add Altercation",
-                "Add Cell",
-                "Add Guard",
-                "Add Prisoner",
-                "Register User",
-                "Create Job",
-                "Delete Prisoner",
-                "Delete User",
-                "Move Prisoner"
+                "Show Released Prisoners",
+                "Show All Jobs",
+                "Get Prisoner"
                 
             });
             scheduleButton.Visible = true;
@@ -157,8 +152,7 @@ namespace PMSTest
         private void setLoggedOutInterface()
         {
             comboBox1.Items.Clear();
-            scheduleButton.Visible = false;
-            prisonerButton.Visible = false;
+            hideWardenButtons();
         }
 
 
@@ -331,6 +325,13 @@ namespace PMSTest
                         break;
                     case "Show Cell Histories":
                         dataGridView1.DataSource = dbHandler.runSproc("dbo.pms_cellhistory_view");
+                        break;
+                    case "Show Released Prisoners":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.pms_getReleasedPrisoners");
+                        break;
+
+                    case "Show All Jobs":
+                        dataGridView1.DataSource = dbHandler.runSproc("dbo.job_view");
                         break;
 
                 

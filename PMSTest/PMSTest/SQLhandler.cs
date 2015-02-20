@@ -436,6 +436,9 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pwj_delete", new String[] { "@prisonerID", "@jobName" });
             this.parameterTypes.Add("dbo.pwj_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
+            this.parameterNames.Add("dbo.altercation_update", new String[] { "@altNO", "@newdescription" });
+            this.parameterTypes.Add("dbo.altercation_upate", new SqlDbType[] {  SqlDbType.VarChar, SqlDbType.VarChar });
+
 
         }
     }
