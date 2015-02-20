@@ -430,8 +430,8 @@ namespace PMSTest
             this.parameterNames.Add("dbo.pwj_add", new String[] { "@prisonerID", "@jobName" });
             this.parameterTypes.Add("dbo.pwj_add", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
-            this.parameterNames.Add("dbo.pwj_add", new String[] { "@prisonerID", "@jobName" });
-            this.parameterTypes.Add("dbo.pwj_add", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
+            this.parameterNames.Add("dbo.pwj_delete", new String[] { "@prisonerID", "@jobName" });
+            this.parameterTypes.Add("dbo.pwj_delete", new SqlDbType[] { SqlDbType.SmallInt, SqlDbType.VarChar });
 
 
         }
