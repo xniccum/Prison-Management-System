@@ -172,7 +172,7 @@
             // scheduleButton
             // 
             this.scheduleButton.Location = new System.Drawing.Point(716, 52);
-            this.scheduleButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.scheduleButton.Margin = new System.Windows.Forms.Padding(4);
             this.scheduleButton.Name = "scheduleButton";
             this.scheduleButton.Size = new System.Drawing.Size(163, 28);
             this.scheduleButton.TabIndex = 9;
@@ -183,7 +183,7 @@
             // prisonerButton
             // 
             this.prisonerButton.Location = new System.Drawing.Point(716, 87);
-            this.prisonerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.prisonerButton.Margin = new System.Windows.Forms.Padding(4);
             this.prisonerButton.Name = "prisonerButton";
             this.prisonerButton.Size = new System.Drawing.Size(163, 28);
             this.prisonerButton.TabIndex = 10;
@@ -194,7 +194,7 @@
             // userButton
             // 
             this.userButton.Location = new System.Drawing.Point(716, 123);
-            this.userButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userButton.Margin = new System.Windows.Forms.Padding(4);
             this.userButton.Name = "userButton";
             this.userButton.Size = new System.Drawing.Size(163, 28);
             this.userButton.TabIndex = 11;
@@ -205,7 +205,7 @@
             // cellButton
             // 
             this.cellButton.Location = new System.Drawing.Point(716, 159);
-            this.cellButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cellButton.Margin = new System.Windows.Forms.Padding(4);
             this.cellButton.Name = "cellButton";
             this.cellButton.Size = new System.Drawing.Size(163, 28);
             this.cellButton.TabIndex = 12;
@@ -216,7 +216,7 @@
             // guardButton
             // 
             this.guardButton.Location = new System.Drawing.Point(716, 194);
-            this.guardButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guardButton.Margin = new System.Windows.Forms.Padding(4);
             this.guardButton.Name = "guardButton";
             this.guardButton.Size = new System.Drawing.Size(161, 28);
             this.guardButton.TabIndex = 13;
@@ -227,7 +227,7 @@
             // jobButton
             // 
             this.jobButton.Location = new System.Drawing.Point(716, 230);
-            this.jobButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.jobButton.Margin = new System.Windows.Forms.Padding(4);
             this.jobButton.Name = "jobButton";
             this.jobButton.Size = new System.Drawing.Size(161, 28);
             this.jobButton.TabIndex = 14;
@@ -249,12 +249,13 @@
             // altercationButton
             // 
             this.altercationButton.Location = new System.Drawing.Point(716, 266);
-            this.altercationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.altercationButton.Margin = new System.Windows.Forms.Padding(4);
             this.altercationButton.Name = "altercationButton";
             this.altercationButton.Size = new System.Drawing.Size(160, 28);
             this.altercationButton.TabIndex = 16;
             this.altercationButton.Text = "Altercation Editor";
             this.altercationButton.UseVisualStyleBackColor = true;
+            this.altercationButton.Click += new System.EventHandler(this.altercationButton_Click);
             // 
             // Main_Form
             // 

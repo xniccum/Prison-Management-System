@@ -428,6 +428,10 @@ namespace PMSTest
 
         private void button3_Click_2(object sender, EventArgs e)
         {
+        }
+
+        private void altercationButton_Click(object sender, EventArgs e)
+        {
             if (!dbHandler.isUserLoggedIn())
             {
                 MessageBox.Show("Please Log In First");

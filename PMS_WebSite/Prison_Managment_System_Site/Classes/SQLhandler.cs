@@ -224,6 +224,48 @@ namespace Prison_Managment_System
                 return executeSproc(sprocCommand);
             }
         }
+
+        public string getGuardCount()
+        {
+            using (SqlCommand command = new SqlCommand("dbo.pms_guardCount", dbConnection))
+            {
+                SqlDataReader dataRead;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                try
+                {
+                    dataRead = command.ExecuteReader();
+                }
+                catch
+                {
+                    return "0";
+                }
+
+                DataTable returnTable = new DataTable();
+                returnTable.Load(dataRead);
+                return returnTable.Rows[0][0].ToString();
+            }
+        }
+
+        public string getPrisonerCount()
+        {
+            using (SqlCommand command = new SqlCommand("dbo.pms_prisonerCount", dbConnection))
+            {
+                SqlDataReader dataRead;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                try
+                {
+                    dataRead = command.ExecuteReader();
+                }
+                catch
+                {
+                    return "0";
+                }
+
+                DataTable returnTable = new DataTable();
+                returnTable.Load(dataRead);
+                return returnTable.Rows[0][0].ToString();
+            }
+        }
         
         public DataTable getAltercationTable()
         {

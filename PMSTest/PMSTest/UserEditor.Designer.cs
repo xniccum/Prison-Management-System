@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.user_IUpanel = new System.Windows.Forms.Panel();
+            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
             this.permission_textbox = new System.Windows.Forms.TextBox();
             this.permissionLabel = new System.Windows.Forms.Label();
             this.username_label = new System.Windows.Forms.Label();
@@ -94,7 +95,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.password_textbox = new System.Windows.Forms.MaskedTextBox();
             this.user_IUpanel.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -131,6 +131,13 @@
             this.user_IUpanel.Name = "user_IUpanel";
             this.user_IUpanel.Size = new System.Drawing.Size(361, 233);
             this.user_IUpanel.TabIndex = 26;
+            // 
+            // password_textbox
+            // 
+            this.password_textbox.Location = new System.Drawing.Point(175, 112);
+            this.password_textbox.Name = "password_textbox";
+            this.password_textbox.Size = new System.Drawing.Size(89, 22);
+            this.password_textbox.TabIndex = 43;
             // 
             // permission_textbox
             // 
@@ -356,6 +363,7 @@
             this.button1.TabIndex = 37;
             this.button1.Text = "Submit";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label3
             // 
@@ -761,13 +769,6 @@
             this.label16.Size = new System.Drawing.Size(150, 25);
             this.label16.TabIndex = 0;
             this.label16.Text = "Update Relation";
-            // 
-            // password_textbox
-            // 
-            this.password_textbox.Location = new System.Drawing.Point(175, 112);
-            this.password_textbox.Name = "password_textbox";
-            this.password_textbox.Size = new System.Drawing.Size(89, 22);
-            this.password_textbox.TabIndex = 43;
             // 
             // UserEditor
             // 
